@@ -14,9 +14,21 @@ Software architecture description
 
 #### Instructions
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. svc-common 工具类
+2. svc-dal 数据库操作类
+3. svc-facade 服务接口定义
+4. svc-model 数据库对象
+5. svc-service 服务层，通过Dubbo暴露，微服务化
+6. svc-web WEB应用
+
+#### 技术选型及要求
+
+1. Spring Boot 2.0.0+
+2. MySQL 5.7
+3. Dubbo 2.6+
+4. checkstyle pass
+5. findbugs pass
+6. maven
 
 #### Contribution
 
