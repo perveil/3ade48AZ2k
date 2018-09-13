@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.dao;
 
 import com.ebuytech.svc.easybuy.entity.AdminUser;
 import com.ebuytech.svc.easybuy.entity.AdminUserExample;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AdminUserDAO extends MyBatisBaseDao<AdminUser, String, AdminUserExample> {
+    int selectAdmin(@Param("userName") String userName,@Param("userPwd") String userPwd);
 }
