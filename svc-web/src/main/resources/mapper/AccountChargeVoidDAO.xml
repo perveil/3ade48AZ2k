@@ -112,17 +112,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="account_charge_void_id" keyProperty="accountChargeVoidId" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid" useGeneratedKeys="true">
-    insert into account_charge_void (change_value, change_memo, member_id, 
-      account_id, charge_order_id, charge_void_order_id, 
-      create_time, update_time)
-    values (#{changeValue,jdbcType=INTEGER}, #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
-      #{accountId,jdbcType=VARCHAR}, #{chargeOrderId,jdbcType=VARCHAR}, #{chargeVoidOrderId,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid">
+    insert into account_charge_void (account_charge_void_id, change_value, 
+      change_memo, member_id, account_id, 
+      charge_order_id, charge_void_order_id, create_time, 
+      update_time)
+    values (#{accountChargeVoidId,jdbcType=VARCHAR}, #{changeValue,jdbcType=INTEGER}, 
+      #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{chargeOrderId,jdbcType=VARCHAR}, #{chargeVoidOrderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="account_charge_void_id" keyProperty="accountChargeVoidId" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid">
     insert into account_charge_void
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountChargeVoidId != null">
+        account_charge_void_id,
+      </if>
       <if test="changeValue != null">
         change_value,
       </if>
@@ -149,6 +154,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountChargeVoidId != null">
+        #{accountChargeVoidId,jdbcType=VARCHAR},
+      </if>
       <if test="changeValue != null">
         #{changeValue,jdbcType=INTEGER},
       </if>

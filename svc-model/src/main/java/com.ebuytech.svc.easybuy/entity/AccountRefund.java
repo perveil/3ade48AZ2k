@@ -14,6 +14,11 @@ public class AccountRefund implements Serializable {
     private String accountRefundId;
 
     /**
+     * 账户变动id
+     */
+    private String accountChangeId;
+
+    /**
      * 变动值
      */
     private Integer changeValue;
@@ -61,6 +66,14 @@ public class AccountRefund implements Serializable {
 
     public void setAccountRefundId(String accountRefundId) {
         this.accountRefundId = accountRefundId;
+    }
+
+    public String getAccountChangeId() {
+        return accountChangeId;
+    }
+
+    public void setAccountChangeId(String accountChangeId) {
+        this.accountChangeId = accountChangeId;
     }
 
     public Integer getChangeValue() {
@@ -140,6 +153,7 @@ public class AccountRefund implements Serializable {
         }
         AccountRefund other = (AccountRefund) that;
         return (this.getAccountRefundId() == null ? other.getAccountRefundId() == null : this.getAccountRefundId().equals(other.getAccountRefundId()))
+            && (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
             && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
             && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
@@ -155,6 +169,7 @@ public class AccountRefund implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountRefundId() == null) ? 0 : getAccountRefundId().hashCode());
+        result = prime * result + ((getAccountChangeId() == null) ? 0 : getAccountChangeId().hashCode());
         result = prime * result + ((getChangeValue() == null) ? 0 : getChangeValue().hashCode());
         result = prime * result + ((getChangeMemo() == null) ? 0 : getChangeMemo().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
@@ -173,6 +188,7 @@ public class AccountRefund implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", accountRefundId=").append(accountRefundId);
+        sb.append(", accountChangeId=").append(accountChangeId);
         sb.append(", changeValue=").append(changeValue);
         sb.append(", changeMemo=").append(changeMemo);
         sb.append(", memberId=").append(memberId);

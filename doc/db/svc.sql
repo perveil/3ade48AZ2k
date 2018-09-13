@@ -48,19 +48,117 @@ DROP TABLE IF EXISTS `gift_card` CASCADE
 DROP TABLE IF EXISTS `store` CASCADE
 ;
 
+DROP TABLE IF EXISTS `charge`CASCADE
+;
+
 DROP TABLE IF EXISTS `activity` CASCADE
 ;
 
 DROP TABLE IF EXISTS `admin_user` CASCADE
 ;
 
+DROP TABLE IF EXISTS `admin_role` CASCADE
+;
+
+DROP TABLE IF EXISTS `admin_access` CASCADE
+;
+
+DROP TABLE IF EXISTS `admin_role_access` CASCADE
+;
+
+DROP TABLE IF EXISTS `admin_user_role` CASCADE
+;
+
+DROP TABLE IF EXISTS `advert` CASCADE
+;
+
+DROP TABLE IF EXISTS `advert_pos` CASCADE
+;
 /* Create Tables */
+
+create table `advert_pos` (
+  `pos_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '广告位id',
+  `pos_name` varchar(64) NOT NULL COMMENT '广告位名称',
+  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：使用中 1：空闲',
+  `size` varchar (64) NOT NULL DEFAULT '100*200' COMMENT '尺寸',
+  `advert_count` int NOT NULL DEFAULT 0 COMMENT '广告个数',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '广告位表'
+;
+
+create table `advert` (
+  `advert_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '广告id',
+  `valid_type` int DEFAULT 0 COMMENT '有效期 0：永不过期 1：有期限',
+  `valid_time` varchar(64) default '' COMMENT '有效截止日期',
+  `img_url` varchar(255) default '' COMMENT '图片url',
+  `notice` varchar(255) default '' COMMENT '备注',
+  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：开启 1：关闭',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '广告表'
+;
+
+create table `admin_access` (
+  `access_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '权限id',
+  `access_name` varchar(64) default '' COMMENT '权限名',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '权限表'
+;
+
+create table `admin_role_access` (
+  `role_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '角色id',
+  `access_id` int not null COMMENT '权限id',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '角色权限关系表'
+;
+
+
+create table `admin_user_role` (
+  `user_id` varchar(64) not null PRIMARY KEY COMMENT '用户id',
+  `role_id` int not null COMMENT '角色id',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '用户权限关系表'
+;
+
+
+create table `admin_role` (
+  `role_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '角色id',
+  `role_name` varchar(64) not null COMMENT '用户角色名',
+  `role_count` int not null DEFAULT 0 COMMENT '用户人数',
+  `status` int DEFAULT 0 COMMENT '状态 0：关闭 1：开启',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '管理员账户'
+;
+
 
 create table `admin_user` (
   `user_id` varchar(64) not null COMMENT '用户id',
   `user_name` varchar(64) not null COMMENT '用户名',
   `user_pwd` varchar(64) not null COMMENT '密码',
-  `role_id` varchar(64) not null COMMENT '角色id',
+  `role_id` int not null COMMENT '角色id',
   `is_access` int not null default 0 COMMENT '是否已配置权限 0：是 1：否',
   `status` int not null default 0 COMMENT '状态 0：开启 1：关闭',
   `level` int not null default 50 COMMENT '权重',
@@ -74,7 +172,7 @@ COMMENT = '管理员账户'
 ;
 
 create table `activity` (
-  `act_id` int not null COMMENT '活动id',
+  `act_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '活动id',
   `status` int NOT NULL default 0 COMMENT '活动状态 0:开启 1：关闭',
   `act_type` int NOT NULL DEFAULT 0 COMMENT '活动类型 0：充送活动 1：礼品卡购买活动',
   `cnt_type` int NOT NULL DEFAULT 0 COMMENT '优惠类型 0：送金额 1：会员折扣 2：优惠券（未开发）',
@@ -83,8 +181,7 @@ create table `activity` (
   `act_count` int NOT NULL DEFAULT 0 COMMENT '活动折扣',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
   `end_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '结束时间',
-	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
-  CONSTRAINT `PK_activity` PRIMARY KEY (`act_id` ASC)
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 )
 ENGINE=InnoDB
 DEFAULT CHARSET utf8
@@ -92,15 +189,14 @@ COMMENT = '活动'
 ;
 
 create table `charge` (
-  `charge_id` int NOT NULL COMMENT'充值id',
+  `charge_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT'充值id',
   `act_id` int NOT NULL COMMENT '活动id',
   `charge_money` int NOT NULL COMMENT '充值金额',
   `valid_type` int DEFAULT 0 COMMENT '有效期 0：永不过期 1：有期限',
   `valid_time` varchar(64) default '' COMMENT '有效期限',
   `is_valid` int DEFAULT 0 COMMENT '0：正常 1：关闭',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
-	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
-  CONSTRAINT `PK_charge` PRIMARY KEY (`charge_id` ASC)
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 )
 ENGINE=InnoDB
 DEFAULT CHARSET utf8
@@ -112,6 +208,11 @@ create table `store` (
   `store_name` varchar(255) DEFAULT '' COMMENT '门店名',
   `store_province` varchar(64) DEFAULT '' COMMENT '所在省',
   `store_city` varchar(64) DEFAULT '' COMMENT '所在城市',
+  `store_district` varchar(64) DEFAULT '' COMMENT '所在地区',
+  `store_addr` varchar(255) DEFAULT '' COMMENT '详细地址',
+  `store_phone` varchar(20) DEFAULT '' COMMENT '联系电话',
+  `status` int DEFAULT 0 COMMENT '状态 0：可用 1：不可用',
+  `oper` int DEFAULT 0 COMMENT '操作 0：可用 1：不可用',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
   CONSTRAINT `PK_store` PRIMARY KEY (`store_id` ASC)
@@ -124,7 +225,6 @@ COMMENT = '门店'
 
 create table `value_card` (
   `value_card_id` varchar(64) not null COMMENT '储值卡ID',
-  `value_card_pwd` varchar(64) not NULL COMMENT '卡密',
   `account_id` varchar(64) NOT NULL COMMENT '账户ID',
   `member_id` varchar(64) NOT NULL COMMENT '会员ID',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
@@ -139,12 +239,13 @@ COMMENT = '储值卡'
 
 create table `gift_card` (
   `gift_card_id` varchar(64) NOT NULL COMMENT '礼品卡ID',
+  `gift_card_pwd` varchar(64) not NULL COMMENT '卡密',
   `account_id` varchar(64) NOT NULL COMMENT '账户ID',
   `member_id` varchar(64) NOT NULL COMMENT '会员ID',
   `value_card_id` varchar(64) NOT NULL COMMENT '储值卡ID',
   `money` int NOT NULL default 0 COMMENT '礼品卡金额',
   `end_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '结束时间',
-  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常 1：关闭 2：已结束',
+  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常（未激活） 1：关闭（已激活） 2：已结束（过期）',
   `img_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片url',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
@@ -182,10 +283,12 @@ COMMENT = '账户'
 CREATE TABLE `account_change`
 (
 	`account_change_id` varchar(64) NOT NULL COMMENT '主键',
+	`change_memo` varchar(64) NOT NULL COMMENT '变动原因（如实体店消费、在线充值等）',
 	`change_type` varchar(1) NULL COMMENT '变动类型：0不变，1增加，2减少',
 	`change_value` int(11) NULL COMMENT '变化值',
 	`member_id` varchar(64) NULL COMMENT '会员ID',
 	`account_id` varchar(64) NULL COMMENT '账户ID',
+	`store_id` varchar(64) NOT NULL COMMENT '门店id',
 	`balance` int(11) NULL COMMENT '变动后余额',
 	`create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
@@ -193,23 +296,23 @@ CREATE TABLE `account_change`
 )
 ENGINE=InnoDB
 DEFAULT CHARSET utf8
-COMMENT = '账户变动记录(按用户分表)'
+COMMENT = '账户变动记录(交易记录)(按用户分表)'
 
 ;
 
 CREATE TABLE `account_charge`
 (
-	`account_charge_id` varchar(64) NOT NULL COMMENT '主键',
+	`account_charge_id` varchar(64) NOT NULL COMMENT '主键(支付流水号)',
+	`account_change_id` varchar(64) not NULL COMMENT '账户变动id',
 	`change_value` int(11) NULL COMMENT '充值金额',
 	`change_extra` int(11) NULL COMMENT '赠送金额',
 	`change_memo` VARCHAR(50) NULL COMMENT '变动原因',
+	`charge_order_serial` varchar(64) NULL COMMENT '交易流水号',
+	`charge_type` varchar(64) DEFAULT '在线充值' COMMENT '充值类型',
 	`member_id` varchar(64) NULL COMMENT '会员ID',
 	`account_id` varchar(64) NULL COMMENT '账户ID',
-	`charge_order_serial` varchar(64) NULL COMMENT '交易流水号',
-	`charge_order_id` varchar(64) NULL COMMENT '充值订单号',
-	`charge_type` varchar(64) DEFAULT '在线充值' COMMENT '充值类型',
 	`charge_way`  varchar(64) DEFAULT '微信' COMMENT '支付渠道',
-	`pay_serial` varchar(64) NULL COMMENT '支付流水号',
+	`charge_order_id` varchar(64) NULL COMMENT '充值订单号',
 	`pay_account` varchar(64) DEFAULT '个人微信支付账号' COMMENT '支付账号',
 	`create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
@@ -243,6 +346,7 @@ COMMENT = '充值撤销记录(按用户分表)'
 CREATE TABLE `account_refund`
 (
 	`account_refund_id` varchar(64) NOT NULL COMMENT '主键',
+	`account_change_id` varchar(64) not NULL COMMENT '账户变动id',
 	`change_value` int(11) NULL COMMENT '变动值',
 	`change_memo` VARCHAR(50) NULL COMMENT '变动原因',
 	`member_id` varchar(64) NULL COMMENT '会员ID',
@@ -262,6 +366,7 @@ COMMENT = '退款记录(按用户分表)'
 CREATE TABLE `account_sale`
 (
 	`account_sale_id` varchar(64) NOT NULL COMMENT '主键',
+	`account_change_id` varchar(64) not NULL COMMENT '账户变动id',
 	`change_value` int(11) NULL COMMENT '变动值',
 	`change_memo` VARCHAR(50) NULL COMMENT '变动原因',
 	`member_id` varchar(64) NULL COMMENT '会员ID',

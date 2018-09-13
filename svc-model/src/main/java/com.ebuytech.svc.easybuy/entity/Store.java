@@ -29,6 +29,31 @@ public class Store implements Serializable {
     private String storeCity;
 
     /**
+     * 所在地区
+     */
+    private String storeDistrict;
+
+    /**
+     * 详细地址
+     */
+    private String storeAddr;
+
+    /**
+     * 联系电话
+     */
+    private String storePhone;
+
+    /**
+     * 状态 0：可用 1：不可用
+     */
+    private Integer status;
+
+    /**
+     * 操作 0：可用 1：不可用
+     */
+    private Integer oper;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -72,6 +97,46 @@ public class Store implements Serializable {
         this.storeCity = storeCity;
     }
 
+    public String getStoreDistrict() {
+        return storeDistrict;
+    }
+
+    public void setStoreDistrict(String storeDistrict) {
+        this.storeDistrict = storeDistrict;
+    }
+
+    public String getStoreAddr() {
+        return storeAddr;
+    }
+
+    public void setStoreAddr(String storeAddr) {
+        this.storeAddr = storeAddr;
+    }
+
+    public String getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getOper() {
+        return oper;
+    }
+
+    public void setOper(Integer oper) {
+        this.oper = oper;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -104,6 +169,11 @@ public class Store implements Serializable {
             && (this.getStoreName() == null ? other.getStoreName() == null : this.getStoreName().equals(other.getStoreName()))
             && (this.getStoreProvince() == null ? other.getStoreProvince() == null : this.getStoreProvince().equals(other.getStoreProvince()))
             && (this.getStoreCity() == null ? other.getStoreCity() == null : this.getStoreCity().equals(other.getStoreCity()))
+            && (this.getStoreDistrict() == null ? other.getStoreDistrict() == null : this.getStoreDistrict().equals(other.getStoreDistrict()))
+            && (this.getStoreAddr() == null ? other.getStoreAddr() == null : this.getStoreAddr().equals(other.getStoreAddr()))
+            && (this.getStorePhone() == null ? other.getStorePhone() == null : this.getStorePhone().equals(other.getStorePhone()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getOper() == null ? other.getOper() == null : this.getOper().equals(other.getOper()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -116,6 +186,11 @@ public class Store implements Serializable {
         result = prime * result + ((getStoreName() == null) ? 0 : getStoreName().hashCode());
         result = prime * result + ((getStoreProvince() == null) ? 0 : getStoreProvince().hashCode());
         result = prime * result + ((getStoreCity() == null) ? 0 : getStoreCity().hashCode());
+        result = prime * result + ((getStoreDistrict() == null) ? 0 : getStoreDistrict().hashCode());
+        result = prime * result + ((getStoreAddr() == null) ? 0 : getStoreAddr().hashCode());
+        result = prime * result + ((getStorePhone() == null) ? 0 : getStorePhone().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getOper() == null) ? 0 : getOper().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -131,6 +206,11 @@ public class Store implements Serializable {
         sb.append(", storeName=").append(storeName);
         sb.append(", storeProvince=").append(storeProvince);
         sb.append(", storeCity=").append(storeCity);
+        sb.append(", storeDistrict=").append(storeDistrict);
+        sb.append(", storeAddr=").append(storeAddr);
+        sb.append(", storePhone=").append(storePhone);
+        sb.append(", status=").append(status);
+        sb.append(", oper=").append(oper);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

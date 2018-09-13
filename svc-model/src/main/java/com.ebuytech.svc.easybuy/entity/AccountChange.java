@@ -14,6 +14,11 @@ public class AccountChange implements Serializable {
     private String accountChangeId;
 
     /**
+     * 变动原因（如实体店消费、在线充值等）
+     */
+    private String changeMemo;
+
+    /**
      * 变动类型：0不变，1增加，2减少
      */
     private String changeType;
@@ -32,6 +37,11 @@ public class AccountChange implements Serializable {
      * 账户ID
      */
     private String accountId;
+
+    /**
+     * 门店id
+     */
+    private String storeId;
 
     /**
      * 变动后余额
@@ -56,6 +66,14 @@ public class AccountChange implements Serializable {
 
     public void setAccountChangeId(String accountChangeId) {
         this.accountChangeId = accountChangeId;
+    }
+
+    public String getChangeMemo() {
+        return changeMemo;
+    }
+
+    public void setChangeMemo(String changeMemo) {
+        this.changeMemo = changeMemo;
     }
 
     public String getChangeType() {
@@ -88,6 +106,14 @@ public class AccountChange implements Serializable {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
     public Integer getBalance() {
@@ -127,10 +153,12 @@ public class AccountChange implements Serializable {
         }
         AccountChange other = (AccountChange) that;
         return (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
+            && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
             && (this.getChangeType() == null ? other.getChangeType() == null : this.getChangeType().equals(other.getChangeType()))
             && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
             && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
+            && (this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId()))
             && (this.getBalance() == null ? other.getBalance() == null : this.getBalance().equals(other.getBalance()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
@@ -141,10 +169,12 @@ public class AccountChange implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountChangeId() == null) ? 0 : getAccountChangeId().hashCode());
+        result = prime * result + ((getChangeMemo() == null) ? 0 : getChangeMemo().hashCode());
         result = prime * result + ((getChangeType() == null) ? 0 : getChangeType().hashCode());
         result = prime * result + ((getChangeValue() == null) ? 0 : getChangeValue().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
         result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
+        result = prime * result + ((getStoreId() == null) ? 0 : getStoreId().hashCode());
         result = prime * result + ((getBalance() == null) ? 0 : getBalance().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
@@ -158,10 +188,12 @@ public class AccountChange implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", accountChangeId=").append(accountChangeId);
+        sb.append(", changeMemo=").append(changeMemo);
         sb.append(", changeType=").append(changeType);
         sb.append(", changeValue=").append(changeValue);
         sb.append(", memberId=").append(memberId);
         sb.append(", accountId=").append(accountId);
+        sb.append(", storeId=").append(storeId);
         sb.append(", balance=").append(balance);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ValueCardExample {
+public class AdminAccessExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class ValueCardExample {
 
     private Long offset;
 
-    public ValueCardExample() {
+    public AdminAccessExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -125,213 +125,133 @@ public class ValueCardExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andValueCardIdIsNull() {
-            addCriterion("value_card_id is null");
+        public Criteria andAccessIdIsNull() {
+            addCriterion("access_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdIsNotNull() {
-            addCriterion("value_card_id is not null");
+        public Criteria andAccessIdIsNotNull() {
+            addCriterion("access_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdEqualTo(String value) {
-            addCriterion("value_card_id =", value, "valueCardId");
+        public Criteria andAccessIdEqualTo(Integer value) {
+            addCriterion("access_id =", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdNotEqualTo(String value) {
-            addCriterion("value_card_id <>", value, "valueCardId");
+        public Criteria andAccessIdNotEqualTo(Integer value) {
+            addCriterion("access_id <>", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdGreaterThan(String value) {
-            addCriterion("value_card_id >", value, "valueCardId");
+        public Criteria andAccessIdGreaterThan(Integer value) {
+            addCriterion("access_id >", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdGreaterThanOrEqualTo(String value) {
-            addCriterion("value_card_id >=", value, "valueCardId");
+        public Criteria andAccessIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("access_id >=", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdLessThan(String value) {
-            addCriterion("value_card_id <", value, "valueCardId");
+        public Criteria andAccessIdLessThan(Integer value) {
+            addCriterion("access_id <", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdLessThanOrEqualTo(String value) {
-            addCriterion("value_card_id <=", value, "valueCardId");
+        public Criteria andAccessIdLessThanOrEqualTo(Integer value) {
+            addCriterion("access_id <=", value, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdLike(String value) {
-            addCriterion("value_card_id like", value, "valueCardId");
+        public Criteria andAccessIdIn(List<Integer> values) {
+            addCriterion("access_id in", values, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdNotLike(String value) {
-            addCriterion("value_card_id not like", value, "valueCardId");
+        public Criteria andAccessIdNotIn(List<Integer> values) {
+            addCriterion("access_id not in", values, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdIn(List<String> values) {
-            addCriterion("value_card_id in", values, "valueCardId");
+        public Criteria andAccessIdBetween(Integer value1, Integer value2) {
+            addCriterion("access_id between", value1, value2, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdNotIn(List<String> values) {
-            addCriterion("value_card_id not in", values, "valueCardId");
+        public Criteria andAccessIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("access_id not between", value1, value2, "accessId");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdBetween(String value1, String value2) {
-            addCriterion("value_card_id between", value1, value2, "valueCardId");
+        public Criteria andAccessNameIsNull() {
+            addCriterion("access_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andValueCardIdNotBetween(String value1, String value2) {
-            addCriterion("value_card_id not between", value1, value2, "valueCardId");
+        public Criteria andAccessNameIsNotNull() {
+            addCriterion("access_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdIsNull() {
-            addCriterion("account_id is null");
+        public Criteria andAccessNameEqualTo(String value) {
+            addCriterion("access_name =", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdIsNotNull() {
-            addCriterion("account_id is not null");
+        public Criteria andAccessNameNotEqualTo(String value) {
+            addCriterion("access_name <>", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdEqualTo(String value) {
-            addCriterion("account_id =", value, "accountId");
+        public Criteria andAccessNameGreaterThan(String value) {
+            addCriterion("access_name >", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdNotEqualTo(String value) {
-            addCriterion("account_id <>", value, "accountId");
+        public Criteria andAccessNameGreaterThanOrEqualTo(String value) {
+            addCriterion("access_name >=", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdGreaterThan(String value) {
-            addCriterion("account_id >", value, "accountId");
+        public Criteria andAccessNameLessThan(String value) {
+            addCriterion("access_name <", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdGreaterThanOrEqualTo(String value) {
-            addCriterion("account_id >=", value, "accountId");
+        public Criteria andAccessNameLessThanOrEqualTo(String value) {
+            addCriterion("access_name <=", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdLessThan(String value) {
-            addCriterion("account_id <", value, "accountId");
+        public Criteria andAccessNameLike(String value) {
+            addCriterion("access_name like", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdLessThanOrEqualTo(String value) {
-            addCriterion("account_id <=", value, "accountId");
+        public Criteria andAccessNameNotLike(String value) {
+            addCriterion("access_name not like", value, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdLike(String value) {
-            addCriterion("account_id like", value, "accountId");
+        public Criteria andAccessNameIn(List<String> values) {
+            addCriterion("access_name in", values, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdNotLike(String value) {
-            addCriterion("account_id not like", value, "accountId");
+        public Criteria andAccessNameNotIn(List<String> values) {
+            addCriterion("access_name not in", values, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdIn(List<String> values) {
-            addCriterion("account_id in", values, "accountId");
+        public Criteria andAccessNameBetween(String value1, String value2) {
+            addCriterion("access_name between", value1, value2, "accessName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIdNotIn(List<String> values) {
-            addCriterion("account_id not in", values, "accountId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAccountIdBetween(String value1, String value2) {
-            addCriterion("account_id between", value1, value2, "accountId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAccountIdNotBetween(String value1, String value2) {
-            addCriterion("account_id not between", value1, value2, "accountId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdIsNull() {
-            addCriterion("member_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdIsNotNull() {
-            addCriterion("member_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdEqualTo(String value) {
-            addCriterion("member_id =", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdNotEqualTo(String value) {
-            addCriterion("member_id <>", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdGreaterThan(String value) {
-            addCriterion("member_id >", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdGreaterThanOrEqualTo(String value) {
-            addCriterion("member_id >=", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdLessThan(String value) {
-            addCriterion("member_id <", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdLessThanOrEqualTo(String value) {
-            addCriterion("member_id <=", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdLike(String value) {
-            addCriterion("member_id like", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdNotLike(String value) {
-            addCriterion("member_id not like", value, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdIn(List<String> values) {
-            addCriterion("member_id in", values, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdNotIn(List<String> values) {
-            addCriterion("member_id not in", values, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdBetween(String value1, String value2) {
-            addCriterion("member_id between", value1, value2, "memberId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemberIdNotBetween(String value1, String value2) {
-            addCriterion("member_id not between", value1, value2, "memberId");
+        public Criteria andAccessNameNotBetween(String value1, String value2) {
+            addCriterion("access_name not between", value1, value2, "accessName");
             return (Criteria) this;
         }
 

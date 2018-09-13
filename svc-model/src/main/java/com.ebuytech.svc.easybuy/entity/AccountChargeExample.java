@@ -195,6 +195,76 @@ public class AccountChargeExample {
             return (Criteria) this;
         }
 
+        public Criteria andAccountChangeIdIsNull() {
+            addCriterion("account_change_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdIsNotNull() {
+            addCriterion("account_change_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdEqualTo(String value) {
+            addCriterion("account_change_id =", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotEqualTo(String value) {
+            addCriterion("account_change_id <>", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdGreaterThan(String value) {
+            addCriterion("account_change_id >", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("account_change_id >=", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLessThan(String value) {
+            addCriterion("account_change_id <", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLessThanOrEqualTo(String value) {
+            addCriterion("account_change_id <=", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLike(String value) {
+            addCriterion("account_change_id like", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotLike(String value) {
+            addCriterion("account_change_id not like", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdIn(List<String> values) {
+            addCriterion("account_change_id in", values, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotIn(List<String> values) {
+            addCriterion("account_change_id not in", values, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdBetween(String value1, String value2) {
+            addCriterion("account_change_id between", value1, value2, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotBetween(String value1, String value2) {
+            addCriterion("account_change_id not between", value1, value2, "accountChangeId");
+            return (Criteria) this;
+        }
+
         public Criteria andChangeValueIsNull() {
             addCriterion("change_value is null");
             return (Criteria) this;
@@ -385,6 +455,146 @@ public class AccountChargeExample {
             return (Criteria) this;
         }
 
+        public Criteria andChargeOrderSerialIsNull() {
+            addCriterion("charge_order_serial is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialIsNotNull() {
+            addCriterion("charge_order_serial is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialEqualTo(String value) {
+            addCriterion("charge_order_serial =", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialNotEqualTo(String value) {
+            addCriterion("charge_order_serial <>", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialGreaterThan(String value) {
+            addCriterion("charge_order_serial >", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialGreaterThanOrEqualTo(String value) {
+            addCriterion("charge_order_serial >=", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialLessThan(String value) {
+            addCriterion("charge_order_serial <", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialLessThanOrEqualTo(String value) {
+            addCriterion("charge_order_serial <=", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialLike(String value) {
+            addCriterion("charge_order_serial like", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialNotLike(String value) {
+            addCriterion("charge_order_serial not like", value, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialIn(List<String> values) {
+            addCriterion("charge_order_serial in", values, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialNotIn(List<String> values) {
+            addCriterion("charge_order_serial not in", values, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialBetween(String value1, String value2) {
+            addCriterion("charge_order_serial between", value1, value2, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeOrderSerialNotBetween(String value1, String value2) {
+            addCriterion("charge_order_serial not between", value1, value2, "chargeOrderSerial");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeIsNull() {
+            addCriterion("charge_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeIsNotNull() {
+            addCriterion("charge_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeEqualTo(String value) {
+            addCriterion("charge_type =", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotEqualTo(String value) {
+            addCriterion("charge_type <>", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeGreaterThan(String value) {
+            addCriterion("charge_type >", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("charge_type >=", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeLessThan(String value) {
+            addCriterion("charge_type <", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeLessThanOrEqualTo(String value) {
+            addCriterion("charge_type <=", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeLike(String value) {
+            addCriterion("charge_type like", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotLike(String value) {
+            addCriterion("charge_type not like", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeIn(List<String> values) {
+            addCriterion("charge_type in", values, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotIn(List<String> values) {
+            addCriterion("charge_type not in", values, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeBetween(String value1, String value2) {
+            addCriterion("charge_type between", value1, value2, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotBetween(String value1, String value2) {
+            addCriterion("charge_type not between", value1, value2, "chargeType");
+            return (Criteria) this;
+        }
+
         public Criteria andMemberIdIsNull() {
             addCriterion("member_id is null");
             return (Criteria) this;
@@ -525,216 +735,6 @@ public class AccountChargeExample {
             return (Criteria) this;
         }
 
-        public Criteria andChargeOrderSerialIsNull() {
-            addCriterion("charge_order_serial is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialIsNotNull() {
-            addCriterion("charge_order_serial is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialEqualTo(String value) {
-            addCriterion("charge_order_serial =", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialNotEqualTo(String value) {
-            addCriterion("charge_order_serial <>", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialGreaterThan(String value) {
-            addCriterion("charge_order_serial >", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialGreaterThanOrEqualTo(String value) {
-            addCriterion("charge_order_serial >=", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialLessThan(String value) {
-            addCriterion("charge_order_serial <", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialLessThanOrEqualTo(String value) {
-            addCriterion("charge_order_serial <=", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialLike(String value) {
-            addCriterion("charge_order_serial like", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialNotLike(String value) {
-            addCriterion("charge_order_serial not like", value, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialIn(List<String> values) {
-            addCriterion("charge_order_serial in", values, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialNotIn(List<String> values) {
-            addCriterion("charge_order_serial not in", values, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialBetween(String value1, String value2) {
-            addCriterion("charge_order_serial between", value1, value2, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderSerialNotBetween(String value1, String value2) {
-            addCriterion("charge_order_serial not between", value1, value2, "chargeOrderSerial");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdIsNull() {
-            addCriterion("charge_order_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdIsNotNull() {
-            addCriterion("charge_order_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdEqualTo(String value) {
-            addCriterion("charge_order_id =", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdNotEqualTo(String value) {
-            addCriterion("charge_order_id <>", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdGreaterThan(String value) {
-            addCriterion("charge_order_id >", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdGreaterThanOrEqualTo(String value) {
-            addCriterion("charge_order_id >=", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdLessThan(String value) {
-            addCriterion("charge_order_id <", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdLessThanOrEqualTo(String value) {
-            addCriterion("charge_order_id <=", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdLike(String value) {
-            addCriterion("charge_order_id like", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdNotLike(String value) {
-            addCriterion("charge_order_id not like", value, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdIn(List<String> values) {
-            addCriterion("charge_order_id in", values, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdNotIn(List<String> values) {
-            addCriterion("charge_order_id not in", values, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdBetween(String value1, String value2) {
-            addCriterion("charge_order_id between", value1, value2, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeOrderIdNotBetween(String value1, String value2) {
-            addCriterion("charge_order_id not between", value1, value2, "chargeOrderId");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeIsNull() {
-            addCriterion("charge_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeIsNotNull() {
-            addCriterion("charge_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeEqualTo(String value) {
-            addCriterion("charge_type =", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeNotEqualTo(String value) {
-            addCriterion("charge_type <>", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeGreaterThan(String value) {
-            addCriterion("charge_type >", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("charge_type >=", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeLessThan(String value) {
-            addCriterion("charge_type <", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeLessThanOrEqualTo(String value) {
-            addCriterion("charge_type <=", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeLike(String value) {
-            addCriterion("charge_type like", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeNotLike(String value) {
-            addCriterion("charge_type not like", value, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeIn(List<String> values) {
-            addCriterion("charge_type in", values, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeNotIn(List<String> values) {
-            addCriterion("charge_type not in", values, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeBetween(String value1, String value2) {
-            addCriterion("charge_type between", value1, value2, "chargeType");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeTypeNotBetween(String value1, String value2) {
-            addCriterion("charge_type not between", value1, value2, "chargeType");
-            return (Criteria) this;
-        }
-
         public Criteria andChargeWayIsNull() {
             addCriterion("charge_way is null");
             return (Criteria) this;
@@ -805,73 +805,73 @@ public class AccountChargeExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialIsNull() {
-            addCriterion("pay_serial is null");
+        public Criteria andChargeOrderIdIsNull() {
+            addCriterion("charge_order_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialIsNotNull() {
-            addCriterion("pay_serial is not null");
+        public Criteria andChargeOrderIdIsNotNull() {
+            addCriterion("charge_order_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialEqualTo(String value) {
-            addCriterion("pay_serial =", value, "paySerial");
+        public Criteria andChargeOrderIdEqualTo(String value) {
+            addCriterion("charge_order_id =", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialNotEqualTo(String value) {
-            addCriterion("pay_serial <>", value, "paySerial");
+        public Criteria andChargeOrderIdNotEqualTo(String value) {
+            addCriterion("charge_order_id <>", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialGreaterThan(String value) {
-            addCriterion("pay_serial >", value, "paySerial");
+        public Criteria andChargeOrderIdGreaterThan(String value) {
+            addCriterion("charge_order_id >", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialGreaterThanOrEqualTo(String value) {
-            addCriterion("pay_serial >=", value, "paySerial");
+        public Criteria andChargeOrderIdGreaterThanOrEqualTo(String value) {
+            addCriterion("charge_order_id >=", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialLessThan(String value) {
-            addCriterion("pay_serial <", value, "paySerial");
+        public Criteria andChargeOrderIdLessThan(String value) {
+            addCriterion("charge_order_id <", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialLessThanOrEqualTo(String value) {
-            addCriterion("pay_serial <=", value, "paySerial");
+        public Criteria andChargeOrderIdLessThanOrEqualTo(String value) {
+            addCriterion("charge_order_id <=", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialLike(String value) {
-            addCriterion("pay_serial like", value, "paySerial");
+        public Criteria andChargeOrderIdLike(String value) {
+            addCriterion("charge_order_id like", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialNotLike(String value) {
-            addCriterion("pay_serial not like", value, "paySerial");
+        public Criteria andChargeOrderIdNotLike(String value) {
+            addCriterion("charge_order_id not like", value, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialIn(List<String> values) {
-            addCriterion("pay_serial in", values, "paySerial");
+        public Criteria andChargeOrderIdIn(List<String> values) {
+            addCriterion("charge_order_id in", values, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialNotIn(List<String> values) {
-            addCriterion("pay_serial not in", values, "paySerial");
+        public Criteria andChargeOrderIdNotIn(List<String> values) {
+            addCriterion("charge_order_id not in", values, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialBetween(String value1, String value2) {
-            addCriterion("pay_serial between", value1, value2, "paySerial");
+        public Criteria andChargeOrderIdBetween(String value1, String value2) {
+            addCriterion("charge_order_id between", value1, value2, "chargeOrderId");
             return (Criteria) this;
         }
 
-        public Criteria andPaySerialNotBetween(String value1, String value2) {
-            addCriterion("pay_serial not between", value1, value2, "paySerial");
+        public Criteria andChargeOrderIdNotBetween(String value1, String value2) {
+            addCriterion("charge_order_id not between", value1, value2, "chargeOrderId");
             return (Criteria) this;
         }
 

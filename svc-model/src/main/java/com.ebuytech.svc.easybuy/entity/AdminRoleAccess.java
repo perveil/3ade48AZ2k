@@ -4,24 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * value_card
+ * admin_role_access
  * @author 
  */
-public class ValueCard implements Serializable {
+public class AdminRoleAccess implements Serializable {
     /**
-     * 储值卡ID
+     * 角色id
      */
-    private String valueCardId;
+    private Integer roleId;
 
     /**
-     * 账户ID
+     * 权限id
      */
-    private String accountId;
-
-    /**
-     * 会员ID
-     */
-    private String memberId;
+    private Integer accessId;
 
     /**
      * 创建时间
@@ -35,28 +30,20 @@ public class ValueCard implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getValueCardId() {
-        return valueCardId;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setValueCardId(String valueCardId) {
-        this.valueCardId = valueCardId;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public Integer getAccessId() {
+        return accessId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setAccessId(Integer accessId) {
+        this.accessId = accessId;
     }
 
     public Date getCreateTime() {
@@ -86,10 +73,9 @@ public class ValueCard implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        ValueCard other = (ValueCard) that;
-        return (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
+        AdminRoleAccess other = (AdminRoleAccess) that;
+        return (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
+            && (this.getAccessId() == null ? other.getAccessId() == null : this.getAccessId().equals(other.getAccessId()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -98,9 +84,8 @@ public class ValueCard implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
-        result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
-        result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
+        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getAccessId() == null) ? 0 : getAccessId().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -112,9 +97,8 @@ public class ValueCard implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", valueCardId=").append(valueCardId);
-        sb.append(", accountId=").append(accountId);
-        sb.append(", memberId=").append(memberId);
+        sb.append(", roleId=").append(roleId);
+        sb.append(", accessId=").append(accessId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

@@ -14,6 +14,11 @@ public class AccountSale implements Serializable {
     private String accountSaleId;
 
     /**
+     * 账户变动id
+     */
+    private String accountChangeId;
+
+    /**
      * 变动值
      */
     private Integer changeValue;
@@ -56,6 +61,14 @@ public class AccountSale implements Serializable {
 
     public void setAccountSaleId(String accountSaleId) {
         this.accountSaleId = accountSaleId;
+    }
+
+    public String getAccountChangeId() {
+        return accountChangeId;
+    }
+
+    public void setAccountChangeId(String accountChangeId) {
+        this.accountChangeId = accountChangeId;
     }
 
     public Integer getChangeValue() {
@@ -127,6 +140,7 @@ public class AccountSale implements Serializable {
         }
         AccountSale other = (AccountSale) that;
         return (this.getAccountSaleId() == null ? other.getAccountSaleId() == null : this.getAccountSaleId().equals(other.getAccountSaleId()))
+            && (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
             && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
             && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
@@ -141,6 +155,7 @@ public class AccountSale implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountSaleId() == null) ? 0 : getAccountSaleId().hashCode());
+        result = prime * result + ((getAccountChangeId() == null) ? 0 : getAccountChangeId().hashCode());
         result = prime * result + ((getChangeValue() == null) ? 0 : getChangeValue().hashCode());
         result = prime * result + ((getChangeMemo() == null) ? 0 : getChangeMemo().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
@@ -158,6 +173,7 @@ public class AccountSale implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", accountSaleId=").append(accountSaleId);
+        sb.append(", accountChangeId=").append(accountChangeId);
         sb.append(", changeValue=").append(changeValue);
         sb.append(", changeMemo=").append(changeMemo);
         sb.append(", memberId=").append(memberId);

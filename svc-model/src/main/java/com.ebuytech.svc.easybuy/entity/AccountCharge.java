@@ -9,9 +9,14 @@ import java.util.Date;
  */
 public class AccountCharge implements Serializable {
     /**
-     * 主键
+     * 主键(支付流水号)
      */
     private String accountChargeId;
+
+    /**
+     * 账户变动id
+     */
+    private String accountChangeId;
 
     /**
      * 充值金额
@@ -29,6 +34,16 @@ public class AccountCharge implements Serializable {
     private String changeMemo;
 
     /**
+     * 交易流水号
+     */
+    private String chargeOrderSerial;
+
+    /**
+     * 充值类型
+     */
+    private String chargeType;
+
+    /**
      * 会员ID
      */
     private String memberId;
@@ -39,29 +54,14 @@ public class AccountCharge implements Serializable {
     private String accountId;
 
     /**
-     * 交易流水号
-     */
-    private String chargeOrderSerial;
-
-    /**
-     * 充值订单号
-     */
-    private String chargeOrderId;
-
-    /**
-     * 充值类型
-     */
-    private String chargeType;
-
-    /**
      * 支付渠道
      */
     private String chargeWay;
 
     /**
-     * 支付流水号
+     * 充值订单号
      */
-    private String paySerial;
+    private String chargeOrderId;
 
     /**
      * 支付账号
@@ -88,6 +88,14 @@ public class AccountCharge implements Serializable {
         this.accountChargeId = accountChargeId;
     }
 
+    public String getAccountChangeId() {
+        return accountChangeId;
+    }
+
+    public void setAccountChangeId(String accountChangeId) {
+        this.accountChangeId = accountChangeId;
+    }
+
     public Integer getChangeValue() {
         return changeValue;
     }
@@ -112,6 +120,22 @@ public class AccountCharge implements Serializable {
         this.changeMemo = changeMemo;
     }
 
+    public String getChargeOrderSerial() {
+        return chargeOrderSerial;
+    }
+
+    public void setChargeOrderSerial(String chargeOrderSerial) {
+        this.chargeOrderSerial = chargeOrderSerial;
+    }
+
+    public String getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(String chargeType) {
+        this.chargeType = chargeType;
+    }
+
     public String getMemberId() {
         return memberId;
     }
@@ -128,30 +152,6 @@ public class AccountCharge implements Serializable {
         this.accountId = accountId;
     }
 
-    public String getChargeOrderSerial() {
-        return chargeOrderSerial;
-    }
-
-    public void setChargeOrderSerial(String chargeOrderSerial) {
-        this.chargeOrderSerial = chargeOrderSerial;
-    }
-
-    public String getChargeOrderId() {
-        return chargeOrderId;
-    }
-
-    public void setChargeOrderId(String chargeOrderId) {
-        this.chargeOrderId = chargeOrderId;
-    }
-
-    public String getChargeType() {
-        return chargeType;
-    }
-
-    public void setChargeType(String chargeType) {
-        this.chargeType = chargeType;
-    }
-
     public String getChargeWay() {
         return chargeWay;
     }
@@ -160,12 +160,12 @@ public class AccountCharge implements Serializable {
         this.chargeWay = chargeWay;
     }
 
-    public String getPaySerial() {
-        return paySerial;
+    public String getChargeOrderId() {
+        return chargeOrderId;
     }
 
-    public void setPaySerial(String paySerial) {
-        this.paySerial = paySerial;
+    public void setChargeOrderId(String chargeOrderId) {
+        this.chargeOrderId = chargeOrderId;
     }
 
     public String getPayAccount() {
@@ -205,16 +205,16 @@ public class AccountCharge implements Serializable {
         }
         AccountCharge other = (AccountCharge) that;
         return (this.getAccountChargeId() == null ? other.getAccountChargeId() == null : this.getAccountChargeId().equals(other.getAccountChargeId()))
+            && (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
             && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
             && (this.getChangeExtra() == null ? other.getChangeExtra() == null : this.getChangeExtra().equals(other.getChangeExtra()))
             && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
+            && (this.getChargeOrderSerial() == null ? other.getChargeOrderSerial() == null : this.getChargeOrderSerial().equals(other.getChargeOrderSerial()))
+            && (this.getChargeType() == null ? other.getChargeType() == null : this.getChargeType().equals(other.getChargeType()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
             && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getChargeOrderSerial() == null ? other.getChargeOrderSerial() == null : this.getChargeOrderSerial().equals(other.getChargeOrderSerial()))
-            && (this.getChargeOrderId() == null ? other.getChargeOrderId() == null : this.getChargeOrderId().equals(other.getChargeOrderId()))
-            && (this.getChargeType() == null ? other.getChargeType() == null : this.getChargeType().equals(other.getChargeType()))
             && (this.getChargeWay() == null ? other.getChargeWay() == null : this.getChargeWay().equals(other.getChargeWay()))
-            && (this.getPaySerial() == null ? other.getPaySerial() == null : this.getPaySerial().equals(other.getPaySerial()))
+            && (this.getChargeOrderId() == null ? other.getChargeOrderId() == null : this.getChargeOrderId().equals(other.getChargeOrderId()))
             && (this.getPayAccount() == null ? other.getPayAccount() == null : this.getPayAccount().equals(other.getPayAccount()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
@@ -225,16 +225,16 @@ public class AccountCharge implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountChargeId() == null) ? 0 : getAccountChargeId().hashCode());
+        result = prime * result + ((getAccountChangeId() == null) ? 0 : getAccountChangeId().hashCode());
         result = prime * result + ((getChangeValue() == null) ? 0 : getChangeValue().hashCode());
         result = prime * result + ((getChangeExtra() == null) ? 0 : getChangeExtra().hashCode());
         result = prime * result + ((getChangeMemo() == null) ? 0 : getChangeMemo().hashCode());
+        result = prime * result + ((getChargeOrderSerial() == null) ? 0 : getChargeOrderSerial().hashCode());
+        result = prime * result + ((getChargeType() == null) ? 0 : getChargeType().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
         result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
-        result = prime * result + ((getChargeOrderSerial() == null) ? 0 : getChargeOrderSerial().hashCode());
-        result = prime * result + ((getChargeOrderId() == null) ? 0 : getChargeOrderId().hashCode());
-        result = prime * result + ((getChargeType() == null) ? 0 : getChargeType().hashCode());
         result = prime * result + ((getChargeWay() == null) ? 0 : getChargeWay().hashCode());
-        result = prime * result + ((getPaySerial() == null) ? 0 : getPaySerial().hashCode());
+        result = prime * result + ((getChargeOrderId() == null) ? 0 : getChargeOrderId().hashCode());
         result = prime * result + ((getPayAccount() == null) ? 0 : getPayAccount().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
@@ -248,16 +248,16 @@ public class AccountCharge implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", accountChargeId=").append(accountChargeId);
+        sb.append(", accountChangeId=").append(accountChangeId);
         sb.append(", changeValue=").append(changeValue);
         sb.append(", changeExtra=").append(changeExtra);
         sb.append(", changeMemo=").append(changeMemo);
+        sb.append(", chargeOrderSerial=").append(chargeOrderSerial);
+        sb.append(", chargeType=").append(chargeType);
         sb.append(", memberId=").append(memberId);
         sb.append(", accountId=").append(accountId);
-        sb.append(", chargeOrderSerial=").append(chargeOrderSerial);
-        sb.append(", chargeOrderId=").append(chargeOrderId);
-        sb.append(", chargeType=").append(chargeType);
         sb.append(", chargeWay=").append(chargeWay);
-        sb.append(", paySerial=").append(paySerial);
+        sb.append(", chargeOrderId=").append(chargeOrderId);
         sb.append(", payAccount=").append(payAccount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

@@ -26,7 +26,7 @@ public class AdminUser implements Serializable {
     /**
      * 角色id
      */
-    private String roleId;
+    private Integer roleId;
 
     /**
      * 是否已配置权限 0：是 1：否
@@ -79,11 +79,11 @@ public class AdminUser implements Serializable {
         this.userPwd = userPwd;
     }
 
-    public String getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

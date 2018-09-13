@@ -4,24 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * value_card
+ * admin_user_role
  * @author 
  */
-public class ValueCard implements Serializable {
+public class AdminUserRole implements Serializable {
     /**
-     * 储值卡ID
+     * 用户id
      */
-    private String valueCardId;
+    private String userId;
 
     /**
-     * 账户ID
+     * 角色id
      */
-    private String accountId;
-
-    /**
-     * 会员ID
-     */
-    private String memberId;
+    private Integer roleId;
 
     /**
      * 创建时间
@@ -35,28 +30,20 @@ public class ValueCard implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getValueCardId() {
-        return valueCardId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setValueCardId(String valueCardId) {
-        this.valueCardId = valueCardId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public Date getCreateTime() {
@@ -86,10 +73,9 @@ public class ValueCard implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        ValueCard other = (ValueCard) that;
-        return (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
+        AdminUserRole other = (AdminUserRole) that;
+        return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -98,9 +84,8 @@ public class ValueCard implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
-        result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
-        result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -112,9 +97,8 @@ public class ValueCard implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", valueCardId=").append(valueCardId);
-        sb.append(", accountId=").append(accountId);
-        sb.append(", memberId=").append(memberId);
+        sb.append(", userId=").append(userId);
+        sb.append(", roleId=").append(roleId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

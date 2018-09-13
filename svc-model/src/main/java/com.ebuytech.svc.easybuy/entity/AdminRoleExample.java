@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AdminUserExample {
+public class AdminRoleExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class AdminUserExample {
 
     private Long offset;
 
-    public AdminUserExample() {
+    public AdminRoleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -125,216 +125,6 @@ public class AdminUserExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(String value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(String value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(String value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(String value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLike(String value) {
-            addCriterion("user_id like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("user_id not like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<String> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<String> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(String value1, String value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(String value1, String value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIsNull() {
-            addCriterion("user_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIsNotNull() {
-            addCriterion("user_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameEqualTo(String value) {
-            addCriterion("user_name =", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotEqualTo(String value) {
-            addCriterion("user_name <>", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameGreaterThan(String value) {
-            addCriterion("user_name >", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
-            addCriterion("user_name >=", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLessThan(String value) {
-            addCriterion("user_name <", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLessThanOrEqualTo(String value) {
-            addCriterion("user_name <=", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLike(String value) {
-            addCriterion("user_name like", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotLike(String value) {
-            addCriterion("user_name not like", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIn(List<String> values) {
-            addCriterion("user_name in", values, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotIn(List<String> values) {
-            addCriterion("user_name not in", values, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameBetween(String value1, String value2) {
-            addCriterion("user_name between", value1, value2, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotBetween(String value1, String value2) {
-            addCriterion("user_name not between", value1, value2, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdIsNull() {
-            addCriterion("user_pwd is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdIsNotNull() {
-            addCriterion("user_pwd is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdEqualTo(String value) {
-            addCriterion("user_pwd =", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdNotEqualTo(String value) {
-            addCriterion("user_pwd <>", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdGreaterThan(String value) {
-            addCriterion("user_pwd >", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdGreaterThanOrEqualTo(String value) {
-            addCriterion("user_pwd >=", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdLessThan(String value) {
-            addCriterion("user_pwd <", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdLessThanOrEqualTo(String value) {
-            addCriterion("user_pwd <=", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdLike(String value) {
-            addCriterion("user_pwd like", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdNotLike(String value) {
-            addCriterion("user_pwd not like", value, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdIn(List<String> values) {
-            addCriterion("user_pwd in", values, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdNotIn(List<String> values) {
-            addCriterion("user_pwd not in", values, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdBetween(String value1, String value2) {
-            addCriterion("user_pwd between", value1, value2, "userPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserPwdNotBetween(String value1, String value2) {
-            addCriterion("user_pwd not between", value1, value2, "userPwd");
-            return (Criteria) this;
-        }
-
         public Criteria andRoleIdIsNull() {
             addCriterion("role_id is null");
             return (Criteria) this;
@@ -395,63 +185,133 @@ public class AdminUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessIsNull() {
-            addCriterion("is_access is null");
+        public Criteria andRoleNameIsNull() {
+            addCriterion("role_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessIsNotNull() {
-            addCriterion("is_access is not null");
+        public Criteria andRoleNameIsNotNull() {
+            addCriterion("role_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessEqualTo(Integer value) {
-            addCriterion("is_access =", value, "isAccess");
+        public Criteria andRoleNameEqualTo(String value) {
+            addCriterion("role_name =", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessNotEqualTo(Integer value) {
-            addCriterion("is_access <>", value, "isAccess");
+        public Criteria andRoleNameNotEqualTo(String value) {
+            addCriterion("role_name <>", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessGreaterThan(Integer value) {
-            addCriterion("is_access >", value, "isAccess");
+        public Criteria andRoleNameGreaterThan(String value) {
+            addCriterion("role_name >", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_access >=", value, "isAccess");
+        public Criteria andRoleNameGreaterThanOrEqualTo(String value) {
+            addCriterion("role_name >=", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessLessThan(Integer value) {
-            addCriterion("is_access <", value, "isAccess");
+        public Criteria andRoleNameLessThan(String value) {
+            addCriterion("role_name <", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessLessThanOrEqualTo(Integer value) {
-            addCriterion("is_access <=", value, "isAccess");
+        public Criteria andRoleNameLessThanOrEqualTo(String value) {
+            addCriterion("role_name <=", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessIn(List<Integer> values) {
-            addCriterion("is_access in", values, "isAccess");
+        public Criteria andRoleNameLike(String value) {
+            addCriterion("role_name like", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessNotIn(List<Integer> values) {
-            addCriterion("is_access not in", values, "isAccess");
+        public Criteria andRoleNameNotLike(String value) {
+            addCriterion("role_name not like", value, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessBetween(Integer value1, Integer value2) {
-            addCriterion("is_access between", value1, value2, "isAccess");
+        public Criteria andRoleNameIn(List<String> values) {
+            addCriterion("role_name in", values, "roleName");
             return (Criteria) this;
         }
 
-        public Criteria andIsAccessNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_access not between", value1, value2, "isAccess");
+        public Criteria andRoleNameNotIn(List<String> values) {
+            addCriterion("role_name not in", values, "roleName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleNameBetween(String value1, String value2) {
+            addCriterion("role_name between", value1, value2, "roleName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleNameNotBetween(String value1, String value2) {
+            addCriterion("role_name not between", value1, value2, "roleName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountIsNull() {
+            addCriterion("role_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountIsNotNull() {
+            addCriterion("role_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountEqualTo(Integer value) {
+            addCriterion("role_count =", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountNotEqualTo(Integer value) {
+            addCriterion("role_count <>", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountGreaterThan(Integer value) {
+            addCriterion("role_count >", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("role_count >=", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountLessThan(Integer value) {
+            addCriterion("role_count <", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountLessThanOrEqualTo(Integer value) {
+            addCriterion("role_count <=", value, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountIn(List<Integer> values) {
+            addCriterion("role_count in", values, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountNotIn(List<Integer> values) {
+            addCriterion("role_count not in", values, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountBetween(Integer value1, Integer value2) {
+            addCriterion("role_count between", value1, value2, "roleCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("role_count not between", value1, value2, "roleCount");
             return (Criteria) this;
         }
 
@@ -512,66 +372,6 @@ public class AdminUserExample {
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("`status` not between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIsNull() {
-            addCriterion("`level` is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIsNotNull() {
-            addCriterion("`level` is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelEqualTo(Integer value) {
-            addCriterion("`level` =", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotEqualTo(Integer value) {
-            addCriterion("`level` <>", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelGreaterThan(Integer value) {
-            addCriterion("`level` >", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelGreaterThanOrEqualTo(Integer value) {
-            addCriterion("`level` >=", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelLessThan(Integer value) {
-            addCriterion("`level` <", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelLessThanOrEqualTo(Integer value) {
-            addCriterion("`level` <=", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIn(List<Integer> values) {
-            addCriterion("`level` in", values, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotIn(List<Integer> values) {
-            addCriterion("`level` not in", values, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelBetween(Integer value1, Integer value2) {
-            addCriterion("`level` between", value1, value2, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotBetween(Integer value1, Integer value2) {
-            addCriterion("`level` not between", value1, value2, "level");
             return (Criteria) this;
         }
 

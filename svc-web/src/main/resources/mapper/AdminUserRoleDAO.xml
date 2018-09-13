@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ebuytech.svc.easybuy.dao.ChargeDAO">
-  <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.Charge">
-    <id column="charge_id" jdbcType="INTEGER" property="chargeId" />
-    <result column="act_id" jdbcType="INTEGER" property="actId" />
-    <result column="charge_money" jdbcType="INTEGER" property="chargeMoney" />
-    <result column="valid_type" jdbcType="INTEGER" property="validType" />
-    <result column="valid_time" jdbcType="VARCHAR" property="validTime" />
-    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+<mapper namespace="com.ebuytech.svc.easybuy.dao.AdminUserRoleDAO">
+  <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AdminUserRole">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -70,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    charge_id, act_id, charge_money, valid_type, valid_time, is_valid, create_time, update_time
+    user_id, role_id, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from charge
+    from admin_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,50 +90,36 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from charge
-    where charge_id = #{chargeId,jdbcType=INTEGER}
+    from admin_user_role
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from charge
-    where charge_id = #{chargeId,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from admin_user_role
+    where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample">
-    delete from charge
+  <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRoleExample">
+    delete from admin_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-    insert into charge (charge_id, act_id, charge_money, 
-      valid_type, valid_time, is_valid, 
-      create_time, update_time)
-    values (#{chargeId,jdbcType=INTEGER}, #{actId,jdbcType=INTEGER}, #{chargeMoney,jdbcType=INTEGER}, 
-      #{validType,jdbcType=INTEGER}, #{validTime,jdbcType=VARCHAR}, #{isValid,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRole">
+    insert into admin_user_role (user_id, role_id, create_time, 
+      update_time)
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-    insert into charge
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRole">
+    insert into admin_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="chargeId != null">
-        charge_id,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="actId != null">
-        act_id,
-      </if>
-      <if test="chargeMoney != null">
-        charge_money,
-      </if>
-      <if test="validType != null">
-        valid_type,
-      </if>
-      <if test="validTime != null">
-        valid_time,
-      </if>
-      <if test="isValid != null">
-        is_valid,
+      <if test="roleId != null">
+        role_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -147,23 +129,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="chargeId != null">
-        #{chargeId,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="actId != null">
-        #{actId,jdbcType=INTEGER},
-      </if>
-      <if test="chargeMoney != null">
-        #{chargeMoney,jdbcType=INTEGER},
-      </if>
-      <if test="validType != null">
-        #{validType,jdbcType=INTEGER},
-      </if>
-      <if test="validTime != null">
-        #{validTime,jdbcType=VARCHAR},
-      </if>
-      <if test="isValid != null">
-        #{isValid,jdbcType=INTEGER},
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -173,32 +143,20 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultType="java.lang.Long">
-    select count(*) from charge
+  <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRoleExample" resultType="java.lang.Long">
+    select count(*) from admin_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update charge
+    update admin_user_role
     <set>
-      <if test="record.chargeId != null">
-        charge_id = #{record.chargeId,jdbcType=INTEGER},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.actId != null">
-        act_id = #{record.actId,jdbcType=INTEGER},
-      </if>
-      <if test="record.chargeMoney != null">
-        charge_money = #{record.chargeMoney,jdbcType=INTEGER},
-      </if>
-      <if test="record.validType != null">
-        valid_type = #{record.validType,jdbcType=INTEGER},
-      </if>
-      <if test="record.validTime != null">
-        valid_time = #{record.validTime,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isValid != null">
-        is_valid = #{record.isValid,jdbcType=INTEGER},
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -212,36 +170,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update charge
-    set charge_id = #{record.chargeId,jdbcType=INTEGER},
-      act_id = #{record.actId,jdbcType=INTEGER},
-      charge_money = #{record.chargeMoney,jdbcType=INTEGER},
-      valid_type = #{record.validType,jdbcType=INTEGER},
-      valid_time = #{record.validTime,jdbcType=VARCHAR},
-      is_valid = #{record.isValid,jdbcType=INTEGER},
+    update admin_user_role
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-    update charge
+  <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRole">
+    update admin_user_role
     <set>
-      <if test="actId != null">
-        act_id = #{actId,jdbcType=INTEGER},
-      </if>
-      <if test="chargeMoney != null">
-        charge_money = #{chargeMoney,jdbcType=INTEGER},
-      </if>
-      <if test="validType != null">
-        valid_type = #{validType,jdbcType=INTEGER},
-      </if>
-      <if test="validTime != null">
-        valid_time = #{validTime,jdbcType=VARCHAR},
-      </if>
-      <if test="isValid != null">
-        is_valid = #{isValid,jdbcType=INTEGER},
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -250,17 +192,13 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where charge_id = #{chargeId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-    update charge
-    set act_id = #{actId,jdbcType=INTEGER},
-      charge_money = #{chargeMoney,jdbcType=INTEGER},
-      valid_type = #{validType,jdbcType=INTEGER},
-      valid_time = #{validTime,jdbcType=VARCHAR},
-      is_valid = #{isValid,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AdminUserRole">
+    update admin_user_role
+    set role_id = #{roleId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where charge_id = #{chargeId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

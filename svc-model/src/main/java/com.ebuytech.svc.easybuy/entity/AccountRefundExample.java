@@ -195,6 +195,76 @@ public class AccountRefundExample {
             return (Criteria) this;
         }
 
+        public Criteria andAccountChangeIdIsNull() {
+            addCriterion("account_change_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdIsNotNull() {
+            addCriterion("account_change_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdEqualTo(String value) {
+            addCriterion("account_change_id =", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotEqualTo(String value) {
+            addCriterion("account_change_id <>", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdGreaterThan(String value) {
+            addCriterion("account_change_id >", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("account_change_id >=", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLessThan(String value) {
+            addCriterion("account_change_id <", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLessThanOrEqualTo(String value) {
+            addCriterion("account_change_id <=", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdLike(String value) {
+            addCriterion("account_change_id like", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotLike(String value) {
+            addCriterion("account_change_id not like", value, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdIn(List<String> values) {
+            addCriterion("account_change_id in", values, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotIn(List<String> values) {
+            addCriterion("account_change_id not in", values, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdBetween(String value1, String value2) {
+            addCriterion("account_change_id between", value1, value2, "accountChangeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountChangeIdNotBetween(String value1, String value2) {
+            addCriterion("account_change_id not between", value1, value2, "accountChangeId");
+            return (Criteria) this;
+        }
+
         public Criteria andChangeValueIsNull() {
             addCriterion("change_value is null");
             return (Criteria) this;

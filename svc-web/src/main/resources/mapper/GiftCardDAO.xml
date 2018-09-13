@@ -3,6 +3,7 @@
 <mapper namespace="com.ebuytech.svc.easybuy.dao.GiftCardDAO">
   <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.GiftCard">
     <id column="gift_card_id" jdbcType="VARCHAR" property="giftCardId" />
+    <result column="gift_card_pwd" jdbcType="VARCHAR" property="giftCardPwd" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
     <result column="member_id" jdbcType="VARCHAR" property="memberId" />
     <result column="value_card_id" jdbcType="VARCHAR" property="valueCardId" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    gift_card_id, account_id, member_id, value_card_id, money, end_time, `status`, img_url, 
-    create_time, update_time
+    gift_card_id, gift_card_pwd, account_id, member_id, value_card_id, money, end_time, 
+    `status`, img_url, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.GiftCardExample" resultMap="BaseResultMap">
     select
@@ -113,19 +114,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="gift_card_id" keyProperty="giftCardId" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard" useGeneratedKeys="true">
-    insert into gift_card (account_id, member_id, value_card_id, 
-      money, end_time, `status`, 
-      img_url, create_time, update_time
-      )
-    values (#{accountId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{valueCardId,jdbcType=VARCHAR}, 
-      #{money,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
-      #{imgUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard">
+    insert into gift_card (gift_card_id, gift_card_pwd, account_id, 
+      member_id, value_card_id, money, 
+      end_time, `status`, img_url, 
+      create_time, update_time)
+    values (#{giftCardId,jdbcType=VARCHAR}, #{giftCardPwd,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=VARCHAR}, #{valueCardId,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="gift_card_id" keyProperty="giftCardId" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard">
     insert into gift_card
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="giftCardId != null">
+        gift_card_id,
+      </if>
+      <if test="giftCardPwd != null">
+        gift_card_pwd,
+      </if>
       <if test="accountId != null">
         account_id,
       </if>
@@ -155,6 +162,12 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="giftCardId != null">
+        #{giftCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="giftCardPwd != null">
+        #{giftCardPwd,jdbcType=VARCHAR},
+      </if>
       <if test="accountId != null">
         #{accountId,jdbcType=VARCHAR},
       </if>
@@ -196,6 +209,9 @@
       <if test="record.giftCardId != null">
         gift_card_id = #{record.giftCardId,jdbcType=VARCHAR},
       </if>
+      <if test="record.giftCardPwd != null">
+        gift_card_pwd = #{record.giftCardPwd,jdbcType=VARCHAR},
+      </if>
       <if test="record.accountId != null">
         account_id = #{record.accountId,jdbcType=VARCHAR},
       </if>
@@ -231,6 +247,7 @@
   <update id="updateByExample" parameterType="map">
     update gift_card
     set gift_card_id = #{record.giftCardId,jdbcType=VARCHAR},
+      gift_card_pwd = #{record.giftCardPwd,jdbcType=VARCHAR},
       account_id = #{record.accountId,jdbcType=VARCHAR},
       member_id = #{record.memberId,jdbcType=VARCHAR},
       value_card_id = #{record.valueCardId,jdbcType=VARCHAR},
@@ -247,6 +264,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard">
     update gift_card
     <set>
+      <if test="giftCardPwd != null">
+        gift_card_pwd = #{giftCardPwd,jdbcType=VARCHAR},
+      </if>
       <if test="accountId != null">
         account_id = #{accountId,jdbcType=VARCHAR},
       </if>
@@ -279,7 +299,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.GiftCard">
     update gift_card
-    set account_id = #{accountId,jdbcType=VARCHAR},
+    set gift_card_pwd = #{giftCardPwd,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
       member_id = #{memberId,jdbcType=VARCHAR},
       value_card_id = #{valueCardId,jdbcType=VARCHAR},
       money = #{money,jdbcType=INTEGER},

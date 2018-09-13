@@ -5,7 +5,7 @@
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
-    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="is_access" jdbcType="INTEGER" property="isAccess" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="level" jdbcType="INTEGER" property="level" />
@@ -112,17 +112,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.ebuytech.svc.easybuy.entity.AdminUser" useGeneratedKeys="true">
-    insert into admin_user (user_name, user_pwd, role_id, 
-      is_access, `status`, `level`, 
-      create_time, update_time)
-    values (#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
-      #{isAccess,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AdminUser">
+    insert into admin_user (user_id, user_name, user_pwd, 
+      role_id, is_access, `status`, 
+      `level`, create_time, update_time
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=INTEGER}, #{isAccess,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.ebuytech.svc.easybuy.entity.AdminUser" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AdminUser">
     insert into admin_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
       <if test="userName != null">
         user_name,
       </if>
@@ -149,6 +154,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
@@ -156,7 +164,7 @@
         #{userPwd,jdbcType=VARCHAR},
       </if>
       <if test="roleId != null">
-        #{roleId,jdbcType=VARCHAR},
+        #{roleId,jdbcType=INTEGER},
       </if>
       <if test="isAccess != null">
         #{isAccess,jdbcType=INTEGER},
@@ -194,7 +202,7 @@
         user_pwd = #{record.userPwd,jdbcType=VARCHAR},
       </if>
       <if test="record.roleId != null">
-        role_id = #{record.roleId,jdbcType=VARCHAR},
+        role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
       <if test="record.isAccess != null">
         is_access = #{record.isAccess,jdbcType=INTEGER},
@@ -221,7 +229,7 @@
     set user_id = #{record.userId,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_pwd = #{record.userPwd,jdbcType=VARCHAR},
-      role_id = #{record.roleId,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER},
       is_access = #{record.isAccess,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
       `level` = #{record.level,jdbcType=INTEGER},
@@ -241,7 +249,7 @@
         user_pwd = #{userPwd,jdbcType=VARCHAR},
       </if>
       <if test="roleId != null">
-        role_id = #{roleId,jdbcType=VARCHAR},
+        role_id = #{roleId,jdbcType=INTEGER},
       </if>
       <if test="isAccess != null">
         is_access = #{isAccess,jdbcType=INTEGER},
@@ -265,7 +273,7 @@
     update admin_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
       is_access = #{isAccess,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
       `level` = #{level,jdbcType=INTEGER},

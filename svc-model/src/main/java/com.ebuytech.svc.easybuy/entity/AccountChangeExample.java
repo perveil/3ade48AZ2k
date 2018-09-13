@@ -195,6 +195,76 @@ public class AccountChangeExample {
             return (Criteria) this;
         }
 
+        public Criteria andChangeMemoIsNull() {
+            addCriterion("change_memo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoIsNotNull() {
+            addCriterion("change_memo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoEqualTo(String value) {
+            addCriterion("change_memo =", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoNotEqualTo(String value) {
+            addCriterion("change_memo <>", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoGreaterThan(String value) {
+            addCriterion("change_memo >", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoGreaterThanOrEqualTo(String value) {
+            addCriterion("change_memo >=", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoLessThan(String value) {
+            addCriterion("change_memo <", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoLessThanOrEqualTo(String value) {
+            addCriterion("change_memo <=", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoLike(String value) {
+            addCriterion("change_memo like", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoNotLike(String value) {
+            addCriterion("change_memo not like", value, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoIn(List<String> values) {
+            addCriterion("change_memo in", values, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoNotIn(List<String> values) {
+            addCriterion("change_memo not in", values, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoBetween(String value1, String value2) {
+            addCriterion("change_memo between", value1, value2, "changeMemo");
+            return (Criteria) this;
+        }
+
+        public Criteria andChangeMemoNotBetween(String value1, String value2) {
+            addCriterion("change_memo not between", value1, value2, "changeMemo");
+            return (Criteria) this;
+        }
+
         public Criteria andChangeTypeIsNull() {
             addCriterion("change_type is null");
             return (Criteria) this;
@@ -462,6 +532,76 @@ public class AccountChangeExample {
 
         public Criteria andAccountIdNotBetween(String value1, String value2) {
             addCriterion("account_id not between", value1, value2, "accountId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIsNull() {
+            addCriterion("store_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIsNotNull() {
+            addCriterion("store_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdEqualTo(String value) {
+            addCriterion("store_id =", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotEqualTo(String value) {
+            addCriterion("store_id <>", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdGreaterThan(String value) {
+            addCriterion("store_id >", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdGreaterThanOrEqualTo(String value) {
+            addCriterion("store_id >=", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdLessThan(String value) {
+            addCriterion("store_id <", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdLessThanOrEqualTo(String value) {
+            addCriterion("store_id <=", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdLike(String value) {
+            addCriterion("store_id like", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotLike(String value) {
+            addCriterion("store_id not like", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIn(List<String> values) {
+            addCriterion("store_id in", values, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotIn(List<String> values) {
+            addCriterion("store_id not in", values, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdBetween(String value1, String value2) {
+            addCriterion("store_id between", value1, value2, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotBetween(String value1, String value2) {
+            addCriterion("store_id not between", value1, value2, "storeId");
             return (Criteria) this;
         }
 
