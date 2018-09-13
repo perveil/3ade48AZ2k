@@ -108,13 +108,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="member_id" keyProperty="memberId" parameterType="com.ebuytech.svc.easybuy.entity.Member" useGeneratedKeys="true">
-    insert into member (member_name, sex, telephone, 
-      create_time, update_time)
-    values (#{memberName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Member">
+    insert into member (member_id, member_name, sex, 
+      telephone, create_time, update_time
+      )
+    values (#{memberId,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="member_id" keyProperty="memberId" parameterType="com.ebuytech.svc.easybuy.entity.Member" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Member">
     insert into member
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="memberId != null">

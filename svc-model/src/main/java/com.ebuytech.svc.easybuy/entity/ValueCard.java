@@ -14,11 +14,6 @@ public class ValueCard implements Serializable {
     private String valueCardId;
 
     /**
-     * 卡密
-     */
-    private String valueCardPwd;
-
-    /**
      * 账户ID
      */
     private String accountId;
@@ -46,14 +41,6 @@ public class ValueCard implements Serializable {
 
     public void setValueCardId(String valueCardId) {
         this.valueCardId = valueCardId;
-    }
-
-    public String getValueCardPwd() {
-        return valueCardPwd;
-    }
-
-    public void setValueCardPwd(String valueCardPwd) {
-        this.valueCardPwd = valueCardPwd;
     }
 
     public String getAccountId() {
@@ -101,7 +88,6 @@ public class ValueCard implements Serializable {
         }
         ValueCard other = (ValueCard) that;
         return (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getValueCardPwd() == null ? other.getValueCardPwd() == null : this.getValueCardPwd().equals(other.getValueCardPwd()))
             && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
@@ -113,7 +99,6 @@ public class ValueCard implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
-        result = prime * result + ((getValueCardPwd() == null) ? 0 : getValueCardPwd().hashCode());
         result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
@@ -128,7 +113,6 @@ public class ValueCard implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", valueCardId=").append(valueCardId);
-        sb.append(", valueCardPwd=").append(valueCardPwd);
         sb.append(", accountId=").append(accountId);
         sb.append(", memberId=").append(memberId);
         sb.append(", createTime=").append(createTime);

@@ -14,6 +14,11 @@ public class GiftCard implements Serializable {
     private String giftCardId;
 
     /**
+     * 卡密
+     */
+    private String giftCardPwd;
+
+    /**
      * 账户ID
      */
     private String accountId;
@@ -39,7 +44,7 @@ public class GiftCard implements Serializable {
     private Date endTime;
 
     /**
-     * 状态 0：正常 1：关闭 2：已结束
+     * 状态 0：正常（未激活） 1：关闭（已激活） 2：已结束（过期）
      */
     private Integer status;
 
@@ -66,6 +71,14 @@ public class GiftCard implements Serializable {
 
     public void setGiftCardId(String giftCardId) {
         this.giftCardId = giftCardId;
+    }
+
+    public String getGiftCardPwd() {
+        return giftCardPwd;
+    }
+
+    public void setGiftCardPwd(String giftCardPwd) {
+        this.giftCardPwd = giftCardPwd;
     }
 
     public String getAccountId() {
@@ -153,6 +166,7 @@ public class GiftCard implements Serializable {
         }
         GiftCard other = (GiftCard) that;
         return (this.getGiftCardId() == null ? other.getGiftCardId() == null : this.getGiftCardId().equals(other.getGiftCardId()))
+            && (this.getGiftCardPwd() == null ? other.getGiftCardPwd() == null : this.getGiftCardPwd().equals(other.getGiftCardPwd()))
             && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
             && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
             && (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
@@ -169,6 +183,7 @@ public class GiftCard implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getGiftCardId() == null) ? 0 : getGiftCardId().hashCode());
+        result = prime * result + ((getGiftCardPwd() == null) ? 0 : getGiftCardPwd().hashCode());
         result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
         result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
         result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
@@ -188,6 +203,7 @@ public class GiftCard implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", giftCardId=").append(giftCardId);
+        sb.append(", giftCardPwd=").append(giftCardPwd);
         sb.append(", accountId=").append(accountId);
         sb.append(", memberId=").append(memberId);
         sb.append(", valueCardId=").append(valueCardId);

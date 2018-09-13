@@ -3,6 +3,7 @@
 <mapper namespace="com.ebuytech.svc.easybuy.dao.AccountRefundDAO">
   <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AccountRefund">
     <id column="account_refund_id" jdbcType="VARCHAR" property="accountRefundId" />
+    <result column="account_change_id" jdbcType="VARCHAR" property="accountChangeId" />
     <result column="change_value" jdbcType="INTEGER" property="changeValue" />
     <result column="change_memo" jdbcType="VARCHAR" property="changeMemo" />
     <result column="member_id" jdbcType="VARCHAR" property="memberId" />
@@ -71,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    account_refund_id, change_value, change_memo, member_id, account_id, sale_order_id, 
-    refund_order_id, create_time, update_time
+    account_refund_id, account_change_id, change_value, change_memo, member_id, account_id, 
+    sale_order_id, refund_order_id, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefundExample" resultMap="BaseResultMap">
     select
@@ -112,17 +113,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="account_refund_id" keyProperty="accountRefundId" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund" useGeneratedKeys="true">
-    insert into account_refund (change_value, change_memo, member_id, 
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund">
+    insert into account_refund (account_refund_id, account_change_id, 
+      change_value, change_memo, member_id, 
       account_id, sale_order_id, refund_order_id, 
       create_time, update_time)
-    values (#{changeValue,jdbcType=INTEGER}, #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+    values (#{accountRefundId,jdbcType=VARCHAR}, #{accountChangeId,jdbcType=VARCHAR}, 
+      #{changeValue,jdbcType=INTEGER}, #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
       #{accountId,jdbcType=VARCHAR}, #{saleOrderId,jdbcType=VARCHAR}, #{refundOrderId,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="account_refund_id" keyProperty="accountRefundId" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund">
     insert into account_refund
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountRefundId != null">
+        account_refund_id,
+      </if>
+      <if test="accountChangeId != null">
+        account_change_id,
+      </if>
       <if test="changeValue != null">
         change_value,
       </if>
@@ -149,6 +158,12 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountRefundId != null">
+        #{accountRefundId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountChangeId != null">
+        #{accountChangeId,jdbcType=VARCHAR},
+      </if>
       <if test="changeValue != null">
         #{changeValue,jdbcType=INTEGER},
       </if>
@@ -187,6 +202,9 @@
       <if test="record.accountRefundId != null">
         account_refund_id = #{record.accountRefundId,jdbcType=VARCHAR},
       </if>
+      <if test="record.accountChangeId != null">
+        account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
+      </if>
       <if test="record.changeValue != null">
         change_value = #{record.changeValue,jdbcType=INTEGER},
       </if>
@@ -219,6 +237,7 @@
   <update id="updateByExample" parameterType="map">
     update account_refund
     set account_refund_id = #{record.accountRefundId,jdbcType=VARCHAR},
+      account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
       change_value = #{record.changeValue,jdbcType=INTEGER},
       change_memo = #{record.changeMemo,jdbcType=VARCHAR},
       member_id = #{record.memberId,jdbcType=VARCHAR},
@@ -234,6 +253,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund">
     update account_refund
     <set>
+      <if test="accountChangeId != null">
+        account_change_id = #{accountChangeId,jdbcType=VARCHAR},
+      </if>
       <if test="changeValue != null">
         change_value = #{changeValue,jdbcType=INTEGER},
       </if>
@@ -263,7 +285,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AccountRefund">
     update account_refund
-    set change_value = #{changeValue,jdbcType=INTEGER},
+    set account_change_id = #{accountChangeId,jdbcType=VARCHAR},
+      change_value = #{changeValue,jdbcType=INTEGER},
       change_memo = #{changeMemo,jdbcType=VARCHAR},
       member_id = #{memberId,jdbcType=VARCHAR},
       account_id = #{accountId,jdbcType=VARCHAR},

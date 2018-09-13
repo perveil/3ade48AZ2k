@@ -3,7 +3,6 @@
 <mapper namespace="com.ebuytech.svc.easybuy.dao.ValueCardDAO">
   <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.ValueCard">
     <id column="value_card_id" jdbcType="VARCHAR" property="valueCardId" />
-    <result column="value_card_pwd" jdbcType="VARCHAR" property="valueCardPwd" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
     <result column="member_id" jdbcType="VARCHAR" property="memberId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -68,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    value_card_id, value_card_pwd, account_id, member_id, create_time, update_time
+    value_card_id, account_id, member_id, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ValueCardExample" resultMap="BaseResultMap">
     select
@@ -108,17 +107,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="value_card_id" keyProperty="valueCardId" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard" useGeneratedKeys="true">
-    insert into value_card (value_card_pwd, account_id, member_id, 
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
+    insert into value_card (value_card_id, account_id, member_id, 
       create_time, update_time)
-    values (#{valueCardPwd,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+    values (#{valueCardId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="value_card_id" keyProperty="valueCardId" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
     insert into value_card
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="valueCardPwd != null">
-        value_card_pwd,
+      <if test="valueCardId != null">
+        value_card_id,
       </if>
       <if test="accountId != null">
         account_id,
@@ -134,8 +133,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="valueCardPwd != null">
-        #{valueCardPwd,jdbcType=VARCHAR},
+      <if test="valueCardId != null">
+        #{valueCardId,jdbcType=VARCHAR},
       </if>
       <if test="accountId != null">
         #{accountId,jdbcType=VARCHAR},
@@ -163,9 +162,6 @@
       <if test="record.valueCardId != null">
         value_card_id = #{record.valueCardId,jdbcType=VARCHAR},
       </if>
-      <if test="record.valueCardPwd != null">
-        value_card_pwd = #{record.valueCardPwd,jdbcType=VARCHAR},
-      </if>
       <if test="record.accountId != null">
         account_id = #{record.accountId,jdbcType=VARCHAR},
       </if>
@@ -186,7 +182,6 @@
   <update id="updateByExample" parameterType="map">
     update value_card
     set value_card_id = #{record.valueCardId,jdbcType=VARCHAR},
-      value_card_pwd = #{record.valueCardPwd,jdbcType=VARCHAR},
       account_id = #{record.accountId,jdbcType=VARCHAR},
       member_id = #{record.memberId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -198,9 +193,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
     update value_card
     <set>
-      <if test="valueCardPwd != null">
-        value_card_pwd = #{valueCardPwd,jdbcType=VARCHAR},
-      </if>
       <if test="accountId != null">
         account_id = #{accountId,jdbcType=VARCHAR},
       </if>
@@ -218,8 +210,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
     update value_card
-    set value_card_pwd = #{valueCardPwd,jdbcType=VARCHAR},
-      account_id = #{accountId,jdbcType=VARCHAR},
+    set account_id = #{accountId,jdbcType=VARCHAR},
       member_id = #{memberId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

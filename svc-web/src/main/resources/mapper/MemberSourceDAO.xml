@@ -106,15 +106,18 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="member_source_id" keyProperty="memberSourceId" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource" useGeneratedKeys="true">
-    insert into member_source (member_id, source_id, `source`
-      )
-    values (#{memberId,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource">
+    insert into member_source (member_source_id, member_id, source_id, 
+      `source`)
+    values (#{memberSourceId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="member_source_id" keyProperty="memberSourceId" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource">
     insert into member_source
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberSourceId != null">
+        member_source_id,
+      </if>
       <if test="memberId != null">
         member_id,
       </if>
@@ -126,6 +129,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberSourceId != null">
+        #{memberSourceId,jdbcType=VARCHAR},
+      </if>
       <if test="memberId != null">
         #{memberId,jdbcType=VARCHAR},
       </if>

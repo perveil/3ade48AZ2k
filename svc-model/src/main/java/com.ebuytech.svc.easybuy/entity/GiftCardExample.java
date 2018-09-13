@@ -195,6 +195,76 @@ public class GiftCardExample {
             return (Criteria) this;
         }
 
+        public Criteria andGiftCardPwdIsNull() {
+            addCriterion("gift_card_pwd is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdIsNotNull() {
+            addCriterion("gift_card_pwd is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdEqualTo(String value) {
+            addCriterion("gift_card_pwd =", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdNotEqualTo(String value) {
+            addCriterion("gift_card_pwd <>", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdGreaterThan(String value) {
+            addCriterion("gift_card_pwd >", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdGreaterThanOrEqualTo(String value) {
+            addCriterion("gift_card_pwd >=", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdLessThan(String value) {
+            addCriterion("gift_card_pwd <", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdLessThanOrEqualTo(String value) {
+            addCriterion("gift_card_pwd <=", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdLike(String value) {
+            addCriterion("gift_card_pwd like", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdNotLike(String value) {
+            addCriterion("gift_card_pwd not like", value, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdIn(List<String> values) {
+            addCriterion("gift_card_pwd in", values, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdNotIn(List<String> values) {
+            addCriterion("gift_card_pwd not in", values, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdBetween(String value1, String value2) {
+            addCriterion("gift_card_pwd between", value1, value2, "giftCardPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andGiftCardPwdNotBetween(String value1, String value2) {
+            addCriterion("gift_card_pwd not between", value1, value2, "giftCardPwd");
+            return (Criteria) this;
+        }
+
         public Criteria andAccountIdIsNull() {
             addCriterion("account_id is null");
             return (Criteria) this;

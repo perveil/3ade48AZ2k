@@ -113,19 +113,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="act_id" keyProperty="actId" parameterType="com.ebuytech.svc.easybuy.entity.Activity" useGeneratedKeys="true">
-    insert into activity (`status`, act_type, cnt_type, 
-      cnt_info, act_money, act_count, 
-      create_time, end_time, update_time
-      )
-    values (#{status,jdbcType=INTEGER}, #{actType,jdbcType=INTEGER}, #{cntType,jdbcType=INTEGER}, 
-      #{cntInfo,jdbcType=VARCHAR}, #{actMoney,jdbcType=INTEGER}, #{actCount,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Activity">
+    insert into activity (act_id, `status`, act_type, 
+      cnt_type, cnt_info, act_money, 
+      act_count, create_time, end_time, 
+      update_time)
+    values (#{actId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{actType,jdbcType=INTEGER}, 
+      #{cntType,jdbcType=INTEGER}, #{cntInfo,jdbcType=VARCHAR}, #{actMoney,jdbcType=INTEGER}, 
+      #{actCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="act_id" keyProperty="actId" parameterType="com.ebuytech.svc.easybuy.entity.Activity" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Activity">
     insert into activity
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actId != null">
+        act_id,
+      </if>
       <if test="status != null">
         `status`,
       </if>
@@ -155,6 +158,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actId != null">
+        #{actId,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
