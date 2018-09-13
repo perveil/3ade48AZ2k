@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class AdminToken {
 
-
     private String userId;
 
     private String token;

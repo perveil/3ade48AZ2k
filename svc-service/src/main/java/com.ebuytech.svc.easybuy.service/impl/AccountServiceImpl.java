@@ -6,6 +6,8 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.ebuytech.svc.easybuy.dao.AccountDAO;
 import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.entity.AccountExample;
+import com.ebuytech.svc.easybuy.enums.ResultEnums;
+import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IAccountService;
 import com.ebuytech.svc.easybuy.util.*;
 import com.ebuytech.svc.easybuy.vo.AccountToken;
@@ -24,28 +26,27 @@ public class AccountServiceImpl implements IAccountService {
     private WxMaService wxService;
 
     @Resource
-    private AccountDAO accountDAO;
+    private RedisUtil redisUtil;
+
+    public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
 
     @Override
     public AccountToken login(String code) {
         if (StringUtils.isBlank(code)) {
-            throw new ClientException(ClientEnums.ADMIN_CODE_NULL);
+            throw new ClientException(ResultEnums.USER_CODE_NULL);
         }
 
         try {
-            WxMaJscode2SessionResult session = this.wxService.getUserService().getSessionInfo(code);
+            WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-            //AccountExample accountExample = new AccountExample();
-            String token  = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
-            RedisUtil.set()
-            String uuid = UUIDUtils.getUUID();
+            // AccountExample accountExample = new AccountExample();
+            String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
+            String userInfo = openId + "," + sessionKey;
+            redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
             AccountToken accountToken = new AccountToken();
             accountToken.setOpenId(openId);
-            accountToken.setAccountId(uuid);
-            accountToken.setSessionCode(newAccountToken);
-            accountDAO.insert()
-            System.out.println(accountToken);
+            accountToken.setSessionCode(token);
             return accountToken;
         } catch (WxErrorException e) {
             e.printStackTrace();
