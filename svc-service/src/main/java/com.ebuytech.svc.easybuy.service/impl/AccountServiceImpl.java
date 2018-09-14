@@ -60,9 +60,10 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public List<Account> queryAccountList() {
+    public List<Account> queryAccountListByPage(int page) {
         return null;
     }
+
 
     @Override
     public Account queryAccountInfo(String openId) {
@@ -71,6 +72,11 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public boolean freezeAccount(String accountId) {
+        return false;
+    }
+
+    @Override
+    public boolean addBalance(String accountId, int balance) {
         return false;
     }
 }

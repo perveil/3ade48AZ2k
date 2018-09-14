@@ -17,7 +17,7 @@ public class ExceptionHandlers {
 
     @ExceptionHandler(value = AdminException.class)
     @ResponseBody
-    public Res lockersHandle(Exception e){
+    public Res AdminHandle(Exception e){
         if(e instanceof AdminException){
             AdminException lockersException=(AdminException) e;
             log.error(String.valueOf(lockersException.getCode()) + "   " + String.valueOf(lockersException.getMessage()));
@@ -31,7 +31,7 @@ public class ExceptionHandlers {
 
     @ExceptionHandler(value = ClientException.class)
     @ResponseBody
-    public Res socketHandle(Exception e){
+    public Res ClientHandle(Exception e){
         if(e instanceof ClientException){
             ClientException socketException=(ClientException) e;
             log.error("【小程序异常】：{}",e);
@@ -41,5 +41,13 @@ public class ExceptionHandlers {
             return ResUtil.error(-1,"未知错误");
         }
 
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseBody
+    public Res socketHandle(Exception e){
+            ClientException socketException=(ClientException) e;
+            log.error("【系统异常】：{}",e);
+            return ResUtil.error(-1,socketException.getMessage());
     }
 }
