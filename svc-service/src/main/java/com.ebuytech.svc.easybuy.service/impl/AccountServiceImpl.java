@@ -45,8 +45,8 @@ public class AccountServiceImpl implements IAccountService {
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
             AccountToken accountToken = new AccountToken();
-            accountToken.setOpenId(openId);
-            accountToken.setSessionCode(token);
+//            accountToken.setOpenId(openId);
+//            accountToken.setSessionCode(token);
             return accountToken;
         } catch (WxErrorException e) {
             e.printStackTrace();

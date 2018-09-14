@@ -17,6 +17,36 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+  <resultMap id="Daily" type="com.ebuytech.svc.easybuy.dto.Daily">
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="changevalue" jdbcType="INTEGER" property="changeValue" />
+    <result column="totalNum" jdbcType="INTEGER" property="totalNum" />
+    <result column="extraTotalValue" jdbcType="INTEGER" property="extraTotalValue" />
+    <result column="changeTotalValue" jdbcType="INTEGER" property="changeTotalValue" />
+  </resultMap>
+  <resultMap id="Weekly" type="com.ebuytech.svc.easybuy.dto.Weekly" extends="Daily">
+  </resultMap>
+  <resultMap id="Monthly" type="com.ebuytech.svc.easybuy.dto.Monthly" extends="Daily">
+  </resultMap>
+
+  <resultMap id="DailyT" type="com.ebuytech.svc.easybuy.dto.DailyT">
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="chargeOrderSerial" jdbcType="VARCHAR" property="chargeOrderSerial" />
+    <result column="chargeOrderId" jdbcType="VARCHAR" property="chargeOrderId" />
+    <result column="AccountId" jdbcType="VARCHAR" property="AccountId" />
+    <result column="AccountPhone" jdbcType="VARCHAR" property="AccountPhone" />
+    <result column="chargeType" jdbcType="VARCHAR" property="chargeType" />
+    <result column="changeValue" jdbcType="Integer" property="changeValue" />
+    <result column="changeExtra" jdbcType="Integer" property="changeExtra" />
+    <result column="chargeWay" jdbcType="VARCHAR" property="chargeWay" />
+    <result column="payAccount" jdbcType="VARCHAR" property="payAccount" />
+</resultMap>
+  <resultMap id="MonthlyT" type="com.ebuytech.svc.easybuy.dto.MonthlyT"  extends="DailyT">
+  </resultMap>
+  <resultMap id="WeeklyT" type="com.ebuytech.svc.easybuy.dto.WeeklyT"  extends="DailyT">
+
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -361,4 +391,99 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where account_charge_id = #{accountChargeId,jdbcType=VARCHAR}
   </update>
+  <select id="getWeekly" resultMap="Weekly">
+      SELECT
+      date_format( `account_charge`.`create_time`, '%Y%-%u' ) AS `weeks`,
+      `account_charge`.`change_value` AS `changevalue`,
+      count( 0 ) AS `totalNum`,
+      sum( `account_charge`.`change_extra` ) AS `extraTotalValue`,
+      sum( `account_charge`.`change_value` ) AS `changeTotalValue`
+      FROM
+          `account_charge`
+      GROUP BY
+      `weeks`,
+      `account_charge`.`change_value`
+  </select>
+  <select id="getMonthly" resultMap="Monthly">
+  SELECT
+      date_format( `account_charge`.`create_time`, '%Y-%m' ) AS `months`,
+      `account_charge`.`change_value` AS `changevalue`,
+      count( 0 ) AS `totalNum`,
+      sum( `account_charge`.`change_extra` ) AS `extraTotalValue`,
+      sum( `account_charge`.`change_value` ) AS `changeTotalValue`
+  FROM
+      `account_charge`
+  GROUP BY
+      `months`,
+      `account_charge`.`change_value`
+  </select>
+  <select id="getDaily" resultMap="Daily">
+  SELECT
+      date_format( `account_charge`.`create_time`, '%Y-%m-%d' ) AS `days`,
+      `account_charge`.`change_value` AS `changevalue`,
+      count( 0 ) AS `totalNum`,
+      sum( `account_charge`.`change_extra` ) AS `extraTotalValue`,
+      sum( `account_charge`.`change_value` ) AS `changeTotalValue`
+  FROM
+      `account_charge`
+  GROUP BY
+      `days`,
+      `account_charge`.`change_value`
+  </select>
+
+
+  <select id="getDailyT" resultMap="DailyT">
+    SELECT
+        date_format( `ch`.`create_time`, '%Y-%m-%d' ) AS `days`,
+        date_format( `ch`.`create_time`, '%H:%i' ) AS `createTime`,
+        `ch`.`charge_order_serial` AS `chargeOrderSerial`,
+        `ch`.`charge_order_id` AS `chargeOrderId`,
+        `ch`.`account_id` AS `AccountId`,
+        `ac`.`account_no` AS `AccountPhone`,
+        `ch`.`charge_type` AS `chargeType`,
+        `ch`.`change_value` AS `changeValue`,
+        `ch`.`change_extra` AS `changeExtra`,
+        `ch`.`charge_way` AS `chargeWay`,
+        `ch`.`pay_account` AS `payAccount`
+    FROM
+        ( `account_charge` `ch` JOIN `account` `ac` ON ( ( `ac`.`account_id` = `ch`.`account_id` ) ) )
+    GROUP BY
+        `days`
+  </select>
+  <select id="getMonthlyT" resultMap="MonthlyT">
+  SELECT
+      date_format( `ch`.`create_time`, '%Y-%m' ) AS `months`,
+      `ch`.`create_time` AS `createTime`,
+      `ch`.`charge_order_serial` AS `chargeOrderSerial`,
+      `ch`.`charge_order_id` AS `chargeOrderId`,
+      `ch`.`account_id` AS `AccountId`,
+      `ac`.`account_no` AS `AccountPhone`,
+      `ch`.`charge_type` AS `chargeType`,
+      `ch`.`change_value` AS `changeValue`,
+      `ch`.`change_extra` AS `changeExtra`,
+      `ch`.`charge_way` AS `chargeWay`,
+      `ch`.`pay_account` AS `payAccount`
+  FROM
+      ( `account_charge` `ch` JOIN `account` `ac` ON ( ( `ac`.`account_id` = `ch`.`account_id` ) ) )
+  GROUP BY
+      `months`
+  </select>
+  <select id="getWeeklyT" resultMap="WeeklyT">
+  SELECT
+      date_format( `ch`.`create_time`, '%Y%-%u' ) AS `weeks`,
+      `ch`.`create_time` AS `createTime`,
+      `ch`.`charge_order_serial` AS `chargeOrderSerial`,
+      `ch`.`charge_order_id` AS `chargeOrderId`,
+      `ch`.`account_id` AS `AccountId`,
+      `ac`.`account_no` AS `AccountPhone`,
+      `ch`.`charge_type` AS `chargeType`,
+      `ch`.`change_value` AS `changeValue`,
+      `ch`.`change_extra` AS `changeExtra`,
+      `ch`.`charge_way` AS `chargeWay`,
+      `ch`.`pay_account` AS `payAccount`
+  FROM
+      ( `account_charge` `ch` JOIN `account` `ac` ON ( ( `ac`.`account_id` = `ch`.`account_id` ) ) )
+  GROUP BY
+      `weeks`
+  </select>
 </mapper>

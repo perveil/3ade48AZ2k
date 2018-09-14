@@ -116,5 +116,10 @@
             <artifactId>weixin-java-miniapp</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.0.0</version>
+        </dependency>
     </dependencies>
 </project>
