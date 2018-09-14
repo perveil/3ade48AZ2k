@@ -1,7 +1,7 @@
 package com.ebuytech.svc.easybuy.web.interceptor;
 
 import com.ebuytech.svc.easybuy.entity.AdminUser;
-import com.ebuytech.svc.easybuy.service.IAdminUserService;
+import com.ebuytech.svc.easybuy.service.IAdminService;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -17,13 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MyInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private IAdminUserService adminUserService;
+    @Autowired private IAdminService adminUserService;
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //去Redis里查询
         String token = request.getParameter("token");
-        return adminUserService.checkToken(request.getParameter("userId"),token);
+        return adminUserService.checkToken(request.getParameter("userId"), token);
     }
 }

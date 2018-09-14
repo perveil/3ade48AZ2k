@@ -5,7 +5,7 @@ import com.ebuytech.svc.easybuy.entity.AdminUser;
 import com.ebuytech.svc.easybuy.entity.AdminUserExample;
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
 import com.ebuytech.svc.easybuy.exception.AdminException;
-import com.ebuytech.svc.easybuy.service.IAdminUserService;
+import com.ebuytech.svc.easybuy.service.IAdminService;
 import com.ebuytech.svc.easybuy.util.MD5Utils;
 import com.ebuytech.svc.easybuy.util.RedisUtil;
 import com.ebuytech.svc.easybuy.vo.AdminToken;
@@ -21,20 +21,13 @@ import java.util.Random;
 /**
  * Created by Eric3 on 2018/9/13.
  */
-@Transactional
-@Service
-@Slf4j
-public class IAdminUserServiceImpl implements IAdminUserService {
+@Transactional @Service @Slf4j public class AdminUserServiceImpl implements IAdminService {
 
-    @Autowired
-    private AdminUserDAO adminUserDAO;
+    @Autowired private AdminUserDAO adminUserDAO;
 
-    @Autowired
-    private RedisUtil redisUtil;
+    @Autowired private RedisUtil redisUtil;
 
-
-    @Override
-    public AdminToken login(String userName, String userPwd) {
+    @Override public AdminToken login(String userName, String userPwd) {
         userPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(userPwd)));
         AdminUserExample adminUserExample = new AdminUserExample();
         adminUserExample.createCriteria().andUserNameEqualTo(userName).andUserPwdEqualTo(userPwd);
@@ -54,12 +47,15 @@ public class IAdminUserServiceImpl implements IAdminUserService {
         return newAdminToken;
     }
 
-    @Override
-    public boolean checkToken(String userId, String token) {
+    @Override public boolean checkToken(String userId, String token) {
         String token1 = (String) redisUtil.get(userId);
-        if (StringUtils.isEmpty(token1)){
+        if (StringUtils.isEmpty(token1)) {
             return false;
         }
         return token1.equals(token);
+    }
+
+    @Override public boolean modifyPwd(String userId, String oldPwd, String newPwd) {
+        return false;
     }
 }

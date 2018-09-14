@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * ValueCardDAO继承基类
  */
-@Repository
-public interface ValueCardDAO extends MyBatisBaseDao<ValueCard, String, ValueCardExample> {
+@Repository public interface ValueCardDAO extends MyBatisBaseDao<ValueCard, String, ValueCardExample> {
 }

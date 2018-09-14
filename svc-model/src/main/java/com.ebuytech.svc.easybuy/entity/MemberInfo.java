@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * member_info
- * @author 
+ *
+ * @author
  */
 public class MemberInfo implements Serializable {
     /**
@@ -88,8 +89,7 @@ public class MemberInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -100,16 +100,15 @@ public class MemberInfo implements Serializable {
             return false;
         }
         MemberInfo other = (MemberInfo) that;
-        return (this.getMemberInfoId() == null ? other.getMemberInfoId() == null : this.getMemberInfoId().equals(other.getMemberInfoId()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getInfoKey() == null ? other.getInfoKey() == null : this.getInfoKey().equals(other.getInfoKey()))
-            && (this.getInfoValue() == null ? other.getInfoValue() == null : this.getInfoValue().equals(other.getInfoValue()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getMemberInfoId() == null ? other.getMemberInfoId() == null : this.getMemberInfoId().equals(other.getMemberInfoId())) && (this.getMemberId() == null ?
+                other.getMemberId() == null :
+                this.getMemberId().equals(other.getMemberId())) && (this.getInfoKey() == null ? other.getInfoKey() == null : this.getInfoKey().equals(other.getInfoKey())) && (
+                       this.getInfoValue() == null ? other.getInfoValue() == null : this.getInfoValue().equals(other.getInfoValue())) && (this.getCreateTime() == null ?
+                other.getCreateTime() == null :
+                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getMemberInfoId() == null) ? 0 : getMemberInfoId().hashCode());
@@ -121,8 +120,7 @@ public class MemberInfo implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

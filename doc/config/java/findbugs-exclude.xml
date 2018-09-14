@@ -1,5 +1,5 @@
 <FindBugsFilter>
     <Match>
-        <Source name="~.*Test\.java" />
+        <Source name="~.*Test\.java"/>
     </Match>
 </FindBugsFilter>

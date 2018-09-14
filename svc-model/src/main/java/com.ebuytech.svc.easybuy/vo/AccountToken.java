@@ -2,10 +2,7 @@ package com.ebuytech.svc.easybuy.vo;
 
 import lombok.Data;
 
-@Data
-public class AccountToken {
-
-    private String accountId;
+@Data public class AccountToken {
 
     private String openId;
 

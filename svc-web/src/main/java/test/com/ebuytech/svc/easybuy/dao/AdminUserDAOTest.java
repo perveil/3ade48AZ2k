@@ -17,20 +17,16 @@ import static org.junit.Assert.*;
 /**
  * Created by Eric3 on 2018/9/14.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = AppConfig.class)
-public class AdminUserDAOTest {
+@RunWith(SpringRunner.class) @SpringBootTest(classes = AppConfig.class) public class AdminUserDAOTest {
 
-    @Autowired
-    private AdminUserDAO adminUserDAO;
+    @Autowired private AdminUserDAO adminUserDAO;
 
-    @Test
-    public void findByUserNameAndUserPwd() throws Exception{
-//        AdminUser adminUser = adminUserDAO.findByUserNameAndUserPwd("admin","admin");
+    @Test public void findByUserNameAndUserPwd() throws Exception {
+        //        AdminUser adminUser = adminUserDAO.findByUserNameAndUserPwd("admin","admin");
         AdminUserExample adminUserExample = new AdminUserExample();
         adminUserExample.createCriteria().andUserIdEqualTo("0");
         AdminUser adminUser = adminUserDAO.selectByExample(adminUserExample).get(0);
-   //     AdminUser adminUser = adminUserDAO.selectByPrimaryKey("0");
+        //     AdminUser adminUser = adminUserDAO.selectByPrimaryKey("0");
         System.out.println(adminUser);
         Assert.assertNotNull(adminUser);
     }

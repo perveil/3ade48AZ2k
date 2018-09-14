@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * AccountChargeVoidDAO继承基类
  */
-@Repository
-public interface AccountChargeVoidDAO extends MyBatisBaseDao<AccountChargeVoid, String, AccountChargeVoidExample> {
+@Repository public interface AccountChargeVoidDAO extends MyBatisBaseDao<AccountChargeVoid, String, AccountChargeVoidExample> {
 }
