@@ -10,5 +10,4 @@ public interface IActivityService {
 
     boolean addActivity(int status, int actType, int cntType, String cntInfo, int actMoney, int actCount);
 
-
 }

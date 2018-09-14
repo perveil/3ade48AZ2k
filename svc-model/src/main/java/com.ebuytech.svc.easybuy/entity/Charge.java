@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * charge
- * @author 
+ *
+ * @author
  */
 public class Charge implements Serializable {
     /**
@@ -114,8 +115,7 @@ public class Charge implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -126,18 +126,18 @@ public class Charge implements Serializable {
             return false;
         }
         Charge other = (Charge) that;
-        return (this.getChargeId() == null ? other.getChargeId() == null : this.getChargeId().equals(other.getChargeId()))
-            && (this.getActId() == null ? other.getActId() == null : this.getActId().equals(other.getActId()))
-            && (this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney()))
-            && (this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType()))
-            && (this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime()))
-            && (this.getIsValid() == null ? other.getIsValid() == null : this.getIsValid().equals(other.getIsValid()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getChargeId() == null ? other.getChargeId() == null : this.getChargeId().equals(other.getChargeId())) && (this.getActId() == null ?
+                other.getActId() == null :
+                this.getActId().equals(other.getActId())) && (this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney())) && (
+                       this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType())) && (this.getValidTime() == null ?
+                other.getValidTime() == null :
+                this.getValidTime().equals(other.getValidTime())) && (this.getIsValid() == null ? other.getIsValid() == null : this.getIsValid().equals(other.getIsValid())) && (
+                       this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ?
+                other.getUpdateTime() == null :
+                this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getChargeId() == null) ? 0 : getChargeId().hashCode());
@@ -151,8 +151,7 @@ public class Charge implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

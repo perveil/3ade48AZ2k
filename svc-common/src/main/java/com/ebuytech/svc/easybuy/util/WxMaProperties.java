@@ -4,9 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
-@ConfigurationProperties(prefix = "wechat.miniapp")
-public class WxMaProperties {
+@ConfigurationProperties(prefix = "wechat.miniapp") public class WxMaProperties {
     /**
      * 设置微信小程序的appid
      */
@@ -72,8 +70,7 @@ public class WxMaProperties {
         this.msgDataFormat = msgDataFormat;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }

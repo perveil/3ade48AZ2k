@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * ActivityDAO继承基类
  */
-@Repository
-public interface ActivityDAO extends MyBatisBaseDao<Activity, Integer, ActivityExample> {
+@Repository public interface ActivityDAO extends MyBatisBaseDao<Activity, Integer, ActivityExample> {
 }

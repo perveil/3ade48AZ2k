@@ -10,13 +10,12 @@ public class Res<T> {
     private int code = 0;
     private T data;
 
-    public static String jsonToString(JSONObject jsonObject){
+    public static String jsonToString(JSONObject jsonObject) {
         return jsonObject.toString();
     }
 
     public Res() {
     }
-
 
     public Res(String msg, int code, T data) {
         this.msg = msg;
@@ -46,17 +45,12 @@ public class Res<T> {
         return data;
     }
 
-    public  Res<T> setData(T data) {
+    public Res<T> setData(T data) {
         this.data = data;
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Res{" +
-                "msg='" + msg + '\'' +
-                ", code=" + code +
-                ", data=" + data +
-                '}';
+    @Override public String toString() {
+        return "Res{" + "msg='" + msg + '\'' + ", code=" + code + ", data=" + data + '}';
     }
 }

@@ -1,6 +1,5 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
-
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.ebuytech.svc.easybuy.dao.AccountDAO;
@@ -19,22 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-@Transactional
-public class AccountServiceImpl implements IAccountService {
-    @Resource
-    private WxMaService wxService;
+@Service @Transactional public class AccountServiceImpl implements IAccountService {
+    @Resource private WxMaService wxService;
 
-    @Resource
-    private RedisUtil redisUtil;
+    @Resource private RedisUtil redisUtil;
 
-    @Resource
-    private AccountDAO accountDAO;
+    @Resource private AccountDAO accountDAO;
 
     public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
 
-    @Override
-    public AccountToken login(String code) {
+    @Override public AccountToken login(String code) {
         if (StringUtils.isBlank(code)) {
             throw new ClientException(ResultEnums.USER_CODE_NULL);
         }
@@ -43,14 +36,23 @@ public class AccountServiceImpl implements IAccountService {
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-//            AccountExample accountExample = new AccountExample();
-//            accountExample.Criteria
-            String token =  MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
+            AccountExample accountExample = new AccountExample();
+            accountExample.createCriteria().andOpenIdEqualTo(openId);
+            String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
             AccountToken accountToken = new AccountToken();
             accountToken.setOpenId(openId);
             accountToken.setSessionCode(token);
+            List<Account> accountList = accountDAO.selectByExample(accountExample);
+            if (accountList == null || accountList.size() == 0) {
+                accountToken.setIsMember("-1");
+                accountToken.setStatus(-1);
+            } else {
+                Account account = accountList.get(0);
+                accountToken.setIsMember(account.getAccountId());
+                accountToken.setStatus(account.getStatus());
+            }
             return accountToken;
         } catch (WxErrorException e) {
             e.printStackTrace();
@@ -58,30 +60,24 @@ public class AccountServiceImpl implements IAccountService {
         return null;
     }
 
-    @Override
-    public boolean checkSessionCode(String openId, String sessionCode) {
+    @Override public boolean checkSessionCode(String openId, String sessionCode) {
 
         return false;
     }
 
-    @Override
-    public List<Account> queryAccountListByPage(int page) {
+    @Override public List<Account> queryAccountListByPage(int page) {
         return null;
     }
 
-
-    @Override
-    public Account queryAccountInfo(String openId) {
+    @Override public Account queryAccountInfo(String openId) {
         return null;
     }
 
-    @Override
-    public boolean freezeAccount(String accountId) {
+    @Override public boolean freezeAccount(String accountId) {
         return false;
     }
 
-    @Override
-    public boolean addBalance(String accountId, int balance) {
+    @Override public boolean addBalance(String accountId, int balance) {
         return false;
     }
 }

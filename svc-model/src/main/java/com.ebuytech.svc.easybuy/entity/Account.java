@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * account
- * @author 
+ *
+ * @author
  */
 public class Account implements Serializable {
     /**
@@ -179,8 +180,7 @@ public class Account implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -191,23 +191,22 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) that;
-        return (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getOpenId() == null ? other.getOpenId() == null : this.getOpenId().equals(other.getOpenId()))
-            && (this.getAccountNo() == null ? other.getAccountNo() == null : this.getAccountNo().equals(other.getAccountNo()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getPaypwdStatus() == null ? other.getPaypwdStatus() == null : this.getPaypwdStatus().equals(other.getPaypwdStatus()))
-            && (this.getPaypwd() == null ? other.getPaypwd() == null : this.getPaypwd().equals(other.getPaypwd()))
-            && (this.getBalance() == null ? other.getBalance() == null : this.getBalance().equals(other.getBalance()))
-            && (this.getChargeCount() == null ? other.getChargeCount() == null : this.getChargeCount().equals(other.getChargeCount()))
-            && (this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId())) && (this.getOpenId() == null ?
+                other.getOpenId() == null :
+                this.getOpenId().equals(other.getOpenId())) && (this.getAccountNo() == null ? other.getAccountNo() == null : this.getAccountNo().equals(other.getAccountNo())) && (
+                       this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId())) && (this.getValueCardId() == null ?
+                other.getValueCardId() == null :
+                this.getValueCardId().equals(other.getValueCardId())) && (this.getPaypwdStatus() == null ? other.getPaypwdStatus() == null : this.getPaypwdStatus().equals(other.getPaypwdStatus()))
+               && (this.getPaypwd() == null ? other.getPaypwd() == null : this.getPaypwd().equals(other.getPaypwd())) && (this.getBalance() == null ?
+                other.getBalance() == null :
+                this.getBalance().equals(other.getBalance())) && (this.getChargeCount() == null ? other.getChargeCount() == null : this.getChargeCount().equals(other.getChargeCount())) && (
+                       this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney())) && (this.getStatus() == null ?
+                other.getStatus() == null :
+                this.getStatus().equals(other.getStatus())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountId() == null) ? 0 : getAccountId().hashCode());
@@ -226,8 +225,7 @@ public class Account implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

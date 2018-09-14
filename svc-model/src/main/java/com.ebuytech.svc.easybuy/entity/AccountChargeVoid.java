@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * account_charge_void
- * @author 
+ *
+ * @author
  */
 public class AccountChargeVoid implements Serializable {
     /**
@@ -127,8 +128,7 @@ public class AccountChargeVoid implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -139,19 +139,19 @@ public class AccountChargeVoid implements Serializable {
             return false;
         }
         AccountChargeVoid other = (AccountChargeVoid) that;
-        return (this.getAccountChargeVoidId() == null ? other.getAccountChargeVoidId() == null : this.getAccountChargeVoidId().equals(other.getAccountChargeVoidId()))
-            && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
-            && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getChargeOrderId() == null ? other.getChargeOrderId() == null : this.getChargeOrderId().equals(other.getChargeOrderId()))
-            && (this.getChargeVoidOrderId() == null ? other.getChargeVoidOrderId() == null : this.getChargeVoidOrderId().equals(other.getChargeVoidOrderId()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccountChargeVoidId() == null ? other.getAccountChargeVoidId() == null : this.getAccountChargeVoidId().equals(other.getAccountChargeVoidId())) && (
+                this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue())) && (this.getChangeMemo() == null ?
+                other.getChangeMemo() == null :
+                this.getChangeMemo().equals(other.getChangeMemo())) && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId())) && (
+                       this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId())) && (this.getChargeOrderId() == null ?
+                other.getChargeOrderId() == null :
+                this.getChargeOrderId().equals(other.getChargeOrderId())) && (this.getChargeVoidOrderId() == null ?
+                other.getChargeVoidOrderId() == null :
+                this.getChargeVoidOrderId().equals(other.getChargeVoidOrderId())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+               && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountChargeVoidId() == null) ? 0 : getAccountChargeVoidId().hashCode());
@@ -166,8 +166,7 @@ public class AccountChargeVoid implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

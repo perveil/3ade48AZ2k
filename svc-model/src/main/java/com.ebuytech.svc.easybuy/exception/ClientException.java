@@ -1,15 +1,14 @@
 package com.ebuytech.svc.easybuy.exception;
 
-
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
 
 public class ClientException extends RuntimeException {
 
     private Integer code;
 
-    public ClientException(ResultEnums resultEnums){
+    public ClientException(ResultEnums resultEnums) {
         super(resultEnums.getMessage());
-        this.code=resultEnums.getCode();
+        this.code = resultEnums.getCode();
     }
 
     public Integer getCode() {

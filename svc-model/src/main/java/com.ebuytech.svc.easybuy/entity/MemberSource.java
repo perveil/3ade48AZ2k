@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * member_source
- * @author 
+ *
+ * @author
  */
 public class MemberSource implements Serializable {
     /**
@@ -61,8 +62,7 @@ public class MemberSource implements Serializable {
         this.source = source;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -73,14 +73,13 @@ public class MemberSource implements Serializable {
             return false;
         }
         MemberSource other = (MemberSource) that;
-        return (this.getMemberSourceId() == null ? other.getMemberSourceId() == null : this.getMemberSourceId().equals(other.getMemberSourceId()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getSourceId() == null ? other.getSourceId() == null : this.getSourceId().equals(other.getSourceId()))
-            && (this.getSource() == null ? other.getSource() == null : this.getSource().equals(other.getSource()));
+        return (this.getMemberSourceId() == null ? other.getMemberSourceId() == null : this.getMemberSourceId().equals(other.getMemberSourceId())) && (this.getMemberId() == null ?
+                other.getMemberId() == null :
+                this.getMemberId().equals(other.getMemberId())) && (this.getSourceId() == null ? other.getSourceId() == null : this.getSourceId().equals(other.getSourceId())) && (
+                       this.getSource() == null ? other.getSource() == null : this.getSource().equals(other.getSource()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getMemberSourceId() == null) ? 0 : getMemberSourceId().hashCode());
@@ -90,8 +89,7 @@ public class MemberSource implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

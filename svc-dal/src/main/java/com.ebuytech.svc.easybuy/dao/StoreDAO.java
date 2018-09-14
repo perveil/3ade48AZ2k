@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * StoreDAO继承基类
  */
-@Repository
-public interface StoreDAO extends MyBatisBaseDao<Store, String, StoreExample> {
+@Repository public interface StoreDAO extends MyBatisBaseDao<Store, String, StoreExample> {
 }

@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * value_card
- * @author 
+ *
+ * @author
  */
 public class ValueCard implements Serializable {
     /**
@@ -75,8 +76,7 @@ public class ValueCard implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -87,15 +87,15 @@ public class ValueCard implements Serializable {
             return false;
         }
         ValueCard other = (ValueCard) that;
-        return (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId())) && (this.getAccountId() == null ?
+                other.getAccountId() == null :
+                this.getAccountId().equals(other.getAccountId())) && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId())) && (
+                       this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ?
+                other.getUpdateTime() == null :
+                this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
@@ -106,8 +106,7 @@ public class ValueCard implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

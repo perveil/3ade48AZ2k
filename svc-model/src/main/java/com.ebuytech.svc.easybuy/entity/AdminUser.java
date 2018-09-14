@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * admin_user
- * @author 
+ *
+ * @author
  */
 public class AdminUser implements Serializable {
     /**
@@ -127,8 +128,7 @@ public class AdminUser implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -139,19 +139,18 @@ public class AdminUser implements Serializable {
             return false;
         }
         AdminUser other = (AdminUser) that;
-        return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getUserPwd() == null ? other.getUserPwd() == null : this.getUserPwd().equals(other.getUserPwd()))
-            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
-            && (this.getIsAccess() == null ? other.getIsAccess() == null : this.getIsAccess().equals(other.getIsAccess()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getLevel() == null ? other.getLevel() == null : this.getLevel().equals(other.getLevel()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId())) && (this.getUserName() == null ?
+                other.getUserName() == null :
+                this.getUserName().equals(other.getUserName())) && (this.getUserPwd() == null ? other.getUserPwd() == null : this.getUserPwd().equals(other.getUserPwd())) && (
+                       this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId())) && (this.getIsAccess() == null ?
+                other.getIsAccess() == null :
+                this.getIsAccess().equals(other.getIsAccess())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getLevel() == null ?
+                other.getLevel() == null :
+                this.getLevel().equals(other.getLevel())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
@@ -166,8 +165,7 @@ public class AdminUser implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
