@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `advert_pos` CASCADE
 DROP TABLE IF EXISTS `report_charge` CASCADE
 ;
 
-DROP TABLE IF EXISTS `repost_sale` CASCADE
+DROP TABLE IF EXISTS `report_sale` CASCADE
 ;
 /* Create Tables */
 
@@ -125,6 +125,7 @@ COMMENT = '广告位表'
 
 create table `advert` (
   `advert_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '广告id',
+  `advert_name` varchar(64) not NUll DEFAULT '' COMMENT '广告名',
   `valid_type` int DEFAULT 0 COMMENT '有效期 0：永不过期 1：有期限',
   `valid_time` varchar(64) default '' COMMENT '有效截止日期',
   `img_url` varchar(255) default '' COMMENT '图片url',
@@ -192,9 +193,12 @@ create table `admin_user` (
   `user_name` varchar(64) not null COMMENT '用户名',
   `user_pwd` varchar(64) not null COMMENT '密码',
   `role_id` int not null COMMENT '角色id',
+  `store_id` varchar(64) not null COMMENT '门店id',
   `is_access` int not null default 0 COMMENT '是否已配置权限 0：是 1：否',
   `status` int not null default 0 COMMENT '状态 0：开启 1：关闭',
   `level` int not null default 50 COMMENT '权重',
+  `type` int not null default 0 COMMENT '类型 0：总部 1：门店',
+  `notice` varchar(255) default '' COMMENT '备注',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
   CONSTRAINT `PK_admin_user` PRIMARY KEY (`user_id` ASC)
@@ -213,7 +217,7 @@ create table `activity` (
   `act_money` int NOT NULL DEFAULT 0 COMMENT '活动金额',
   `act_count` int NOT NULL DEFAULT 0 COMMENT '活动折扣',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
-  `start_time` varchar(64) NOT NULL default '' COMMENT '结束时间',
+  `start_time` varchar(64) NOT NULL default '' COMMENT '开始时间',
   `end_time` varchar(64) NOT NULL default '' COMMENT '结束时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 )
@@ -481,144 +485,144 @@ COMMENT = '会员来源'
 
 ;
 
-/* Create Primary Keys, Indexes, Uniques, Checks */
-
-ALTER TABLE `account` 
- ADD INDEX `IXFK_account_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_change` 
- ADD INDEX `IXFK_account_change_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_change` 
- ADD INDEX `IXFK_account_change_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_charge` 
- ADD INDEX `IXFK_account_charge_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_charge` 
- ADD INDEX `IXFK_account_charge_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_charge_void` 
- ADD INDEX `IXFK_account_charge_void_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_charge_void` 
- ADD INDEX `IXFK_account_charge_void_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_refund` 
- ADD INDEX `IXFK_account_refund_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_refund` 
- ADD INDEX `IXFK_account_refund_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_sale` 
- ADD INDEX `IXFK_account_sale_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_sale` 
- ADD INDEX `IXFK_account_sale_member` (`member_id` ASC)
-;
-
-ALTER TABLE `account_void` 
- ADD INDEX `IXFK_account_void_account` (`account_id` ASC)
-;
-
-ALTER TABLE `account_void` 
- ADD INDEX `IXFK_account_void_member` (`member_id` ASC)
-;
-
-ALTER TABLE `member_info` 
- ADD INDEX `IXFK_member_info_member` (`member_id` ASC)
-;
-
-ALTER TABLE `member_source` 
- ADD INDEX `IXFK_member_source_member` (`member_id` ASC)
-;
-
-/* Create Foreign Key Constraints */
-
-ALTER TABLE `account` 
- ADD CONSTRAINT `FK_account_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_change` 
- ADD CONSTRAINT `FK_account_change_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_change` 
- ADD CONSTRAINT `FK_account_change_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_charge` 
- ADD CONSTRAINT `FK_account_charge_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_charge` 
- ADD CONSTRAINT `FK_account_charge_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_charge_void` 
- ADD CONSTRAINT `FK_account_charge_void_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_charge_void` 
- ADD CONSTRAINT `FK_account_charge_void_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_refund` 
- ADD CONSTRAINT `FK_account_refund_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_refund` 
- ADD CONSTRAINT `FK_account_refund_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_sale` 
- ADD CONSTRAINT `FK_account_sale_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_sale` 
- ADD CONSTRAINT `FK_account_sale_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_void` 
- ADD CONSTRAINT `FK_account_void_account`
-	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `account_void` 
- ADD CONSTRAINT `FK_account_void_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `member_info` 
- ADD CONSTRAINT `FK_member_info_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
-
-ALTER TABLE `member_source` 
- ADD CONSTRAINT `FK_member_source_member`
-	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
-;
+-- /* Create Primary Keys, Indexes, Uniques, Checks */
+--
+-- ALTER TABLE `account`
+--  ADD INDEX `IXFK_account_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_change`
+--  ADD INDEX `IXFK_account_change_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_change`
+--  ADD INDEX `IXFK_account_change_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_charge`
+--  ADD INDEX `IXFK_account_charge_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_charge`
+--  ADD INDEX `IXFK_account_charge_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_charge_void`
+--  ADD INDEX `IXFK_account_charge_void_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_charge_void`
+--  ADD INDEX `IXFK_account_charge_void_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_refund`
+--  ADD INDEX `IXFK_account_refund_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_refund`
+--  ADD INDEX `IXFK_account_refund_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_sale`
+--  ADD INDEX `IXFK_account_sale_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_sale`
+--  ADD INDEX `IXFK_account_sale_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_void`
+--  ADD INDEX `IXFK_account_void_account` (`account_id` ASC)
+-- ;
+--
+-- ALTER TABLE `account_void`
+--  ADD INDEX `IXFK_account_void_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `member_info`
+--  ADD INDEX `IXFK_member_info_member` (`member_id` ASC)
+-- ;
+--
+-- ALTER TABLE `member_source`
+--  ADD INDEX `IXFK_member_source_member` (`member_id` ASC)
+-- ;
+--
+-- /* Create Foreign Key Constraints */
+--
+-- ALTER TABLE `account`
+--  ADD CONSTRAINT `FK_account_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_change`
+--  ADD CONSTRAINT `FK_account_change_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_change`
+--  ADD CONSTRAINT `FK_account_change_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_charge`
+--  ADD CONSTRAINT `FK_account_charge_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_charge`
+--  ADD CONSTRAINT `FK_account_charge_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_charge_void`
+--  ADD CONSTRAINT `FK_account_charge_void_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_charge_void`
+--  ADD CONSTRAINT `FK_account_charge_void_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_refund`
+--  ADD CONSTRAINT `FK_account_refund_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_refund`
+--  ADD CONSTRAINT `FK_account_refund_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_sale`
+--  ADD CONSTRAINT `FK_account_sale_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_sale`
+--  ADD CONSTRAINT `FK_account_sale_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_void`
+--  ADD CONSTRAINT `FK_account_void_account`
+-- 	FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `account_void`
+--  ADD CONSTRAINT `FK_account_void_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `member_info`
+--  ADD CONSTRAINT `FK_member_info_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
+--
+-- ALTER TABLE `member_source`
+--  ADD CONSTRAINT `FK_member_source_member`
+-- 	FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE Restrict ON UPDATE Restrict
+-- ;
 
 SET FOREIGN_KEY_CHECKS=1 
 ;

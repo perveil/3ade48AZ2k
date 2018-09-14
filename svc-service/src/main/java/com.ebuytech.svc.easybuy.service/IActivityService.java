@@ -27,6 +27,6 @@ public interface IActivityService {
      * @param actCount 活动折扣
      * @return
      */
-    boolean addActivity(int status, int actType, int cntType, String cntInfo, int actMoney, int actCount);
+    int addActivity(int status, int actType, int cntType, String cntInfo, int actMoney, int actCount);
 
 }

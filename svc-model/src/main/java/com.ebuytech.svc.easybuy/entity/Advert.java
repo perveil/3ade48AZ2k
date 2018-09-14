@@ -15,6 +15,11 @@ public class Advert implements Serializable {
     private Integer advertId;
 
     /**
+     * 广告名
+     */
+    private String advertName;
+
+    /**
      * 有效期 0：永不过期 1：有期限
      */
     private Integer validType;
@@ -57,6 +62,14 @@ public class Advert implements Serializable {
 
     public void setAdvertId(Integer advertId) {
         this.advertId = advertId;
+    }
+
+    public String getAdvertName() {
+        return advertName;
+    }
+
+    public void setAdvertName(String advertName) {
+        this.advertName = advertName;
     }
 
     public Integer getValidType() {
@@ -126,20 +139,22 @@ public class Advert implements Serializable {
             return false;
         }
         Advert other = (Advert) that;
-        return (this.getAdvertId() == null ? other.getAdvertId() == null : this.getAdvertId().equals(other.getAdvertId())) && (this.getValidType() == null ?
-                other.getValidType() == null :
-                this.getValidType().equals(other.getValidType())) && (this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime())) && (
-                       this.getImgUrl() == null ? other.getImgUrl() == null : this.getImgUrl().equals(other.getImgUrl())) && (this.getNotice() == null ?
-                other.getNotice() == null :
-                this.getNotice().equals(other.getNotice())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getCreateTime() == null ?
-                other.getCreateTime() == null :
-                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAdvertId() == null ? other.getAdvertId() == null : this.getAdvertId().equals(other.getAdvertId())) && (this.getAdvertName() == null ?
+                other.getAdvertName() == null :
+                this.getAdvertName().equals(other.getAdvertName())) && (this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType())) && (
+                       this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime())) && (this.getImgUrl() == null ?
+                other.getImgUrl() == null :
+                this.getImgUrl().equals(other.getImgUrl())) && (this.getNotice() == null ? other.getNotice() == null : this.getNotice().equals(other.getNotice())) && (this.getStatus() == null ?
+                other.getStatus() == null :
+                this.getStatus().equals(other.getStatus())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
     @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAdvertId() == null) ? 0 : getAdvertId().hashCode());
+        result = prime * result + ((getAdvertName() == null) ? 0 : getAdvertName().hashCode());
         result = prime * result + ((getValidType() == null) ? 0 : getValidType().hashCode());
         result = prime * result + ((getValidTime() == null) ? 0 : getValidTime().hashCode());
         result = prime * result + ((getImgUrl() == null) ? 0 : getImgUrl().hashCode());
@@ -156,6 +171,7 @@ public class Advert implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", advertId=").append(advertId);
+        sb.append(", advertName=").append(advertName);
         sb.append(", validType=").append(validType);
         sb.append(", validTime=").append(validTime);
         sb.append(", imgUrl=").append(imgUrl);

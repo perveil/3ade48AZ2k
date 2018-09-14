@@ -30,6 +30,11 @@ public class AdminUser implements Serializable {
     private Integer roleId;
 
     /**
+     * 门店id
+     */
+    private String storeId;
+
+    /**
      * 是否已配置权限 0：是 1：否
      */
     private Integer isAccess;
@@ -43,6 +48,16 @@ public class AdminUser implements Serializable {
      * 权重
      */
     private Integer level;
+
+    /**
+     * 类型 0：总部 1：门店
+     */
+    private Integer type;
+
+    /**
+     * 备注
+     */
+    private String notice;
 
     /**
      * 创建时间
@@ -88,6 +103,14 @@ public class AdminUser implements Serializable {
         this.roleId = roleId;
     }
 
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
     public Integer getIsAccess() {
         return isAccess;
     }
@@ -110,6 +133,22 @@ public class AdminUser implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
     }
 
     public Date getCreateTime() {
@@ -142,11 +181,14 @@ public class AdminUser implements Serializable {
         return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId())) && (this.getUserName() == null ?
                 other.getUserName() == null :
                 this.getUserName().equals(other.getUserName())) && (this.getUserPwd() == null ? other.getUserPwd() == null : this.getUserPwd().equals(other.getUserPwd())) && (
-                       this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId())) && (this.getIsAccess() == null ?
-                other.getIsAccess() == null :
-                this.getIsAccess().equals(other.getIsAccess())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getLevel() == null ?
+                       this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId())) && (this.getStoreId() == null ?
+                other.getStoreId() == null :
+                this.getStoreId().equals(other.getStoreId())) && (this.getIsAccess() == null ? other.getIsAccess() == null : this.getIsAccess().equals(other.getIsAccess())) && (
+                       this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getLevel() == null ?
                 other.getLevel() == null :
-                this.getLevel().equals(other.getLevel())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                this.getLevel().equals(other.getLevel())) && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType())) && (this.getNotice() == null ?
+                other.getNotice() == null :
+                this.getNotice().equals(other.getNotice())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
                        this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
@@ -157,9 +199,12 @@ public class AdminUser implements Serializable {
         result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getUserPwd() == null) ? 0 : getUserPwd().hashCode());
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getStoreId() == null) ? 0 : getStoreId().hashCode());
         result = prime * result + ((getIsAccess() == null) ? 0 : getIsAccess().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getLevel() == null) ? 0 : getLevel().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getNotice() == null) ? 0 : getNotice().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -174,9 +219,12 @@ public class AdminUser implements Serializable {
         sb.append(", userName=").append(userName);
         sb.append(", userPwd=").append(userPwd);
         sb.append(", roleId=").append(roleId);
+        sb.append(", storeId=").append(storeId);
         sb.append(", isAccess=").append(isAccess);
         sb.append(", status=").append(status);
         sb.append(", level=").append(level);
+        sb.append(", type=").append(type);
+        sb.append(", notice=").append(notice);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

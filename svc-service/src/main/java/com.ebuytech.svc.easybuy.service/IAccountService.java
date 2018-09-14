@@ -71,4 +71,5 @@ public interface IAccountService {
      * @return
      */
     List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId);
+
 }
