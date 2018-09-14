@@ -9,7 +9,6 @@ public interface IAdminService {
     boolean checkToken(String userId, String token);
 
     /**
-     *
      * @param userId
      * @param oldPwd
      * @param newPwd

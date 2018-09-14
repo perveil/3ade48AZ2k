@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface IChangeService {
 
-    List<AccountChange> getChangeListByPage(int pageNum);
+    List<AccountChange> queryChangeListByPage(int pageNum);
 }

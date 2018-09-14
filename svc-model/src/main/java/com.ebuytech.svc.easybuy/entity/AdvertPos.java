@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * advert_pos
- * @author 
+ *
+ * @author
  */
 public class AdvertPos implements Serializable {
     /**
@@ -101,8 +102,7 @@ public class AdvertPos implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -113,17 +113,17 @@ public class AdvertPos implements Serializable {
             return false;
         }
         AdvertPos other = (AdvertPos) that;
-        return (this.getPosId() == null ? other.getPosId() == null : this.getPosId().equals(other.getPosId()))
-            && (this.getPosName() == null ? other.getPosName() == null : this.getPosName().equals(other.getPosName()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getSize() == null ? other.getSize() == null : this.getSize().equals(other.getSize()))
-            && (this.getAdvertCount() == null ? other.getAdvertCount() == null : this.getAdvertCount().equals(other.getAdvertCount()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getPosId() == null ? other.getPosId() == null : this.getPosId().equals(other.getPosId())) && (this.getPosName() == null ?
+                other.getPosName() == null :
+                this.getPosName().equals(other.getPosName())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getSize() == null ?
+                other.getSize() == null :
+                this.getSize().equals(other.getSize())) && (this.getAdvertCount() == null ? other.getAdvertCount() == null : this.getAdvertCount().equals(other.getAdvertCount())) && (
+                       this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ?
+                other.getUpdateTime() == null :
+                this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getPosId() == null) ? 0 : getPosId().hashCode());
@@ -136,8 +136,7 @@ public class AdvertPos implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

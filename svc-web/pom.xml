@@ -9,7 +9,6 @@
     </parent>
 
 
-
     <artifactId>svc-web</artifactId>
 
     <dependencies>

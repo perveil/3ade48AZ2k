@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * store
- * @author 
+ *
+ * @author
  */
 public class Store implements Serializable {
     /**
@@ -153,8 +154,7 @@ public class Store implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -165,21 +165,20 @@ public class Store implements Serializable {
             return false;
         }
         Store other = (Store) that;
-        return (this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId()))
-            && (this.getStoreName() == null ? other.getStoreName() == null : this.getStoreName().equals(other.getStoreName()))
-            && (this.getStoreProvince() == null ? other.getStoreProvince() == null : this.getStoreProvince().equals(other.getStoreProvince()))
-            && (this.getStoreCity() == null ? other.getStoreCity() == null : this.getStoreCity().equals(other.getStoreCity()))
-            && (this.getStoreDistrict() == null ? other.getStoreDistrict() == null : this.getStoreDistrict().equals(other.getStoreDistrict()))
-            && (this.getStoreAddr() == null ? other.getStoreAddr() == null : this.getStoreAddr().equals(other.getStoreAddr()))
-            && (this.getStorePhone() == null ? other.getStorePhone() == null : this.getStorePhone().equals(other.getStorePhone()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getOper() == null ? other.getOper() == null : this.getOper().equals(other.getOper()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId())) && (this.getStoreName() == null ?
+                other.getStoreName() == null :
+                this.getStoreName().equals(other.getStoreName())) && (this.getStoreProvince() == null ? other.getStoreProvince() == null : this.getStoreProvince().equals(other.getStoreProvince()))
+               && (this.getStoreCity() == null ? other.getStoreCity() == null : this.getStoreCity().equals(other.getStoreCity())) && (this.getStoreDistrict() == null ?
+                other.getStoreDistrict() == null :
+                this.getStoreDistrict().equals(other.getStoreDistrict())) && (this.getStoreAddr() == null ? other.getStoreAddr() == null : this.getStoreAddr().equals(other.getStoreAddr())) && (
+                       this.getStorePhone() == null ? other.getStorePhone() == null : this.getStorePhone().equals(other.getStorePhone())) && (this.getStatus() == null ?
+                other.getStatus() == null :
+                this.getStatus().equals(other.getStatus())) && (this.getOper() == null ? other.getOper() == null : this.getOper().equals(other.getOper())) && (this.getCreateTime() == null ?
+                other.getCreateTime() == null :
+                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getStoreId() == null) ? 0 : getStoreId().hashCode());
@@ -196,8 +195,7 @@ public class Store implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

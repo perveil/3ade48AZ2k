@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * report_charge
- * @author 
+ *
+ * @author
  */
 public class ReportCharge implements Serializable {
     /**
@@ -101,8 +102,7 @@ public class ReportCharge implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -113,17 +113,16 @@ public class ReportCharge implements Serializable {
             return false;
         }
         ReportCharge other = (ReportCharge) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getDate() == null ? other.getDate() == null : this.getDate().equals(other.getDate()))
-            && (this.getChargeCount() == null ? other.getChargeCount() == null : this.getChargeCount().equals(other.getChargeCount()))
-            && (this.getChargeTotal() == null ? other.getChargeTotal() == null : this.getChargeTotal().equals(other.getChargeTotal()))
-            && (this.getChargeSent() == null ? other.getChargeSent() == null : this.getChargeSent().equals(other.getChargeSent()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId())) && (this.getDate() == null ? other.getDate() == null : this.getDate().equals(other.getDate())) && (
+                this.getChargeCount() == null ?
+                        other.getChargeCount() == null :
+                        this.getChargeCount().equals(other.getChargeCount())) && (this.getChargeTotal() == null ? other.getChargeTotal() == null : this.getChargeTotal().equals(other.getChargeTotal()))
+               && (this.getChargeSent() == null ? other.getChargeSent() == null : this.getChargeSent().equals(other.getChargeSent())) && (this.getCreateTime() == null ?
+                other.getCreateTime() == null :
+                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
@@ -136,8 +135,7 @@ public class ReportCharge implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

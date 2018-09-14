@@ -8,17 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@RestController
-@RequestMapping("test")
-public class IndexController {
+@RestController @RequestMapping("test") public class IndexController {
 
-    @Resource
-    private IMemberService memberService;
+    @Resource private IMemberService memberService;
 
-    @GetMapping("/hello")
-    public String hello(){
+    @GetMapping("/hello") public String hello() {
 
-        if (memberService.addMember("1", "airmacx", "男", "13601992766")){
+        if (memberService.addMember("1", "airmacx", "男", "13601992766")) {
             return "hello";
         }
         return "failed";

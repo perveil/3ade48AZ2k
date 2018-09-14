@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * GiftCardDAO继承基类
  */
-@Repository
-public interface GiftCardDAO extends MyBatisBaseDao<GiftCard, String, GiftCardExample> {
+@Repository public interface GiftCardDAO extends MyBatisBaseDao<GiftCard, String, GiftCardExample> {
 }

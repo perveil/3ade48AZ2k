@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * admin_access
- * @author 
+ *
+ * @author
  */
 public class AdminAccess implements Serializable {
     /**
@@ -62,8 +63,7 @@ public class AdminAccess implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -74,14 +74,13 @@ public class AdminAccess implements Serializable {
             return false;
         }
         AdminAccess other = (AdminAccess) that;
-        return (this.getAccessId() == null ? other.getAccessId() == null : this.getAccessId().equals(other.getAccessId()))
-            && (this.getAccessName() == null ? other.getAccessName() == null : this.getAccessName().equals(other.getAccessName()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccessId() == null ? other.getAccessId() == null : this.getAccessId().equals(other.getAccessId())) && (this.getAccessName() == null ?
+                other.getAccessName() == null :
+                this.getAccessName().equals(other.getAccessName())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccessId() == null) ? 0 : getAccessId().hashCode());
@@ -91,8 +90,7 @@ public class AdminAccess implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

@@ -74,7 +74,40 @@ DROP TABLE IF EXISTS `advert` CASCADE
 
 DROP TABLE IF EXISTS `advert_pos` CASCADE
 ;
+
+DROP TABLE IF EXISTS `report_charge` CASCADE
+;
+
+DROP TABLE IF EXISTS `repost_sale` CASCADE
+;
 /* Create Tables */
+
+create table `report_sale` (
+  `id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  `date` varchar(64) not NULL COMMENT '日期',
+  `sale_count` int NOT NULL DEFAULT 0 COMMENT '充值笔数',
+  `sale_total` int NOT NULL DEFAULT 0 COMMENT '充值总金额',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '消费报表'
+;
+
+create table `report_charge` (
+  `id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  `date` varchar(64) not NULL COMMENT '日期',
+  `charge_count` int NOT NULL DEFAULT 0 COMMENT '充值笔数',
+  `charge_total` int NOT NULL DEFAULT 0 COMMENT '充值总金额',
+  `charge_sent` int NOT NULL DEFAULT 0 COMMENT '赠送金额',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '充值报表'
+;
 
 create table `advert_pos` (
   `pos_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '广告位id',

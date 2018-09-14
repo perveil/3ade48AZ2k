@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * ReportSaleDAO继承基类
  */
-@Repository
-public interface ReportSaleDAO extends MyBatisBaseDao<ReportSale, Integer, ReportSaleExample> {
+@Repository public interface ReportSaleDAO extends MyBatisBaseDao<ReportSale, Integer, ReportSaleExample> {
 }

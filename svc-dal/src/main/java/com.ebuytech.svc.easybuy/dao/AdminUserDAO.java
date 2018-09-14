@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * AdminUserDAO继承基类
  */
-@Repository
-public interface AdminUserDAO extends MyBatisBaseDao<AdminUser, String, AdminUserExample> {
+@Repository public interface AdminUserDAO extends MyBatisBaseDao<AdminUser, String, AdminUserExample> {
 }

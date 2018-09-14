@@ -4,6 +4,7 @@ public interface IMemberService {
 
     /**
      * 添加会员
+     *
      * @param openId
      * @param memberName
      * @param sex
@@ -14,12 +15,12 @@ public interface IMemberService {
 
     /**
      * 解密数据获取手机号
+     *
      * @param sessionCode
      * @param encryptedData
      * @param vi
      * @return 手机号
      */
     String getPhoneByEncrypt(String sessionCode, String encryptedData, String vi);
-
 
 }

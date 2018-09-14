@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * advert
- * @author 
+ *
+ * @author
  */
 public class Advert implements Serializable {
     /**
@@ -114,8 +115,7 @@ public class Advert implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -126,18 +126,17 @@ public class Advert implements Serializable {
             return false;
         }
         Advert other = (Advert) that;
-        return (this.getAdvertId() == null ? other.getAdvertId() == null : this.getAdvertId().equals(other.getAdvertId()))
-            && (this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType()))
-            && (this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime()))
-            && (this.getImgUrl() == null ? other.getImgUrl() == null : this.getImgUrl().equals(other.getImgUrl()))
-            && (this.getNotice() == null ? other.getNotice() == null : this.getNotice().equals(other.getNotice()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAdvertId() == null ? other.getAdvertId() == null : this.getAdvertId().equals(other.getAdvertId())) && (this.getValidType() == null ?
+                other.getValidType() == null :
+                this.getValidType().equals(other.getValidType())) && (this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime())) && (
+                       this.getImgUrl() == null ? other.getImgUrl() == null : this.getImgUrl().equals(other.getImgUrl())) && (this.getNotice() == null ?
+                other.getNotice() == null :
+                this.getNotice().equals(other.getNotice())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getCreateTime() == null ?
+                other.getCreateTime() == null :
+                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAdvertId() == null) ? 0 : getAdvertId().hashCode());
@@ -151,8 +150,7 @@ public class Advert implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

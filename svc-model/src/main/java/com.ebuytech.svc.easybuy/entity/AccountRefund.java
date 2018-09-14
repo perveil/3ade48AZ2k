@@ -5,7 +5,8 @@ import java.util.Date;
 
 /**
  * account_refund
- * @author 
+ *
+ * @author
  */
 public class AccountRefund implements Serializable {
     /**
@@ -140,8 +141,7 @@ public class AccountRefund implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -152,20 +152,21 @@ public class AccountRefund implements Serializable {
             return false;
         }
         AccountRefund other = (AccountRefund) that;
-        return (this.getAccountRefundId() == null ? other.getAccountRefundId() == null : this.getAccountRefundId().equals(other.getAccountRefundId()))
-            && (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
-            && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
-            && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getSaleOrderId() == null ? other.getSaleOrderId() == null : this.getSaleOrderId().equals(other.getSaleOrderId()))
-            && (this.getRefundOrderId() == null ? other.getRefundOrderId() == null : this.getRefundOrderId().equals(other.getRefundOrderId()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccountRefundId() == null ? other.getAccountRefundId() == null : this.getAccountRefundId().equals(other.getAccountRefundId())) && (this.getAccountChangeId() == null ?
+                other.getAccountChangeId() == null :
+                this.getAccountChangeId().equals(other.getAccountChangeId())) && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
+               && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo())) && (this.getMemberId() == null ?
+                other.getMemberId() == null :
+                this.getMemberId().equals(other.getMemberId())) && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId())) && (
+                       this.getSaleOrderId() == null ? other.getSaleOrderId() == null : this.getSaleOrderId().equals(other.getSaleOrderId())) && (this.getRefundOrderId() == null ?
+                other.getRefundOrderId() == null :
+                this.getRefundOrderId().equals(other.getRefundOrderId())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ?
+                               other.getUpdateTime() == null :
+                               this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountRefundId() == null) ? 0 : getAccountRefundId().hashCode());
@@ -181,8 +182,7 @@ public class AccountRefund implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

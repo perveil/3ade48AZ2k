@@ -9,6 +9,7 @@ public interface IAccountService {
     /**
      * lei
      * 小程序登录
+     *
      * @param code
      * @return
      */
@@ -17,6 +18,7 @@ public interface IAccountService {
     /**
      * lei
      * 检查第三方session
+     *
      * @param openId
      * @param sessionCode
      * @return
@@ -26,13 +28,15 @@ public interface IAccountService {
     /**
      * zty
      * 查询储值卡会员列表
+     *
      * @return
      */
     List<Account> queryAccountListByPage(int page);
 
     /**
-     * zty
+     * lei
      * 查询单个账户详情
+     *
      * @param openId
      * @return
      */
@@ -41,20 +45,30 @@ public interface IAccountService {
     /**
      * zty
      * 冻结账户
+     *
      * @param accountId
      * @return
      */
     boolean freezeAccount(String accountId);
 
-
-
     /**
      * zty
      * 添加余额
+     *
      * @param accountId
      * @param balance
      * @return
      */
     boolean addBalance(String accountId, int balance);
 
+    /**
+     * zty
+     * 根据关键词查询储值卡会员
+     *
+     * @param phone
+     * @param valueCardId
+     * @param memberId
+     * @return
+     */
+    List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId);
 }
