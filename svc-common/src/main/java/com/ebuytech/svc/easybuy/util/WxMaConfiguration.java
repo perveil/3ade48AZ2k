@@ -42,7 +42,7 @@ import java.io.File;
         }
     };
 
-    private final      WxMaMessageHandler qrcodeHandler = (wxMessage, context, service, sessionManager) -> {
+    private final WxMaMessageHandler qrcodeHandler = (wxMessage, context, service, sessionManager) -> {
         try {
             final File file = service.getQrcodeService().createQrcode("123", 430);
             WxMediaUploadResult uploadResult = service.getMediaService().uploadMedia("image", file);
@@ -51,7 +51,7 @@ import java.io.File;
             e.printStackTrace();
         }
     };
-    @Autowired private WxMaProperties     properties;
+    @Autowired private WxMaProperties properties;
 
     @Bean @ConditionalOnMissingBean public WxMaConfig maConfig() {
         WxMaInMemoryConfig config = new WxMaInMemoryConfig();

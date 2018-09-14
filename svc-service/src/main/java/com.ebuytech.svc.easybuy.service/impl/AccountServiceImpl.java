@@ -23,11 +23,9 @@ import java.util.List;
 
     @Resource private RedisUtil redisUtil;
 
-    public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
+    @Resource private AccountDAO accountDAO;
 
-    @Override public List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
-        return null;
-    }
+    public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
 
     @Override public AccountToken login(String code) {
         if (StringUtils.isBlank(code)) {
@@ -38,25 +36,47 @@ import java.util.List;
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-            // AccountExample accountExample = new AccountExample();
+            AccountExample accountExample = new AccountExample();
+            accountExample.createCriteria().andOpenIdEqualTo(openId);
             String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
             AccountToken accountToken = new AccountToken();
             accountToken.setOpenId(openId);
             accountToken.setSessionCode(token);
+            List<Account> accountList = accountDAO.selectByExample(accountExample);
+            if (accountList == null || accountList.size() == 0) {
+                accountToken.setIsMember("-1");
+                accountToken.setStatus(-1);
+            } else {
+                Account account = accountList.get(0);
+                accountToken.setIsMember(account.getAccountId());
+                accountToken.setStatus(account.getStatus());
+            }
             return accountToken;
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-        return null;
+        throw new ClientException(ResultEnums.INVALID_CODE);
     }
 
     @Override public boolean checkSessionCode(String openId, String sessionCode) {
+        try {
+            if (redisUtil.get(sessionCode) != null) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override public List<Account> queryAccountListByPage(int page) {
+        return null;
+    }
+
+    @Override public List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
         return null;
     }
 

@@ -7,4 +7,8 @@ import lombok.Data;
     private String openId;
 
     private String sessionCode;
+
+    private String isMember;
+
+    private Integer status;
 }
