@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AdminUserDAO extends MyBatisBaseDao<AdminUser, String, AdminUserExample> {
-    int selectAdmin(@Param("userName") String userName,@Param("userPwd") String userPwd);
-}
+    AdminUser findByUserNameAndUserPwd(@Param("userName") String userName, @Param("userPwd") String userPwd);
+        }

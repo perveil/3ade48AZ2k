@@ -1,38 +1,54 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
 import com.ebuytech.svc.easybuy.dao.AdminUserDAO;
+import com.ebuytech.svc.easybuy.entity.AdminUser;
+import com.ebuytech.svc.easybuy.entity.AdminUserExample;
+import com.ebuytech.svc.easybuy.enums.ResultEnums;
+import com.ebuytech.svc.easybuy.exception.AdminException;
 import com.ebuytech.svc.easybuy.service.IAdminUserService;
 import com.ebuytech.svc.easybuy.util.MD5Utils;
+import com.ebuytech.svc.easybuy.util.RedisUtil;
 import com.ebuytech.svc.easybuy.vo.AdminToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Random;
-import java.util.UUID;
 
 /**
  * Created by Eric3 on 2018/9/13.
  */
-@Service
 @Transactional
-public class AdminUserServiceImpl implements IAdminUserService {
+@Service
+@Slf4j
+public class IAdminUserServiceImpl implements IAdminUserService {
 
     @Autowired
     private AdminUserDAO adminUserDAO;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
 
     @Override
     public AdminToken login(String userName, String userPwd) {
         userPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(userPwd)));
-        Integer count = adminUserDAO.selectAdmin(userName, userPwd);
-        if (count == 0) {
-            //TODO throw new UserException(ResultEnums.USER_NOTINDB);
+        AdminUserExample adminUserExample = new AdminUserExample();
+        adminUserExample.createCriteria().andUserNameEqualTo(userName).andUserPwdEqualTo(userPwd);
+        AdminUser adminUser = adminUserDAO.selectByExample(adminUserExample).get(0);
+        if (adminUser == null) {
+            log.error("【登陆】 登陆异常，用户不存在");
+            throw new AdminException(ResultEnums.USER_NOTINDB);
         }
         Random random = new Random();
         String salt = random.nextInt(36) + System.currentTimeMillis() + "";
         String newToken = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(userName + salt)));
         long newExpireTime = System.currentTimeMillis() + 7 * 24 * 60 * 30 * 1000;
+        redisUtil.set(userName, newToken);
+        redisUtil.setExpireTime(userName, newExpireTime);
         AdminToken newAdminToken = new AdminToken();
         newAdminToken.setToken(newToken);
         return newAdminToken;
@@ -40,6 +56,10 @@ public class AdminUserServiceImpl implements IAdminUserService {
 
     @Override
     public boolean checkToken(String userId, String token) {
-        return false;
+        String token1 = (String) redisUtil.get(userId);
+        if (StringUtils.isEmpty(token1)){
+            return false;
+        }
+        return token1.equals(token);
     }
 }

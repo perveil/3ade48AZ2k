@@ -7,6 +7,8 @@ public class AdminException extends RuntimeException {
 
     private Integer code;
 
+
+
     public AdminException(ResultEnums resultEnums){
         super(resultEnums.getMessage());
         this.code=resultEnums.getCode();
