@@ -21,7 +21,7 @@ import java.util.Random;
 /**
  * Created by Eric3 on 2018/9/13.
  */
-@Transactional @Service @Slf4j public class AdminUserServiceImpl implements IAdminService {
+@Transactional @Service @Slf4j public class AdminServiceImpl implements IAdminService {
 
     @Autowired private AdminUserDAO adminUserDAO;
 
@@ -56,6 +56,17 @@ import java.util.Random;
     }
 
     @Override public boolean modifyPwd(String userId, String oldPwd, String newPwd) {
-        return false;
+        oldPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(oldPwd)));
+        AdminUserExample adminUserExample = new AdminUserExample();
+        adminUserExample.createCriteria().andUserPwdEqualTo(oldPwd).andUserIdEqualTo(userId);
+        AdminUser adminUser = adminUserDAO.selectByExample(adminUserExample).get(0);
+        if (adminUser == null) {
+            log.error("【修改密码】 用户名或密码错误");
+            throw new AdminException(ResultEnums.ID_OR_PASSWORD_NOT_RIGHT);
+        }
+        newPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(newPwd)));
+        adminUser.setUserPwd(newPwd);
+        adminUserDAO.updateByPrimaryKey(adminUser);
+        return true;
     }
 }

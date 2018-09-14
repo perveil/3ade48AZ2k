@@ -15,13 +15,18 @@ import javax.annotation.Resource;
  */
 @RestController @RequestMapping("/admin") public class AdminController {
 
-    @Autowired private IAdminService iAdminUserService;
+    @Autowired private IAdminService adminUserService;
 
     /**
      * 超管登陆
      */
     @PostMapping("/login") public Res login(String userName, String userPwd) {
-        return ResUtil.success(iAdminUserService.login(userName, userPwd));
+        return ResUtil.success(adminUserService.login(userName, userPwd));
+    }
+
+    @PostMapping("/modifyPwd")
+    public Res modifyPwd(String userId, String oldPwd, String newPwd){
+        return ResUtil.success(adminUserService.modifyPwd(userId, oldPwd, newPwd));
     }
 
 }

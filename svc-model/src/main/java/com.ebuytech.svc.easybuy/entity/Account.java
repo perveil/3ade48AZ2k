@@ -20,7 +20,7 @@ public class Account implements Serializable {
     private String openId;
 
     /**
-     * 账户号码
+     * 手机号
      */
     private String accountNo;
 

@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.vo.AccountToken;
+import com.ebuytech.svc.easybuy.vo.AccountVO;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface IAccountService {
      *
      * @return
      */
-    List<Account> queryAccountListByPage(int page);
+    AccountVO queryAccountListByPage(int page);
 
     /**
      * zty

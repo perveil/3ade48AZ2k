@@ -1,8 +1,8 @@
 package com.ebuytech.svc.easybuy.service;
 
-import com.ebuytech.svc.easybuy.entity.Activity;
+        import com.ebuytech.svc.easybuy.entity.Activity;
 
-import java.util.List;
+        import java.util.List;
 
 public interface IActivityService {
 
