@@ -10,14 +10,6 @@ import javax.annotation.Resource;
 
 @RestController @RequestMapping("test") public class IndexController {
 
-    @Resource private IMemberService memberService;
 
-    @GetMapping("/hello") public String hello() {
-
-        if (memberService.addMember("1", "airmacx", "男", "13601992766")) {
-            return "hello";
-        }
-        return "failed";
-    }
 
 }

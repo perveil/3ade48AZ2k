@@ -8,19 +8,21 @@ public interface IMemberService {
      * @param openId
      * @param memberName
      * @param sex
-     * @param telephone
+     * @param sessionCode
+     * @param encryptedData
+     * @param iv
      * @return
      */
-    boolean addMember(String openId, String memberName, String sex, String telephone);
+    boolean addMember(String openId, String memberName, String sex,String sessionCode, String encryptedData, String iv);
 
     /**
      * 解密数据获取手机号
      *
      * @param sessionCode
      * @param encryptedData
-     * @param vi
+     * @param iv
      * @return 手机号
      */
-    String getPhoneByEncrypt(String sessionCode, String encryptedData, String vi);
+    String getPhoneByEncrypt(String sessionCode, String encryptedData, String iv);
 
 }

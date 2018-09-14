@@ -392,7 +392,7 @@ CONSTRAINT `PK_member` PRIMARY KEY (`member_id` ASC )
 ENGINE=InnoDB
 DEFAULT CHARSET utf8
 COMMENT = '会员'
-
+d
 ;
 
 CREATE TABLE `member_info`

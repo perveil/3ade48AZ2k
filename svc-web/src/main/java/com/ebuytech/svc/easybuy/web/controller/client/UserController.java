@@ -1,6 +1,8 @@
 package com.ebuytech.svc.easybuy.web.controller.client;
 
 import com.ebuytech.svc.easybuy.service.IAccountService;
+import com.ebuytech.svc.easybuy.service.ICardService;
+import com.ebuytech.svc.easybuy.service.IMemberService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +15,19 @@ import javax.annotation.Resource;
 
     @Resource private IAccountService accountService;
 
+    @Resource private IMemberService memberService;
+
+    @Resource private ICardService cardService;
+
     @PostMapping("user/login") public Res login(String code) {
         return ResUtil.success(accountService.login(code));
     }
 
-    @PostMapping("user/addUser") public Res addUser() {
-        return null;
+    @PostMapping("user/registerMember") public Res registerMember(String openId, String memberName, String sex, String sessionCode, String encryptedData, String iv) {
+        return ResUtil.success(memberService.addMember(openId, memberName, sex, sessionCode, encryptedData, iv));
+    }
+
+    @PostMapping("user/addStoredCard") public Res addStoredCard(String openId) {
+        return ResUtil.success(cardService.addValueCard(openId));
     }
 }

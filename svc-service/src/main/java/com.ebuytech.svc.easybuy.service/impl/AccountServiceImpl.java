@@ -57,11 +57,18 @@ import java.util.List;
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-        return null;
+        throw new ClientException(ResultEnums.INVALID_CODE);
     }
 
     @Override public boolean checkSessionCode(String openId, String sessionCode) {
-
+        try {
+            if (redisUtil.get(sessionCode) != null) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
