@@ -28,6 +28,9 @@ public class AccountServiceImpl implements IAccountService {
     @Resource
     private RedisUtil redisUtil;
 
+    @Resource
+    private AccountDAO accountDAO;
+
     public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
 
     @Override
@@ -40,8 +43,9 @@ public class AccountServiceImpl implements IAccountService {
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-            // AccountExample accountExample = new AccountExample();
-            String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
+//            AccountExample accountExample = new AccountExample();
+//            accountDAO.selectByExample(accountExample).
+            String token =  MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
             AccountToken accountToken = new AccountToken();
@@ -56,6 +60,7 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public boolean checkSessionCode(String openId, String sessionCode) {
+
         return false;
     }
 

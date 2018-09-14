@@ -22,4 +22,9 @@ public class UserController {
     public Res login(String code) {
         return ResUtil.success(accountService.login(code));
     }
+
+    @PostMapping("user/addUser")
+    public Res addUser(){
+        return null;
+    }
 }
