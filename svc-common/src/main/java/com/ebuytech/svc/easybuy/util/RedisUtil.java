@@ -35,6 +35,7 @@ public class RedisUtil implements BaseRedisDao<String, Object> {
         redisTemplate.setHashValueSerializer(stringSerializer);
         this.redisTemplate = redisTemplate;
     }
+
     public double getCreateTimeScore(long date) {
         return date/ 100000.0;
     }

@@ -180,7 +180,8 @@ create table `activity` (
   `act_money` int NOT NULL DEFAULT 0 COMMENT '活动金额',
   `act_count` int NOT NULL DEFAULT 0 COMMENT '活动折扣',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
-  `end_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '结束时间',
+  `start_time` varchar(64) NOT NULL default '' COMMENT '结束时间',
+  `end_time` varchar(64) NOT NULL default '' COMMENT '结束时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 )
 ENGINE=InnoDB

@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 
 @Service
 @Transactional
-public class MemberServiceImpl implements IMemberService {
+public class MemberServiceImpl {
 
     @Resource
     private MemberDAO memberDAO;
@@ -23,7 +23,6 @@ public class MemberServiceImpl implements IMemberService {
     @Resource
     private RedisUtil redisUtil;
 
-    @Override
     public boolean addMember(String openId, String memberName, String sex, String telephone) {
         throw new ClientException(ResultEnums.TEST_FAIL);
 //        Member member = new Member();

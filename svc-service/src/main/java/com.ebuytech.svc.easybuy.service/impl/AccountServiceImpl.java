@@ -44,7 +44,7 @@ public class AccountServiceImpl implements IAccountService {
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
 //            AccountExample accountExample = new AccountExample();
-//            accountDAO.selectByExample(accountExample).
+//            accountExample.Criteria
             String token =  MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
@@ -65,9 +65,10 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public List<Account> queryAccountList() {
+    public List<Account> queryAccountListByPage(int page) {
         return null;
     }
+
 
     @Override
     public Account queryAccountInfo(String openId) {
@@ -76,6 +77,11 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public boolean freezeAccount(String accountId) {
+        return false;
+    }
+
+    @Override
+    public boolean addBalance(String accountId, int balance) {
         return false;
     }
 }
