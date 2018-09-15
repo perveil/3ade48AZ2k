@@ -130,4 +130,8 @@ public class AccountServiceImpl implements IAccountService {
         accountDAO.updateByPrimaryKey(account);
         return true;
     }
+
+    @Override public List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
+        return null;
+    }
 }
