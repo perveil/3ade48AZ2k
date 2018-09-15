@@ -43,4 +43,10 @@ public class AccountController {
     Res<Account> addBalance(String accountId, int balance){
         return ResUtil.success(accountService.addBalance(accountId, balance));
     }
+
+    @RequestMapping("/queryAccountByKeyword")
+    @ResponseBody
+    Res<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
+        return ResUtil.success(accountService.queryAccountByKeyword(phone, valueCardId, memberId));
+    }
 }

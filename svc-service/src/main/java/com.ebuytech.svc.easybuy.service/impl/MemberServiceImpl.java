@@ -39,9 +39,6 @@ import javax.annotation.Resource;
         return false;
     }
 
-    @Override public boolean addMember(String openId, String memberName, String sex, String telephone) {
-        return false;
-    }
 
     @Override public String getPhoneByEncrypt(String sessionCode, String encryptedData, String iv) {
         String res = (String) redisUtil.get(sessionCode);

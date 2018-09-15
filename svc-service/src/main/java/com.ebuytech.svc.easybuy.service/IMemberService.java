@@ -11,7 +11,7 @@ public interface IMemberService {
      * @param telephone
      * @return
      */
-    boolean addMember(String openId, String memberName, String sex, String telephone);
+    boolean addMember(String openId, String memberName, String sex, String telephone, String encryptedData, String iv);
 
     /**
      * 解密数据获取手机号

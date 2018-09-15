@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service @Transactional
@@ -131,7 +132,32 @@ public class AccountServiceImpl implements IAccountService {
         return true;
     }
 
-    @Override public List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
-        return null;
+    @Override public AccountVO queryAccountByKeyword(String phone, String valueCardId, String memberId) {
+        AccountVO accountVO = new AccountVO();
+        AccountExample accountExample = new AccountExample();
+        AccountExample.Criteria filter = accountExample.createCriteria();
+        if (!org.springframework.util.StringUtils.isEmpty(phone)) {
+            filter.andAccountNoLike("%" + phone + "%");
+            //filter.andAccountNoEqualTo(phone);
+        }
+        if (!org.springframework.util.StringUtils.isEmpty(valueCardId)) {
+            filter.andValueCardIdLike("%" + valueCardId + "%");
+            //filter.andValueCardIdEqualTo(valueCardId);
+        }
+        if (!org.springframework.util.StringUtils.isEmpty(memberId)){
+            filter.andMemberIdLike("%" + memberId + "%");
+            //filter.andMemberIdEqualTo(memberId);
+        }
+        //filter.andAccountIdIsNotNull();
+        List<Account> accountList= accountDAO.selectByExample(accountExample);
+        if (accountList == null || accountList.size() <= 0) {
+            log.error("【根据关键字查询会员】 填写信息不正确或用户不存在");
+            throw new AdminException(ResultEnums.QUERY_KEYWORD_ERROR);
+        }
+        PageInfo pageInfo = new PageInfo(accountList);
+        accountVO.setAccountList(accountList);
+        accountVO.setTotalPage(pageInfo.getPages());
+        accountVO.setTotalResult(pageInfo.getTotal());
+        return accountVO;
     }
 }

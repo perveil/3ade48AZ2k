@@ -26,13 +26,7 @@
             <artifactId>svc-dal</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <
-        <
-        <
-        <
-        <
-        <
-        < HEAD
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
@@ -47,19 +41,14 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>5.0.7.RELEASE</version>
-        =======
+        </dependency>
 
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-miniapp</artifactId>
             <version>3.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-miniapp</artifactId>
-            <version>3.1.7.BETA</version>
-            >>>>>>> e949f70276d72be302bd20d0b93d9568b500f60f
-        </dependency>
+
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-miniapp</artifactId>

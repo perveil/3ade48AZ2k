@@ -71,6 +71,6 @@ public interface IAccountService {
      * @param memberId
      * @return
      */
-    List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId);
+    AccountVO queryAccountByKeyword(String phone, String valueCardId, String memberId);
 
 }

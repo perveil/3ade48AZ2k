@@ -11,6 +11,8 @@ public enum ResultEnums {
 
     USER_CODE_NULL(102, "用户code为空"),
 
+    MEMBER_NULL(103,"会员为空"),
+
     QUERY_PAGE_NOT_RIGHT(202, "查询页码不正确"),
 
     QUERY_USER_NULL(203,"查询用户不存在"),
@@ -22,6 +24,10 @@ public enum ResultEnums {
     BALANCE_NEGATIVE(206, "添加的金额不能为负"),
 
     ID_OR_PASSWORD_NOT_RIGHT(207,"用户ID或者密码错误"),
+
+    NEWPASSWORD_EQUAL_OLDPASSWORD(208,"新密码与原密码相同"),
+
+    QUERY_KEYWORD_ERROR(209,"填写的查询信息不正确或用户不存在"),
     ;
 
     private Integer code;
