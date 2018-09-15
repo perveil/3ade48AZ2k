@@ -69,4 +69,8 @@ import java.util.Random;
         adminUserDAO.updateByPrimaryKey(adminUser);
         return true;
     }
+
+    @Override public String addUser(String userName, String userPwd, int roleId) {
+        return null;
+    }
 }

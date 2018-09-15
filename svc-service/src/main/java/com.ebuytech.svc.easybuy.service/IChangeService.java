@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.entity.AccountChange;
+import com.ebuytech.svc.easybuy.vo.AccountChangeVO;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public interface IChangeService {
      * @param type
      * @return
      */
-    List<AccountChange> queryChangeListByType(int pageNum, int type);
+    AccountChangeVO queryChangeListByType(int pageNum, int type, String openId);
 
     /**
      * zty
@@ -54,5 +55,5 @@ public interface IChangeService {
      */
     List<AccountChange> queryChangeListByPhone(int pageNum, String phone);
 
-    List<AccountChange> queryChangeListByValueCard(int pageNum, String cardId);
+    AccountChangeVO queryChangeListByValueCard(int pageNum, String accountId);
 }

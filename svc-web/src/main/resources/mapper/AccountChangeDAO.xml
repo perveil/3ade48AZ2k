@@ -1,299 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ebuytech.svc.easybuy.dao.AccountChangeDAO">
-  <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AccountChange">
-    <id column="account_change_id" jdbcType="VARCHAR" property="accountChangeId" />
-    <result column="change_memo" jdbcType="VARCHAR" property="changeMemo" />
-    <result column="change_type" jdbcType="VARCHAR" property="changeType" />
-    <result column="change_value" jdbcType="INTEGER" property="changeValue" />
-    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
-    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
-    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
-    <result column="balance" jdbcType="INTEGER" property="balance" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AccountChange">
+        <id column="account_change_id" jdbcType="VARCHAR" property="accountChangeId"/>
+        <result column="change_memo" jdbcType="VARCHAR" property="changeMemo"/>
+        <result column="change_type" jdbcType="VARCHAR" property="changeType"/>
+        <result column="change_value" jdbcType="INTEGER" property="changeValue"/>
+        <result column="member_id" jdbcType="VARCHAR" property="memberId"/>
+        <result column="account_id" jdbcType="VARCHAR" property="accountId"/>
+        <result column="store_id" jdbcType="VARCHAR" property="storeId"/>
+        <result column="balance" jdbcType="INTEGER" property="balance"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="queryAllChangeBill" resultType="map">
+        SELECT
+            account.change_memo,
+            account.create_time,
+            account.change_value,
+            gift.end_time
+        FROM `account_change` account, `gift_card` gift
+        WHERE account.account_change_id = gift.account_change_id
+        AND account.account_id = #{accountId,jdbcType=VARCHAR}
+    </select>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        account_change_id, change_memo, change_type, change_value, member_id, account_id,
+        store_id, balance, create_time, update_time
+    </sql>
+    <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    account_change_id, change_memo, change_type, change_value, member_id, account_id, 
-    store_id, balance, create_time, update_time
-  </sql>
-  <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from account_change
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="limit != null">
-      <if test="offset != null">
-        limit ${offset}, ${limit}
-      </if>
-      <if test="offset == null">
-        limit ${limit}
-      </if>
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from account_change
-    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from account_change
-    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample">
-    delete from account_change
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-    insert into account_change (account_change_id, change_memo, change_type, 
-      change_value, member_id, account_id, 
-      store_id, balance, create_time, 
-      update_time)
-    values (#{accountChangeId,jdbcType=VARCHAR}, #{changeMemo,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR}, 
-      #{changeValue,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
-      #{storeId,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-    insert into account_change
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="accountChangeId != null">
-        account_change_id,
-      </if>
-      <if test="changeMemo != null">
-        change_memo,
-      </if>
-      <if test="changeType != null">
-        change_type,
-      </if>
-      <if test="changeValue != null">
-        change_value,
-      </if>
-      <if test="memberId != null">
-        member_id,
-      </if>
-      <if test="accountId != null">
-        account_id,
-      </if>
-      <if test="storeId != null">
-        store_id,
-      </if>
-      <if test="balance != null">
-        balance,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="accountChangeId != null">
-        #{accountChangeId,jdbcType=VARCHAR},
-      </if>
-      <if test="changeMemo != null">
-        #{changeMemo,jdbcType=VARCHAR},
-      </if>
-      <if test="changeType != null">
-        #{changeType,jdbcType=VARCHAR},
-      </if>
-      <if test="changeValue != null">
-        #{changeValue,jdbcType=INTEGER},
-      </if>
-      <if test="memberId != null">
-        #{memberId,jdbcType=VARCHAR},
-      </if>
-      <if test="accountId != null">
-        #{accountId,jdbcType=VARCHAR},
-      </if>
-      <if test="storeId != null">
-        #{storeId,jdbcType=VARCHAR},
-      </if>
-      <if test="balance != null">
-        #{balance,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultType="java.lang.Long">
-    select count(*) from account_change
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update account_change
-    <set>
-      <if test="record.accountChangeId != null">
-        account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.changeMemo != null">
+        <include refid="Base_Column_List"/>
+        from account_change
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from account_change
+        where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        DELETE FROM account_change
+        WHERE account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample">
+        delete from account_change
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
+        INSERT INTO account_change (account_change_id, change_memo, change_type,
+                                    change_value, member_id, account_id,
+                                    store_id, balance, create_time,
+                                    update_time)
+        VALUES (#{accountChangeId,jdbcType=VARCHAR}, #{changeMemo,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR},
+                #{changeValue,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},
+                #{storeId,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
+        insert into account_change
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accountChangeId != null">
+                account_change_id,
+            </if>
+            <if test="changeMemo != null">
+                change_memo,
+            </if>
+            <if test="changeType != null">
+                change_type,
+            </if>
+            <if test="changeValue != null">
+                change_value,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accountChangeId != null">
+                #{accountChangeId,jdbcType=VARCHAR},
+            </if>
+            <if test="changeMemo != null">
+                #{changeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="changeType != null">
+                #{changeType,jdbcType=VARCHAR},
+            </if>
+            <if test="changeValue != null">
+                #{changeValue,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=VARCHAR},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultType="java.lang.Long">
+        select count(*) from account_change
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update account_change
+        <set>
+            <if test="record.accountChangeId != null">
+                account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.changeMemo != null">
+                change_memo = #{record.changeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.changeType != null">
+                change_type = #{record.changeType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.changeValue != null">
+                change_value = #{record.changeValue,jdbcType=INTEGER},
+            </if>
+            <if test="record.memberId != null">
+                member_id = #{record.memberId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.accountId != null">
+                account_id = #{record.accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.storeId != null">
+                store_id = #{record.storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.balance != null">
+                balance = #{record.balance,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update account_change
+        set account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
         change_memo = #{record.changeMemo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.changeType != null">
         change_type = #{record.changeType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.changeValue != null">
         change_value = #{record.changeValue,jdbcType=INTEGER},
-      </if>
-      <if test="record.memberId != null">
         member_id = #{record.memberId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.accountId != null">
         account_id = #{record.accountId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.storeId != null">
         store_id = #{record.storeId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.balance != null">
         balance = #{record.balance,jdbcType=INTEGER},
-      </if>
-      <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update account_change
-    set account_change_id = #{record.accountChangeId,jdbcType=VARCHAR},
-      change_memo = #{record.changeMemo,jdbcType=VARCHAR},
-      change_type = #{record.changeType,jdbcType=VARCHAR},
-      change_value = #{record.changeValue,jdbcType=INTEGER},
-      member_id = #{record.memberId,jdbcType=VARCHAR},
-      account_id = #{record.accountId,jdbcType=VARCHAR},
-      store_id = #{record.storeId,jdbcType=VARCHAR},
-      balance = #{record.balance,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-    update account_change
-    <set>
-      <if test="changeMemo != null">
-        change_memo = #{changeMemo,jdbcType=VARCHAR},
-      </if>
-      <if test="changeType != null">
-        change_type = #{changeType,jdbcType=VARCHAR},
-      </if>
-      <if test="changeValue != null">
-        change_value = #{changeValue,jdbcType=INTEGER},
-      </if>
-      <if test="memberId != null">
-        member_id = #{memberId,jdbcType=VARCHAR},
-      </if>
-      <if test="accountId != null">
-        account_id = #{accountId,jdbcType=VARCHAR},
-      </if>
-      <if test="storeId != null">
-        store_id = #{storeId,jdbcType=VARCHAR},
-      </if>
-      <if test="balance != null">
-        balance = #{balance,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-    update account_change
-    set change_memo = #{changeMemo,jdbcType=VARCHAR},
-      change_type = #{changeType,jdbcType=VARCHAR},
-      change_value = #{changeValue,jdbcType=INTEGER},
-      member_id = #{memberId,jdbcType=VARCHAR},
-      account_id = #{accountId,jdbcType=VARCHAR},
-      store_id = #{storeId,jdbcType=VARCHAR},
-      balance = #{balance,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-  </update>
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
+        update account_change
+        <set>
+            <if test="changeMemo != null">
+                change_memo = #{changeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="changeType != null">
+                change_type = #{changeType,jdbcType=VARCHAR},
+            </if>
+            <if test="changeValue != null">
+                change_value = #{changeValue,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=VARCHAR},
+            </if>
+            <if test="accountId != null">
+                account_id = #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
+        UPDATE account_change
+        SET change_memo  = #{changeMemo,jdbcType=VARCHAR},
+            change_type  = #{changeType,jdbcType=VARCHAR},
+            change_value = #{changeValue,jdbcType=INTEGER},
+            member_id    = #{memberId,jdbcType=VARCHAR},
+            account_id   = #{accountId,jdbcType=VARCHAR},
+            store_id     = #{storeId,jdbcType=VARCHAR},
+            balance      = #{balance,jdbcType=INTEGER},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP}
+        WHERE account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -45,7 +45,6 @@ public class AccountServiceImpl implements IAccountService {
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-            // AccountExample accountExample = new AccountExample();
             String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
