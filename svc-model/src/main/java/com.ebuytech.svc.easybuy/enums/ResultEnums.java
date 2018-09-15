@@ -11,6 +11,10 @@ public enum ResultEnums {
 
     USER_CODE_NULL(102, "用户code为空"),
 
+    MEMBER_NULL(103,"会员为空"),
+
+    PAGENUM_ERROR(104,"页码错误"),
+
     QUERY_PAGE_NOT_RIGHT(202, "查询页码不正确"),
 
     QUERY_USER_NULL(203,"查询用户不存在"),

@@ -37,7 +37,6 @@ import java.util.List;
         if (memberList == null || memberList.size() <= 0) {
             throw new ClientException(ResultEnums.TEST_FAIL);
         } else {
-            System.out.println("1111111");
             Member member = memberList.get(0);
             String telephone = member.getTelephone();
             ValueCard valueCard = new ValueCard();
