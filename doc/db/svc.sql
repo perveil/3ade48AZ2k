@@ -328,6 +328,7 @@ CREATE TABLE `account_change`
 	`member_id` varchar(64) NULL COMMENT '会员ID',
 	`account_id` varchar(64) NULL COMMENT '账户ID',
 	`store_id` varchar(64) NOT NULL COMMENT '门店id',
+	`status` int not NULL DEFAULT 0 COMMENT '交易状态 0：成功 1：失败 2：待付款 3：已退款',
 	`balance` int(11) NULL COMMENT '变动后余额',
 	`create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
