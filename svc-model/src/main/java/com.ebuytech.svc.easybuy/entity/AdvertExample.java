@@ -185,6 +185,76 @@ public class AdvertExample {
             return (Criteria) this;
         }
 
+        public Criteria andAdvertNameIsNull() {
+            addCriterion("advert_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameIsNotNull() {
+            addCriterion("advert_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameEqualTo(String value) {
+            addCriterion("advert_name =", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameNotEqualTo(String value) {
+            addCriterion("advert_name <>", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameGreaterThan(String value) {
+            addCriterion("advert_name >", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameGreaterThanOrEqualTo(String value) {
+            addCriterion("advert_name >=", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameLessThan(String value) {
+            addCriterion("advert_name <", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameLessThanOrEqualTo(String value) {
+            addCriterion("advert_name <=", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameLike(String value) {
+            addCriterion("advert_name like", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameNotLike(String value) {
+            addCriterion("advert_name not like", value, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameIn(List<String> values) {
+            addCriterion("advert_name in", values, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameNotIn(List<String> values) {
+            addCriterion("advert_name not in", values, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameBetween(String value1, String value2) {
+            addCriterion("advert_name between", value1, value2, "advertName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertNameNotBetween(String value1, String value2) {
+            addCriterion("advert_name not between", value1, value2, "advertName");
+            return (Criteria) this;
+        }
+
         public Criteria andValidTypeIsNull() {
             addCriterion("valid_type is null");
             return (Criteria) this;

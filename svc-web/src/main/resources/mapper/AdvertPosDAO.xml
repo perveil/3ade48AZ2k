@@ -69,8 +69,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        pos_id, pos_name, `status`, `size`, advert_count, create_time, update_time
-    </sql>
+    pos_id, pos_name, `status`, `size`, advert_count, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdvertPosExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -100,9 +100,9 @@
         where pos_id = #{posId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from advert_pos
-        where pos_id = #{posId,jdbcType=INTEGER}
-    </delete>
+    delete from advert_pos
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdvertPosExample">
         delete from advert_pos
         <if test="_parameter != null">
@@ -110,13 +110,13 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AdvertPos">
-        insert into advert_pos (pos_id, pos_name, `status`,
-        `size`, advert_count, create_time,
-        update_time)
-        values (#{posId,jdbcType=INTEGER}, #{posName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
-        #{size,jdbcType=VARCHAR}, #{advertCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
-        #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into advert_pos (pos_id, pos_name, `status`, 
+      `size`, advert_count, create_time, 
+      update_time)
+    values (#{posId,jdbcType=INTEGER}, #{posName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{size,jdbcType=VARCHAR}, #{advertCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AdvertPos">
         insert into advert_pos
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -239,13 +239,13 @@
         where pos_id = #{posId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AdvertPos">
-        update advert_pos
-        set pos_name = #{posName,jdbcType=VARCHAR},
-        `status` = #{status,jdbcType=INTEGER},
-        `size` = #{size,jdbcType=VARCHAR},
-        advert_count = #{advertCount,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where pos_id = #{posId,jdbcType=INTEGER}
-    </update>
+    update advert_pos
+    set pos_name = #{posName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      `size` = #{size,jdbcType=VARCHAR},
+      advert_count = #{advertCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </update>
 </mapper>

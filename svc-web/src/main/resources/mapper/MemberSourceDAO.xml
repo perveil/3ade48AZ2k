@@ -66,8 +66,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        member_source_id, member_id, source_id, `source`
-    </sql>
+    member_source_id, member_id, source_id, `source`
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.MemberSourceExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -97,9 +97,9 @@
         where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from member_source
-        where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
-    </delete>
+    delete from member_source
+    where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.MemberSourceExample">
         delete from member_source
         <if test="_parameter != null">
@@ -107,11 +107,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource">
-        insert into member_source (member_source_id, member_id, source_id,
-        `source`)
-        values (#{memberSourceId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR},
-        #{source,jdbcType=VARCHAR})
-    </insert>
+    insert into member_source (member_source_id, member_id, source_id, 
+      `source`)
+    values (#{memberSourceId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource">
         insert into member_source
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -195,10 +195,10 @@
         where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.MemberSource">
-        update member_source
-        set member_id = #{memberId,jdbcType=VARCHAR},
-        source_id = #{sourceId,jdbcType=VARCHAR},
-        `source` = #{source,jdbcType=VARCHAR}
-        where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
-    </update>
+    update member_source
+    set member_id = #{memberId,jdbcType=VARCHAR},
+      source_id = #{sourceId,jdbcType=VARCHAR},
+      `source` = #{source,jdbcType=VARCHAR}
+    where member_source_id = #{memberSourceId,jdbcType=VARCHAR}
+  </update>
 </mapper>

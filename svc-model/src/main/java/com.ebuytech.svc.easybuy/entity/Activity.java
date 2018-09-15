@@ -52,7 +52,12 @@ public class Activity implements Serializable {
     /**
      * 结束时间
      */
-    private Date endTime;
+    private String startTime;
+
+    /**
+     * 结束时间
+     */
+    private String endTime;
 
     /**
      * 更新时间
@@ -125,11 +130,19 @@ public class Activity implements Serializable {
         this.createTime = createTime;
     }
 
-    public Date getEndTime() {
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -160,9 +173,9 @@ public class Activity implements Serializable {
                        this.getActMoney() == null ? other.getActMoney() == null : this.getActMoney().equals(other.getActMoney())) && (this.getActCount() == null ?
                 other.getActCount() == null :
                 this.getActCount().equals(other.getActCount())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
-                       this.getEndTime() == null ? other.getEndTime() == null : this.getEndTime().equals(other.getEndTime())) && (this.getUpdateTime() == null ?
-                other.getUpdateTime() == null :
-                this.getUpdateTime().equals(other.getUpdateTime()));
+                       this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime())) && (this.getEndTime() == null ?
+                other.getEndTime() == null :
+                this.getEndTime().equals(other.getEndTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
     @Override public int hashCode() {
@@ -176,6 +189,7 @@ public class Activity implements Serializable {
         result = prime * result + ((getActMoney() == null) ? 0 : getActMoney().hashCode());
         result = prime * result + ((getActCount() == null) ? 0 : getActCount().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         result = prime * result + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
@@ -194,6 +208,7 @@ public class Activity implements Serializable {
         sb.append(", actMoney=").append(actMoney);
         sb.append(", actCount=").append(actCount);
         sb.append(", createTime=").append(createTime);
+        sb.append(", startTime=").append(startTime);
         sb.append(", endTime=").append(endTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

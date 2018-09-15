@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ebuytech.svc.easybuy.dao.AdminRoleDAO">
-    <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AdminRole">
-        <id column="role_id" jdbcType="INTEGER" property="roleId"/>
-        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
-        <result column="role_count" jdbcType="INTEGER" property="roleCount"/>
-        <result column="status" jdbcType="INTEGER" property="status"/>
+<mapper namespace="com.ebuytech.svc.easybuy.dao.ReportSaleDAO">
+    <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.ReportSale">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="sale_count" jdbcType="INTEGER" property="saleCount"/>
+        <result column="sale_total" jdbcType="INTEGER" property="saleTotal"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
@@ -68,15 +68,15 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    role_id, role_name, role_count, `status`, create_time, update_time
+    id, `date`, sale_count, sale_total, create_time, update_time
   </sql>
-    <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminRoleExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ReportSaleExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from admin_role
+        from report_sale
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -95,41 +95,41 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from admin_role
-        where role_id = #{roleId,jdbcType=INTEGER}
+        from report_sale
+        where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from admin_role
-    where role_id = #{roleId,jdbcType=INTEGER}
+    delete from report_sale
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminRoleExample">
-        delete from admin_role
+    <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.ReportSaleExample">
+        delete from report_sale
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AdminRole">
-    insert into admin_role (role_id, role_name, role_count, 
-      `status`, create_time, update_time
+    <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.ReportSale">
+    insert into report_sale (id, `date`, sale_count, 
+      sale_total, create_time, update_time
       )
-    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleCount,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{saleCount,jdbcType=INTEGER}, 
+      #{saleTotal,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AdminRole">
-        insert into admin_role
+    <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.ReportSale">
+        insert into report_sale
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="roleId != null">
-                role_id,
+            <if test="id != null">
+                id,
             </if>
-            <if test="roleName != null">
-                role_name,
+            <if test="date != null">
+                `date`,
             </if>
-            <if test="roleCount != null">
-                role_count,
+            <if test="saleCount != null">
+                sale_count,
             </if>
-            <if test="status != null">
-                `status`,
+            <if test="saleTotal != null">
+                sale_total,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -139,17 +139,17 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="roleId != null">
-                #{roleId,jdbcType=INTEGER},
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
             </if>
-            <if test="roleName != null">
-                #{roleName,jdbcType=VARCHAR},
+            <if test="date != null">
+                #{date,jdbcType=VARCHAR},
             </if>
-            <if test="roleCount != null">
-                #{roleCount,jdbcType=INTEGER},
+            <if test="saleCount != null">
+                #{saleCount,jdbcType=INTEGER},
             </if>
-            <if test="status != null">
-                #{status,jdbcType=INTEGER},
+            <if test="saleTotal != null">
+                #{saleTotal,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
@@ -159,26 +159,26 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdminRoleExample" resultType="java.lang.Long">
-        select count(*) from admin_role
+    <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.ReportSaleExample" resultType="java.lang.Long">
+        select count(*) from report_sale
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update admin_role
+        update report_sale
         <set>
-            <if test="record.roleId != null">
-                role_id = #{record.roleId,jdbcType=INTEGER},
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.roleName != null">
-                role_name = #{record.roleName,jdbcType=VARCHAR},
+            <if test="record.date != null">
+                `date` = #{record.date,jdbcType=VARCHAR},
             </if>
-            <if test="record.roleCount != null">
-                role_count = #{record.roleCount,jdbcType=INTEGER},
+            <if test="record.saleCount != null">
+                sale_count = #{record.saleCount,jdbcType=INTEGER},
             </if>
-            <if test="record.status != null">
-                `status` = #{record.status,jdbcType=INTEGER},
+            <if test="record.saleTotal != null">
+                sale_total = #{record.saleTotal,jdbcType=INTEGER},
             </if>
             <if test="record.createTime != null">
                 create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -192,28 +192,28 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update admin_role
-        set role_id = #{record.roleId,jdbcType=INTEGER},
-        role_name = #{record.roleName,jdbcType=VARCHAR},
-        role_count = #{record.roleCount,jdbcType=INTEGER},
-        `status` = #{record.status,jdbcType=INTEGER},
+        update report_sale
+        set id = #{record.id,jdbcType=INTEGER},
+        `date` = #{record.date,jdbcType=VARCHAR},
+        sale_count = #{record.saleCount,jdbcType=INTEGER},
+        sale_total = #{record.saleTotal,jdbcType=INTEGER},
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
         update_time = #{record.updateTime,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.AdminRole">
-        update admin_role
+    <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.ReportSale">
+        update report_sale
         <set>
-            <if test="roleName != null">
-                role_name = #{roleName,jdbcType=VARCHAR},
+            <if test="date != null">
+                `date` = #{date,jdbcType=VARCHAR},
             </if>
-            <if test="roleCount != null">
-                role_count = #{roleCount,jdbcType=INTEGER},
+            <if test="saleCount != null">
+                sale_count = #{saleCount,jdbcType=INTEGER},
             </if>
-            <if test="status != null">
-                `status` = #{status,jdbcType=INTEGER},
+            <if test="saleTotal != null">
+                sale_total = #{saleTotal,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -222,15 +222,15 @@
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where role_id = #{roleId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AdminRole">
-    update admin_role
-    set role_name = #{roleName,jdbcType=VARCHAR},
-      role_count = #{roleCount,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
+    <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.ReportSale">
+    update report_sale
+    set `date` = #{date,jdbcType=VARCHAR},
+      sale_count = #{saleCount,jdbcType=INTEGER},
+      sale_total = #{saleTotal,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where role_id = #{roleId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

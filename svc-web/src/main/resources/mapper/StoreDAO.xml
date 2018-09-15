@@ -73,9 +73,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        store_id, store_name, store_province, store_city, store_district, store_addr, store_phone,
-        `status`, oper, create_time, update_time
-    </sql>
+    store_id, store_name, store_province, store_city, store_district, store_addr, store_phone, 
+    `status`, oper, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.StoreExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -105,9 +105,9 @@
         where store_id = #{storeId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from store
-        where store_id = #{storeId,jdbcType=VARCHAR}
-    </delete>
+    delete from store
+    where store_id = #{storeId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.StoreExample">
         delete from store
         <if test="_parameter != null">
@@ -115,15 +115,15 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Store">
-        insert into store (store_id, store_name, store_province,
-        store_city, store_district, store_addr,
-        store_phone, `status`, oper,
-        create_time, update_time)
-        values (#{storeId,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{storeProvince,jdbcType=VARCHAR},
-        #{storeCity,jdbcType=VARCHAR}, #{storeDistrict,jdbcType=VARCHAR}, #{storeAddr,jdbcType=VARCHAR},
-        #{storePhone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{oper,jdbcType=INTEGER},
-        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into store (store_id, store_name, store_province, 
+      store_city, store_district, store_addr, 
+      store_phone, `status`, oper, 
+      create_time, update_time)
+    values (#{storeId,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{storeProvince,jdbcType=VARCHAR}, 
+      #{storeCity,jdbcType=VARCHAR}, #{storeDistrict,jdbcType=VARCHAR}, #{storeAddr,jdbcType=VARCHAR}, 
+      #{storePhone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{oper,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Store">
         insert into store
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -298,17 +298,17 @@
         where store_id = #{storeId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Store">
-        update store
-        set store_name = #{storeName,jdbcType=VARCHAR},
-        store_province = #{storeProvince,jdbcType=VARCHAR},
-        store_city = #{storeCity,jdbcType=VARCHAR},
-        store_district = #{storeDistrict,jdbcType=VARCHAR},
-        store_addr = #{storeAddr,jdbcType=VARCHAR},
-        store_phone = #{storePhone,jdbcType=VARCHAR},
-        `status` = #{status,jdbcType=INTEGER},
-        oper = #{oper,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where store_id = #{storeId,jdbcType=VARCHAR}
-    </update>
+    update store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      store_province = #{storeProvince,jdbcType=VARCHAR},
+      store_city = #{storeCity,jdbcType=VARCHAR},
+      store_district = #{storeDistrict,jdbcType=VARCHAR},
+      store_addr = #{storeAddr,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      oper = #{oper,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where store_id = #{storeId,jdbcType=VARCHAR}
+  </update>
 </mapper>

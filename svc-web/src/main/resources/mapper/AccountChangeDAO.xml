@@ -72,9 +72,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        account_change_id, change_memo, change_type, change_value, member_id, account_id,
-        store_id, balance, create_time, update_time
-    </sql>
+    account_change_id, change_memo, change_type, change_value, member_id, account_id, 
+    store_id, balance, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -104,9 +104,9 @@
         where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from account_change
-        where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-    </delete>
+    delete from account_change
+    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample">
         delete from account_change
         <if test="_parameter != null">
@@ -114,15 +114,15 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-        insert into account_change (account_change_id, change_memo, change_type,
-        change_value, member_id, account_id,
-        store_id, balance, create_time,
-        update_time)
-        values (#{accountChangeId,jdbcType=VARCHAR}, #{changeMemo,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR},
-        #{changeValue,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},
-        #{storeId,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
-        #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into account_change (account_change_id, change_memo, change_type, 
+      change_value, member_id, account_id, 
+      store_id, balance, create_time, 
+      update_time)
+    values (#{accountChangeId,jdbcType=VARCHAR}, #{changeMemo,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR}, 
+      #{changeValue,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
         insert into account_change
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -284,16 +284,16 @@
         where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
-        update account_change
-        set change_memo = #{changeMemo,jdbcType=VARCHAR},
-        change_type = #{changeType,jdbcType=VARCHAR},
-        change_value = #{changeValue,jdbcType=INTEGER},
-        member_id = #{memberId,jdbcType=VARCHAR},
-        account_id = #{accountId,jdbcType=VARCHAR},
-        store_id = #{storeId,jdbcType=VARCHAR},
-        balance = #{balance,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
-    </update>
+    update account_change
+    set change_memo = #{changeMemo,jdbcType=VARCHAR},
+      change_type = #{changeType,jdbcType=VARCHAR},
+      change_value = #{changeValue,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -67,8 +67,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        value_card_id, account_id, member_id, create_time, update_time
-    </sql>
+    value_card_id, account_id, member_id, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ValueCardExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -98,9 +98,9 @@
         where value_card_id = #{valueCardId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from value_card
-        where value_card_id = #{valueCardId,jdbcType=VARCHAR}
-    </delete>
+    delete from value_card
+    where value_card_id = #{valueCardId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.ValueCardExample">
         delete from value_card
         <if test="_parameter != null">
@@ -108,11 +108,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
-        insert into value_card (value_card_id, account_id, member_id,
-        create_time, update_time)
-        values (#{valueCardId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR},
-        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into value_card (value_card_id, account_id, member_id, 
+      create_time, update_time)
+    values (#{valueCardId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
         insert into value_card
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -209,11 +209,11 @@
         where value_card_id = #{valueCardId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.ValueCard">
-        update value_card
-        set account_id = #{accountId,jdbcType=VARCHAR},
-        member_id = #{memberId,jdbcType=VARCHAR},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where value_card_id = #{valueCardId,jdbcType=VARCHAR}
-    </update>
+    update value_card
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where value_card_id = #{valueCardId,jdbcType=VARCHAR}
+  </update>
 </mapper>

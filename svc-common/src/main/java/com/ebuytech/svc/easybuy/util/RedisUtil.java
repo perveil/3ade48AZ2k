@@ -17,12 +17,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 @Repository("redisUtil") public class RedisUtil implements BaseRedisDao<String, Object> {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private                                     Logger        logger = LoggerFactory.getLogger(this.getClass());
     @Resource(name = "redisTemplate") protected RedisTemplate redisTemplate;
     /**
      * 出异常，重复操作的次数
      */
-    private static Integer times = 5;
+    private static                              Integer       times  = 5;
 
     @Autowired(required = false) public void setRedisTemplate(RedisTemplate redisTemplate) {
         RedisSerializer stringSerializer = new StringRedisSerializer();

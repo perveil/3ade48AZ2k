@@ -7,8 +7,8 @@ import org.json.JSONObject;
  */
 public class Res<T> {
     private String msg;
-    private int code = 0;
-    private T data;
+    private int    code = 0;
+    private T      data;
 
     public static String jsonToString(JSONObject jsonObject) {
         return jsonObject.toString();
@@ -51,10 +51,6 @@ public class Res<T> {
     }
 
     @Override public String toString() {
-        return "Res{" +
-               "msg='" + msg + '\'' +
-               ", code=" + code +
-               ", data=" + data +
-               '}';
+        return "Res{" + "msg='" + msg + '\'' + ", code=" + code + ", data=" + data + '}';
     }
 }

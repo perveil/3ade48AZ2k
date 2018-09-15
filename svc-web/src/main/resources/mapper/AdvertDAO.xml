@@ -3,6 +3,7 @@
 <mapper namespace="com.ebuytech.svc.easybuy.dao.AdvertDAO">
     <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.Advert">
         <id column="advert_id" jdbcType="INTEGER" property="advertId"/>
+        <result column="advert_name" jdbcType="VARCHAR" property="advertName"/>
         <result column="valid_type" jdbcType="INTEGER" property="validType"/>
         <result column="valid_time" jdbcType="VARCHAR" property="validTime"/>
         <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
@@ -70,8 +71,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        advert_id, valid_type, valid_time, img_url, notice, `status`, create_time, update_time
-    </sql>
+    advert_id, advert_name, valid_type, valid_time, img_url, notice, `status`, create_time, 
+    update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdvertExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -101,9 +103,9 @@
         where advert_id = #{advertId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from advert
-        where advert_id = #{advertId,jdbcType=INTEGER}
-    </delete>
+    delete from advert
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AdvertExample">
         delete from advert
         <if test="_parameter != null">
@@ -111,18 +113,23 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Advert">
-        insert into advert (advert_id, valid_type, valid_time,
-        img_url, notice, `status`,
-        create_time, update_time)
-        values (#{advertId,jdbcType=INTEGER}, #{validType,jdbcType=INTEGER}, #{validTime,jdbcType=VARCHAR},
-        #{imgUrl,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
-        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into advert (advert_id, advert_name, valid_type, 
+      valid_time, img_url, notice, 
+      `status`, create_time, update_time
+      )
+    values (#{advertId,jdbcType=INTEGER}, #{advertName,jdbcType=VARCHAR}, #{validType,jdbcType=INTEGER}, 
+      #{validTime,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Advert">
         insert into advert
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="advertId != null">
                 advert_id,
+            </if>
+            <if test="advertName != null">
+                advert_name,
             </if>
             <if test="validType != null">
                 valid_type,
@@ -149,6 +156,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="advertId != null">
                 #{advertId,jdbcType=INTEGER},
+            </if>
+            <if test="advertName != null">
+                #{advertName,jdbcType=VARCHAR},
             </if>
             <if test="validType != null">
                 #{validType,jdbcType=INTEGER},
@@ -185,6 +195,9 @@
             <if test="record.advertId != null">
                 advert_id = #{record.advertId,jdbcType=INTEGER},
             </if>
+            <if test="record.advertName != null">
+                advert_name = #{record.advertName,jdbcType=VARCHAR},
+            </if>
             <if test="record.validType != null">
                 valid_type = #{record.validType,jdbcType=INTEGER},
             </if>
@@ -214,6 +227,7 @@
     <update id="updateByExample" parameterType="map">
         update advert
         set advert_id = #{record.advertId,jdbcType=INTEGER},
+        advert_name = #{record.advertName,jdbcType=VARCHAR},
         valid_type = #{record.validType,jdbcType=INTEGER},
         valid_time = #{record.validTime,jdbcType=VARCHAR},
         img_url = #{record.imgUrl,jdbcType=VARCHAR},
@@ -228,6 +242,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.Advert">
         update advert
         <set>
+            <if test="advertName != null">
+                advert_name = #{advertName,jdbcType=VARCHAR},
+            </if>
             <if test="validType != null">
                 valid_type = #{validType,jdbcType=INTEGER},
             </if>
@@ -253,14 +270,15 @@
         where advert_id = #{advertId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Advert">
-        update advert
-        set valid_type = #{validType,jdbcType=INTEGER},
-        valid_time = #{validTime,jdbcType=VARCHAR},
-        img_url = #{imgUrl,jdbcType=VARCHAR},
-        notice = #{notice,jdbcType=VARCHAR},
-        `status` = #{status,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where advert_id = #{advertId,jdbcType=INTEGER}
-    </update>
+    update advert
+    set advert_name = #{advertName,jdbcType=VARCHAR},
+      valid_type = #{validType,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </update>
 </mapper>

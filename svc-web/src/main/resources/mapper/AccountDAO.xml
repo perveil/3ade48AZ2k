@@ -75,9 +75,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        account_id, open_id, account_no, member_id, value_card_id, paypwd_status, paypwd,
-        balance, charge_count, charge_money, `status`, create_time, update_time
-    </sql>
+    account_id, open_id, account_no, member_id, value_card_id, paypwd_status, paypwd, 
+    balance, charge_count, charge_money, `status`, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -107,9 +107,9 @@
         where account_id = #{accountId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from account
-        where account_id = #{accountId,jdbcType=VARCHAR}
-    </delete>
+    delete from account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountExample">
         delete from account
         <if test="_parameter != null">
@@ -117,17 +117,17 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Account">
-        insert into account (account_id, open_id, account_no,
-        member_id, value_card_id, paypwd_status,
-        paypwd, balance, charge_count,
-        charge_money, `status`, create_time,
-        update_time)
-        values (#{accountId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR},
-        #{memberId,jdbcType=VARCHAR}, #{valueCardId,jdbcType=VARCHAR}, #{paypwdStatus,jdbcType=INTEGER},
-        #{paypwd,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{chargeCount,jdbcType=INTEGER},
-        #{chargeMoney,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
-        #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into account (account_id, open_id, account_no, 
+      member_id, value_card_id, paypwd_status, 
+      paypwd, balance, charge_count, 
+      charge_money, `status`, create_time, 
+      update_time)
+    values (#{accountId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=VARCHAR}, #{valueCardId,jdbcType=VARCHAR}, #{paypwdStatus,jdbcType=INTEGER}, 
+      #{paypwd,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{chargeCount,jdbcType=INTEGER}, 
+      #{chargeMoney,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Account">
         insert into account
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -328,19 +328,19 @@
         where account_id = #{accountId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Account">
-        update account
-        set open_id = #{openId,jdbcType=VARCHAR},
-        account_no = #{accountNo,jdbcType=VARCHAR},
-        member_id = #{memberId,jdbcType=VARCHAR},
-        value_card_id = #{valueCardId,jdbcType=VARCHAR},
-        paypwd_status = #{paypwdStatus,jdbcType=INTEGER},
-        paypwd = #{paypwd,jdbcType=VARCHAR},
-        balance = #{balance,jdbcType=INTEGER},
-        charge_count = #{chargeCount,jdbcType=INTEGER},
-        charge_money = #{chargeMoney,jdbcType=INTEGER},
-        `status` = #{status,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where account_id = #{accountId,jdbcType=VARCHAR}
-    </update>
+    update account
+    set open_id = #{openId,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      value_card_id = #{valueCardId,jdbcType=VARCHAR},
+      paypwd_status = #{paypwdStatus,jdbcType=INTEGER},
+      paypwd = #{paypwd,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=INTEGER},
+      charge_count = #{chargeCount,jdbcType=INTEGER},
+      charge_money = #{chargeMoney,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
 </mapper>

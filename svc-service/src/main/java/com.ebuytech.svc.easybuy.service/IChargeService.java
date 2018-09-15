@@ -6,8 +6,23 @@ import java.util.List;
 
 public interface IChargeService {
 
-    List<Charge> getChargeListByPage(int pageNum);
+    /**
+     * 获取充值列表
+     *
+     * @param pageNum
+     * @return
+     */
+    List<Charge> queryChargeListByPage(int pageNum);
 
+    /**
+     * 添加充值
+     *
+     * @param chargeMoney
+     * @param actId
+     * @param validType
+     * @param validTime
+     * @return
+     */
     boolean addCharge(int chargeMoney, int actId, int validType, String validTime);
 
 }

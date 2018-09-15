@@ -71,9 +71,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        account_charge_void_id, change_value, change_memo, member_id, account_id, charge_order_id,
-        charge_void_order_id, create_time, update_time
-    </sql>
+    account_charge_void_id, change_value, change_memo, member_id, account_id, charge_order_id, 
+    charge_void_order_id, create_time, update_time
+  </sql>
     <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoidExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -103,9 +103,9 @@
         where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from account_charge_void
-        where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
-    </delete>
+    delete from account_charge_void
+    where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoidExample">
         delete from account_charge_void
         <if test="_parameter != null">
@@ -113,15 +113,15 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid">
-        insert into account_charge_void (account_charge_void_id, change_value,
-        change_memo, member_id, account_id,
-        charge_order_id, charge_void_order_id, create_time,
-        update_time)
-        values (#{accountChargeVoidId,jdbcType=VARCHAR}, #{changeValue,jdbcType=INTEGER},
-        #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},
-        #{chargeOrderId,jdbcType=VARCHAR}, #{chargeVoidOrderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-        #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
+    insert into account_charge_void (account_charge_void_id, change_value, 
+      change_memo, member_id, account_id, 
+      charge_order_id, charge_void_order_id, create_time, 
+      update_time)
+    values (#{accountChargeVoidId,jdbcType=VARCHAR}, #{changeValue,jdbcType=INTEGER}, 
+      #{changeMemo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{chargeOrderId,jdbcType=VARCHAR}, #{chargeVoidOrderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
     <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid">
         insert into account_charge_void
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -270,15 +270,15 @@
         where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.AccountChargeVoid">
-        update account_charge_void
-        set change_value = #{changeValue,jdbcType=INTEGER},
-        change_memo = #{changeMemo,jdbcType=VARCHAR},
-        member_id = #{memberId,jdbcType=VARCHAR},
-        account_id = #{accountId,jdbcType=VARCHAR},
-        charge_order_id = #{chargeOrderId,jdbcType=VARCHAR},
-        charge_void_order_id = #{chargeVoidOrderId,jdbcType=VARCHAR},
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-        update_time = #{updateTime,jdbcType=TIMESTAMP}
-        where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
-    </update>
+    update account_charge_void
+    set change_value = #{changeValue,jdbcType=INTEGER},
+      change_memo = #{changeMemo,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      charge_order_id = #{chargeOrderId,jdbcType=VARCHAR},
+      charge_void_order_id = #{chargeVoidOrderId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where account_charge_void_id = #{accountChargeVoidId,jdbcType=VARCHAR}
+  </update>
 </mapper>

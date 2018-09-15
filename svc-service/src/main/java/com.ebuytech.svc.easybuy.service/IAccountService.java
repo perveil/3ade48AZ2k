@@ -35,7 +35,7 @@ public interface IAccountService {
     AccountVO queryAccountListByPage(int page);
 
     /**
-     * zty
+     * lei
      * 查询单个账户详情
      *
      * @param openId
@@ -61,5 +61,16 @@ public interface IAccountService {
      * @return
      */
     boolean addBalance(String accountId, int balance);
+
+    /**
+     * zty
+     * 根据关键词查询储值卡会员
+     *
+     * @param phone
+     * @param valueCardId
+     * @param memberId
+     * @return
+     */
+    List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId);
 
 }
