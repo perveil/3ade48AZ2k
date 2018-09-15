@@ -324,6 +324,7 @@ CREATE TABLE `account_change`
 	`change_memo` varchar(64) NOT NULL COMMENT '变动原因（如实体店消费、在线充值等）',
 	`change_type` varchar(1) NULL COMMENT '变动类型：0不变，1增加，2减少',
 	`change_value` int(11) NULL COMMENT '变化值',
+	`value_card_id` varchar(64) not NULL COMMENT '储值卡id',
 	`member_id` varchar(64) NULL COMMENT '会员ID',
 	`account_id` varchar(64) NULL COMMENT '账户ID',
 	`store_id` varchar(64) NOT NULL COMMENT '门店id',

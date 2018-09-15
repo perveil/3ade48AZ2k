@@ -12,6 +12,7 @@
     <result column="balance" jdbcType="INTEGER" property="balance" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="value_card_id" jdbcType="VARCHAR" property="valueCardId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     account_change_id, change_memo, change_type, change_value, member_id, account_id, 
-    store_id, balance, create_time, update_time
+    store_id, balance, create_time, update_time, value_card_id
   </sql>
   <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.AccountChangeExample" resultMap="BaseResultMap">
     select
@@ -117,11 +118,11 @@
     insert into account_change (account_change_id, change_memo, change_type, 
       change_value, member_id, account_id, 
       store_id, balance, create_time, 
-      update_time)
+      update_time, value_card_id)
     values (#{accountChangeId,jdbcType=VARCHAR}, #{changeMemo,jdbcType=VARCHAR}, #{changeType,jdbcType=VARCHAR}, 
       #{changeValue,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
       #{storeId,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{updateTime,jdbcType=TIMESTAMP}, #{valueCardId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.AccountChange">
     insert into account_change
@@ -156,6 +157,9 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="valueCardId != null">
+        value_card_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="accountChangeId != null">
@@ -187,6 +191,9 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valueCardId != null">
+        #{valueCardId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -229,6 +236,9 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.valueCardId != null">
+        value_card_id = #{record.valueCardId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -245,7 +255,8 @@
       store_id = #{record.storeId,jdbcType=VARCHAR},
       balance = #{record.balance,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      value_card_id = #{record.valueCardId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -280,6 +291,9 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="valueCardId != null">
+        value_card_id = #{valueCardId,jdbcType=VARCHAR},
+      </if>
     </set>
     where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
   </update>
@@ -293,7 +307,8 @@
       store_id = #{storeId,jdbcType=VARCHAR},
       balance = #{balance,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      value_card_id = #{valueCardId,jdbcType=VARCHAR}
     where account_change_id = #{accountChangeId,jdbcType=VARCHAR}
   </update>
 </mapper>

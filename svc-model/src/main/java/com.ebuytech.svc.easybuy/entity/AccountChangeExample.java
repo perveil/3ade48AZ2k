@@ -784,6 +784,76 @@ public class AccountChangeExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andValueCardIdIsNull() {
+            addCriterion("value_card_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdIsNotNull() {
+            addCriterion("value_card_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdEqualTo(String value) {
+            addCriterion("value_card_id =", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotEqualTo(String value) {
+            addCriterion("value_card_id <>", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdGreaterThan(String value) {
+            addCriterion("value_card_id >", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdGreaterThanOrEqualTo(String value) {
+            addCriterion("value_card_id >=", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLessThan(String value) {
+            addCriterion("value_card_id <", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLessThanOrEqualTo(String value) {
+            addCriterion("value_card_id <=", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLike(String value) {
+            addCriterion("value_card_id like", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotLike(String value) {
+            addCriterion("value_card_id not like", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdIn(List<String> values) {
+            addCriterion("value_card_id in", values, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotIn(List<String> values) {
+            addCriterion("value_card_id not in", values, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdBetween(String value1, String value2) {
+            addCriterion("value_card_id between", value1, value2, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotBetween(String value1, String value2) {
+            addCriterion("value_card_id not between", value1, value2, "valueCardId");
+            return (Criteria) this;
+        }
     }
 
     /**
