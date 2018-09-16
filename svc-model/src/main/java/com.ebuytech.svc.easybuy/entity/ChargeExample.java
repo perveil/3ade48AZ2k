@@ -305,6 +305,66 @@ public class ChargeExample {
             return (Criteria) this;
         }
 
+        public Criteria andChargeTypeIsNull() {
+            addCriterion("charge_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeIsNotNull() {
+            addCriterion("charge_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeEqualTo(Integer value) {
+            addCriterion("charge_type =", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotEqualTo(Integer value) {
+            addCriterion("charge_type <>", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeGreaterThan(Integer value) {
+            addCriterion("charge_type >", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("charge_type >=", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeLessThan(Integer value) {
+            addCriterion("charge_type <", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("charge_type <=", value, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeIn(List<Integer> values) {
+            addCriterion("charge_type in", values, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotIn(List<Integer> values) {
+            addCriterion("charge_type not in", values, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeBetween(Integer value1, Integer value2) {
+            addCriterion("charge_type between", value1, value2, "chargeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargeTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("charge_type not between", value1, value2, "chargeType");
+            return (Criteria) this;
+        }
+
         public Criteria andValidTypeIsNull() {
             addCriterion("valid_type is null");
             return (Criteria) this;

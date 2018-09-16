@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * charge
- *
- * @author
+ * @author 
  */
 public class Charge implements Serializable {
     /**
@@ -25,6 +24,11 @@ public class Charge implements Serializable {
     private Integer chargeMoney;
 
     /**
+     * 充值类型 0：充值 1：礼品卡充值
+     */
+    private Integer chargeType;
+
+    /**
      * 有效期 0：永不过期 1：有期限
      */
     private Integer validType;
@@ -35,7 +39,7 @@ public class Charge implements Serializable {
     private String validTime;
 
     /**
-     * 0：正常 1：关闭
+     * 0：正常 1：关闭 2:已结束
      */
     private Integer isValid;
 
@@ -73,6 +77,14 @@ public class Charge implements Serializable {
 
     public void setChargeMoney(Integer chargeMoney) {
         this.chargeMoney = chargeMoney;
+    }
+
+    public Integer getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(Integer chargeType) {
+        this.chargeType = chargeType;
     }
 
     public Integer getValidType() {
@@ -115,7 +127,8 @@ public class Charge implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override public boolean equals(Object that) {
+    @Override
+    public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -126,23 +139,25 @@ public class Charge implements Serializable {
             return false;
         }
         Charge other = (Charge) that;
-        return (this.getChargeId() == null ? other.getChargeId() == null : this.getChargeId().equals(other.getChargeId())) && (this.getActId() == null ?
-                other.getActId() == null :
-                this.getActId().equals(other.getActId())) && (this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney())) && (
-                       this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType())) && (this.getValidTime() == null ?
-                other.getValidTime() == null :
-                this.getValidTime().equals(other.getValidTime())) && (this.getIsValid() == null ? other.getIsValid() == null : this.getIsValid().equals(other.getIsValid())) && (
-                       this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ?
-                other.getUpdateTime() == null :
-                this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getChargeId() == null ? other.getChargeId() == null : this.getChargeId().equals(other.getChargeId()))
+            && (this.getActId() == null ? other.getActId() == null : this.getActId().equals(other.getActId()))
+            && (this.getChargeMoney() == null ? other.getChargeMoney() == null : this.getChargeMoney().equals(other.getChargeMoney()))
+            && (this.getChargeType() == null ? other.getChargeType() == null : this.getChargeType().equals(other.getChargeType()))
+            && (this.getValidType() == null ? other.getValidType() == null : this.getValidType().equals(other.getValidType()))
+            && (this.getValidTime() == null ? other.getValidTime() == null : this.getValidTime().equals(other.getValidTime()))
+            && (this.getIsValid() == null ? other.getIsValid() == null : this.getIsValid().equals(other.getIsValid()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getChargeId() == null) ? 0 : getChargeId().hashCode());
         result = prime * result + ((getActId() == null) ? 0 : getActId().hashCode());
         result = prime * result + ((getChargeMoney() == null) ? 0 : getChargeMoney().hashCode());
+        result = prime * result + ((getChargeType() == null) ? 0 : getChargeType().hashCode());
         result = prime * result + ((getValidType() == null) ? 0 : getValidType().hashCode());
         result = prime * result + ((getValidTime() == null) ? 0 : getValidTime().hashCode());
         result = prime * result + ((getIsValid() == null) ? 0 : getIsValid().hashCode());
@@ -151,7 +166,8 @@ public class Charge implements Serializable {
         return result;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
@@ -159,6 +175,7 @@ public class Charge implements Serializable {
         sb.append(", chargeId=").append(chargeId);
         sb.append(", actId=").append(actId);
         sb.append(", chargeMoney=").append(chargeMoney);
+        sb.append(", chargeType=").append(chargeType);
         sb.append(", validType=").append(validType);
         sb.append(", validTime=").append(validTime);
         sb.append(", isValid=").append(isValid);

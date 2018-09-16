@@ -73,4 +73,8 @@ import java.util.Random;
     @Override public String addUser(String userName, String userPwd, int roleId) {
         return null;
     }
+
+    @Override public String queryDaliyCounts() {
+        return null;
+    }
 }

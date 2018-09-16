@@ -1,5 +1,8 @@
 package com.ebuytech.svc.easybuy.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
