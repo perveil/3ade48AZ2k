@@ -15,6 +15,12 @@ public enum ResultEnums {
 
     PAGENUM_ERROR(104,"页码错误"),
 
+    REGISER_MEMBER_ERROR(105,"注册会员失败"),
+
+    REQUIRE_SESSIONCODE(106,"缺少sessionCode"),
+
+    SESSIONCODE_EXPIRED(107,"sessionCode已过期"),
+
     QUERY_PAGE_NOT_RIGHT(202, "查询页码不正确"),
 
     QUERY_USER_NULL(203,"查询用户不存在"),
