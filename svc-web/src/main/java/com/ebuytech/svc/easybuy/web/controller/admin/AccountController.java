@@ -2,10 +2,12 @@ package com.ebuytech.svc.easybuy.web.controller.admin;
 
 import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.service.IAccountService;
+import com.ebuytech.svc.easybuy.service.IChargeService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
 import com.ebuytech.svc.easybuy.vo.AccountVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,8 @@ public class AccountController {
 
     @Autowired
     private IAccountService accountService;
+
+
 
     @RequestMapping("/queryAccountListByPage")
     @ResponseBody
@@ -43,4 +47,6 @@ public class AccountController {
     Res<Account> addBalance(String accountId, int balance){
         return ResUtil.success(accountService.addBalance(accountId, balance));
     }
+
+
 }
