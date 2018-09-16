@@ -1,6 +1,7 @@
 package com.ebuytech.svc.easybuy.web.interceptor;
 
 import com.ebuytech.svc.easybuy.dao.AccountChargeDAO;
+import com.ebuytech.svc.easybuy.dto.Daily;
 import com.ebuytech.svc.easybuy.service.IChargeService;
 import com.ebuytech.svc.easybuy.web.AppConfig;
 import org.junit.Test;
@@ -18,12 +19,14 @@ public class AccountChargeDAOTest {
     private AccountChargeDAO  iChargeDao;
     @Test
     public void getDaily() {
+
         // iChargeDao.getDaily();
          System.out.println( iChargeDao.getDaily());
     }
 
     @Test
     public void getMonthly() {
+        System.out.println( iChargeDao.getMonthlyT());
     }
 
     @Test

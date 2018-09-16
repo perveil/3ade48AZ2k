@@ -36,8 +36,8 @@
     <result column="AccountId" jdbcType="VARCHAR" property="AccountId" />
     <result column="AccountPhone" jdbcType="VARCHAR" property="AccountPhone" />
     <result column="chargeType" jdbcType="VARCHAR" property="chargeType" />
-    <result column="changeValue" jdbcType="Integer" property="changeValue" />
-    <result column="changeExtra" jdbcType="Integer" property="changeExtra" />
+    <result column="changeValue" jdbcType="INTEGER" property="changeValue" />
+    <result column="changeExtra" jdbcType="INTEGER" property="changeExtra" />
     <result column="chargeWay" jdbcType="VARCHAR" property="chargeWay" />
     <result column="payAccount" jdbcType="VARCHAR" property="payAccount" />
 </resultMap>
