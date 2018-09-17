@@ -45,6 +45,7 @@ import java.util.Random;
         redisUtil.setExpireTime(userName, newExpireTime);
         AdminToken newAdminToken = new AdminToken();
         newAdminToken.setToken(newToken);
+        newAdminToken.setUserId(adminUser.getUserId());
         return newAdminToken;
     }
 

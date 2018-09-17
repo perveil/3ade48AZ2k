@@ -1,7 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
-import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.entity.AccountChange;
+import com.ebuytech.svc.easybuy.vo.ChangeVO;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IChangeService {
      * @param pageNum
      * @return
      */
-    List<AccountChange> queryChangeListByPage(int pageNum);
+    ChangeVO queryChangeListByPage(int pageNum);
 
     /**
      * lei
@@ -25,7 +25,7 @@ public interface IChangeService {
      * @param type
      * @return
      */
-    List<AccountChange> queryChangeListByType(int pageNum, int type);
+    ChangeVO queryChangeListByType(int pageNum, int type);
 
     /**
      * zty
@@ -34,7 +34,7 @@ public interface IChangeService {
      * @param time
      * @return
      */
-    List<AccountChange> queryChangeListByTime(int pageNum, String time);
+    ChangeVO queryChangeListByTime(int pageNum, String time);
 
     /**
      * zty
