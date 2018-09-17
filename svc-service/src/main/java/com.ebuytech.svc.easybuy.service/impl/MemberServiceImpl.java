@@ -29,7 +29,7 @@ import javax.annotation.Resource;
         String res = (String) redisUtil.get(sessionCode);
 
         String[] strArray = res.split(",");
-        log.info(strArray[1].toString());
+        log.info(strArray[1]);
         WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getPhoneNoInfo(strArray[1], encryptedData, iv);
         log.info(phoneNoInfo.toString());
         String telephone = phoneNoInfo.getPurePhoneNumber();
