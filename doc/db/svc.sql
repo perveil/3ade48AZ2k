@@ -82,6 +82,15 @@ DROP TABLE IF EXISTS `report_sale` CASCADE
 ;
 /* Create Tables */
 
+create table `admin_config` (
+  `id` int not NULL PRIMARY  KEY AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(64) not null COMMENT '配置项名称',
+  `value` varchar(64)  not NULL COMMENT '内容',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+);
+
+
 create table `report_sale` (
   `id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
   `date` varchar(64) not NULL COMMENT '日期',
@@ -282,7 +291,8 @@ create table `gift_card` (
   `member_id` varchar(64) NOT NULL COMMENT '会员ID',
   `value_card_id` varchar(64) NOT NULL COMMENT '储值卡ID',
   `money` int NOT NULL default 0 COMMENT '礼品卡金额',
-  `end_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '结束时间',
+  `start_time` varchar(64) not NULL DEFAULT '' COMMENT '开始时间',
+  `end_time` varchar(64) NOT NULL DEFAULT '' COMMENT '结束时间',
   `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常（未激活） 1：关闭（已激活） 2：已结束（过期）',
   `img_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片url',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',

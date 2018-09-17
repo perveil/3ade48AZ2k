@@ -21,11 +21,10 @@ import javax.annotation.Resource;
 
     @Resource private WxMaService wxMaService;
 
-    public boolean addMember(String openId, String memberName, String sex, String sessionCode, String encryptedData, String iv) {
+    @Override public boolean addMember(String openId, String memberName, String sex, String sessionCode, String encryptedData, String iv) {
         Member member = new Member();
         String res = (String) redisUtil.get(sessionCode);
         String[] strArray = res.split(",");
-        System.out.println(strArray[1]);
         WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getPhoneNoInfo(strArray[1], encryptedData, iv);
         String telephone = JsonUtil.toJson(phoneNoInfo);
         member.setMemberId(MD5Utils.getMD5(openId));

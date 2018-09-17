@@ -35,9 +35,8 @@ import java.util.List;
         memberExample.createCriteria().andMemberIdEqualTo(memberId);
         List<Member> memberList = memberDAO.selectByExample(memberExample);
         if (memberList == null || memberList.size() <= 0) {
-            throw new ClientException(ResultEnums.MEMBER_NULL);
+            throw new ClientException(ResultEnums.TEST_FAIL);
         } else {
-            System.out.println("1111111");
             Member member = memberList.get(0);
             String telephone = member.getTelephone();
             ValueCard valueCard = new ValueCard();

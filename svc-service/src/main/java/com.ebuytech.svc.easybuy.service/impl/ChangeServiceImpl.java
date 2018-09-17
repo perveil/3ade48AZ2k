@@ -1,65 +1,56 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
 import com.ebuytech.svc.easybuy.dao.AccountChangeDAO;
+import com.ebuytech.svc.easybuy.dao.AccountDAO;
 import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.entity.AccountChange;
 import com.ebuytech.svc.easybuy.entity.AccountChangeExample;
+import com.ebuytech.svc.easybuy.entity.AccountExample;
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
-import com.ebuytech.svc.easybuy.exception.AdminException;
+import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IChangeService;
-import com.ebuytech.svc.easybuy.vo.AccountVO;
-import com.ebuytech.svc.easybuy.vo.ChangeVO;
+import com.ebuytech.svc.easybuy.vo.AccountChangeVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Eric3 on 2018/9/15.
- */
-@Service @Transactional @Slf4j public class ChangeServiceImpl implements IChangeService{
-    @Resource
-    AccountChangeDAO accountChangeDAO;
+@Service @Transactional public class ChangeServiceImpl implements IChangeService {
+    @Resource private AccountDAO accountDAO;
 
-    @Override public ChangeVO queryChangeListByPage(int pageNum) {
-        ChangeVO changeVO = new ChangeVO();
-        AccountChangeExample accountChangeExample = new AccountChangeExample();
-        AccountChangeExample.Criteria filter = accountChangeExample.createCriteria();
-        filter.andAccountChangeIdIsNotNull();
-        PageHelper.startPage(pageNum,10);
-        List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
-        PageInfo pageInfo = new PageInfo(accountChangeList);
-        changeVO.setChangeList(accountChangeList);
-        changeVO.setTotalPage(pageInfo.getPages());
-        changeVO.setTotalResult(pageInfo.getTotal());
-        if (pageNum <= 0) {
-            log.error("【查询交易记录】 页码不应小于0");
-            throw new AdminException(ResultEnums.QUERY_PAGE_NOT_RIGHT);
-        }
-        return changeVO;
-    }
+    @Resource private AccountChangeDAO accountChangeDAO;
 
-    @Override public ChangeVO queryChangeListByType(int pageNum, int type) {
-        ChangeVO changeVO = new ChangeVO();
-        AccountChangeExample accountChangeExample = new AccountChangeExample();
-        AccountChangeExample.Criteria filter = accountChangeExample.createCriteria();
-        //TODO
-        //filter.andChangeTypeEqualTo(type);
+    @Override public List<AccountChange> queryChangeListByPage(int pageNum) {
         return null;
     }
 
-    @Override public ChangeVO queryChangeListByTime(int pageNum, String time) {
-        ChangeVO changeVO = new ChangeVO();
+    @Override public AccountChangeVO queryChangeListByType(int pageNum, int type, String openId) {
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andOpenIdEqualTo(openId);
+        List<Account> accountList = accountDAO.selectByExample(accountExample);
+        String memberId = accountList.get(0).getMemberId();
+
+        PageHelper.startPage(pageNum, 10);
         AccountChangeExample accountChangeExample = new AccountChangeExample();
-        AccountChangeExample.Criteria filter = accountChangeExample.createCriteria();
-        //if (!StringUtils.isEmpty(time))
-        //TODO    filter.andTime
+        accountChangeExample.createCriteria().andMemberIdEqualTo(memberId).andChangeTypeEqualTo(String.valueOf(type));
+
+        List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
+
+        PageInfo pageInfo = new PageInfo(accountChangeList);
+        AccountChangeVO accountChangeVO = new AccountChangeVO();
+        //accountChangeVO.setAccountChangeList(accountChangeList);
+        accountChangeVO.setTotalPage(pageInfo.getPages());
+        accountChangeVO.setTotalResult(pageInfo.getTotal());
+        if (pageNum > pageInfo.getPages()) {
+            throw new ClientException(ResultEnums.PAGENUM_ERROR);
+        }
+        return accountChangeVO;
+    }
+
+    @Override public List<AccountChange> queryChangeListByTime(int pageNum, String time) {
         return null;
     }
 
@@ -68,11 +59,31 @@ import java.util.List;
     }
 
     @Override public List<AccountChange> queryChangeListByPhone(int pageNum, String phone) {
-
         return null;
     }
 
-    @Override public List<AccountChange> queryChangeListByValueCard(int pageNum, String cardId) {
-        return null;
+    @Override public AccountChangeVO queryChangeListByValueCard(int pageNum, String accountId) {
+        PageHelper.startPage(pageNum, 10);
+
+        //        AccountChangeExample accountChangeExample = new AccountChangeExample();
+        //        accountChangeExample.createCriteria().andAccountIdEqualTo(accountId);
+        //        List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
+        //
+        //        PageInfo pageInfo = new PageInfo(accountChangeList);
+        //        AccountChangeVO accountChangeVO = new AccountChangeVO();
+        //        accountChangeVO.set(accountChangeList);
+        //        accountChangeVO.setTotalPage(pageInfo.getPages());
+        //        accountChangeVO.setTotalResult(pageInfo.getTotal());
+
+        List<AccountChangeVO> accountChangeList = accountChangeDAO.queryAllChangeBill(accountId);
+        PageInfo pageInfo = new PageInfo(accountChangeList);
+        AccountChangeVO accountChangeVO = new AccountChangeVO();
+        accountChangeVO.setTotalResult(pageInfo.getTotal());
+        accountChangeVO.setTotalPage(pageInfo.getPages());
+        accountChangeVO.setTotalResult(pageInfo.getTotal());
+        if (pageNum > pageInfo.getPages()) {
+            throw new ClientException(ResultEnums.PAGENUM_ERROR);
+        }
+        return accountChangeVO;
     }
 }
