@@ -80,6 +80,9 @@ DROP TABLE IF EXISTS `report_charge` CASCADE
 
 DROP TABLE IF EXISTS `report_sale` CASCADE
 ;
+
+DROP TABLE IF EXISTS `gift_card_cover` CASCADE
+;
 /* Create Tables */
 
 create table `admin_config` (
@@ -285,18 +288,32 @@ DEFAULT CHARSET utf8
 COMMENT = '储值卡'
 
 ;
+create table `gift_card_cover` (
+  `cover_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '礼品卡卡面id',
+  `start_time` varchar(64) NOT NULL DEFAULT '' COMMENT '开始时间',
+  `end_time` varchar(64) NOT NULL DEFAULT '' COMMENT '结束时间',
+  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常 1：关闭',
+  `img_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片url',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
+
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '礼品卡卡面'
+;
 
 create table `gift_card` (
   `gift_card_id` varchar(64) NOT NULL COMMENT '礼品卡ID',
   `gift_card_pwd` varchar(64) not NULL COMMENT '卡密',
   `account_id` varchar(64) NOT NULL COMMENT '账户ID',
   `member_id` varchar(64) NOT NULL COMMENT '会员ID',
+  `cover_id` varchar(64) NOT NULL COMMENT '卡面id',
   `value_card_id` varchar(64) NOT NULL COMMENT '储值卡ID',
   `money` int NOT NULL default 0 COMMENT '礼品卡金额',
   `start_time` varchar(64) not NULL DEFAULT '' COMMENT '开始时间',
   `end_time` varchar(64) NOT NULL DEFAULT '' COMMENT '结束时间',
   `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常（未激活） 1：关闭（已激活） 2：已结束（过期）',
-  `img_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片url',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间',
    CONSTRAINT `PK_gift_card` PRIMARY KEY (`gift_card_id` ASC)
@@ -419,6 +436,7 @@ CREATE TABLE `account_sale`
 (
 	`account_sale_id` varchar(64) NOT NULL COMMENT '主键',
 	`account_change_id` varchar(64) not NULL COMMENT '账户变动id',
+	`sale_ter_id` varchar(64) not NULL COMMENT '交易终端号',
 	`change_value` int(11) NULL COMMENT '变动值',
 	`change_memo` VARCHAR(50) NULL COMMENT '变动原因',
 	`member_id` varchar(64) NULL COMMENT '会员ID',
@@ -641,6 +659,11 @@ COMMENT = '会员来源'
  ALTER TABLE `charge`
   ADD CONSTRAINT `FK_act_id`
  	FOREIGN KEY (`act_id`) REFERENCES `activity` (`act_id`) ON DELETE Restrict ON UPDATE Restrict
+ ;
+
+ ALTER TABLE `gift_card`
+  ADD CONSTRAINT `FK_cover_id`
+ 	FOREIGN KEY (`cover_id`) REFERENCES `gift_card_cover` (`cover_id`) ON DELETE Restrict ON UPDATE Restrict
  ;
 
 SET FOREIGN_KEY_CHECKS=1 
