@@ -1,6 +1,7 @@
 package com.ebuytech.svc.easybuy.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -8,7 +9,8 @@ import java.util.Date;
 
 /**
  * account_change
- * @author 
+ *
+ * @author
  */
 public class AccountChange implements Serializable {
     /**
@@ -49,17 +51,17 @@ public class AccountChange implements Serializable {
     /**
      * 变动后余额
      */
-    private Integer balance;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private Integer balance;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") private Date createTime;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    @JsonIgnore private Date updateTime;
 
     /**
      * 储值卡id
@@ -169,8 +171,7 @@ public class AccountChange implements Serializable {
         this.status = status;
     }
 
-    @Override
-    public boolean equals(Object that) {
+    @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -181,22 +182,21 @@ public class AccountChange implements Serializable {
             return false;
         }
         AccountChange other = (AccountChange) that;
-        return (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
-            && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
-            && (this.getChangeType() == null ? other.getChangeType() == null : this.getChangeType().equals(other.getChangeType()))
-            && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
-            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
-            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
-            && (this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId()))
-            && (this.getBalance() == null ? other.getBalance() == null : this.getBalance().equals(other.getBalance()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getValueCardId() == null ? other.getValueCardId() == null : this.getValueCardId().equals(other.getValueCardId()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+        return (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId())) && (this.getChangeMemo() == null ?
+                other.getChangeMemo() == null :
+                this.getChangeMemo().equals(other.getChangeMemo())) && (this.getChangeType() == null ? other.getChangeType() == null : this.getChangeType().equals(other.getChangeType())) && (
+                       this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue())) && (this.getMemberId() == null ?
+                other.getMemberId() == null :
+                this.getMemberId().equals(other.getMemberId())) && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId())) && (
+                       this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId())) && (this.getBalance() == null ?
+                other.getBalance() == null :
+                this.getBalance().equals(other.getBalance())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime())) && (this.getValueCardId() == null ?
+                other.getValueCardId() == null :
+                this.getValueCardId().equals(other.getValueCardId())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountChangeId() == null) ? 0 : getAccountChangeId().hashCode());
@@ -214,8 +214,7 @@ public class AccountChange implements Serializable {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

@@ -9,6 +9,7 @@ import com.ebuytech.svc.easybuy.entity.AccountExample;
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
 import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IChangeService;
+import com.ebuytech.svc.easybuy.vo.AccountChangeDetailVO;
 import com.ebuytech.svc.easybuy.vo.AccountChangeVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -27,27 +28,27 @@ import java.util.List;
         return null;
     }
 
-    @Override public AccountChangeVO queryChangeListByType(int pageNum, int type, String openId) {
-        AccountExample accountExample = new AccountExample();
-        accountExample.createCriteria().andOpenIdEqualTo(openId);
-        List<Account> accountList = accountDAO.selectByExample(accountExample);
-        String memberId = accountList.get(0).getMemberId();
+    @Override public AccountChangeVO queryChangeListByType(int pageNum, int type, String accountId) {
 
         PageHelper.startPage(pageNum, 10);
         AccountChangeExample accountChangeExample = new AccountChangeExample();
-        accountChangeExample.createCriteria().andMemberIdEqualTo(memberId).andChangeTypeEqualTo(String.valueOf(type));
+        accountChangeExample.createCriteria().andAccountIdEqualTo(accountId).andChangeTypeEqualTo(String.valueOf(type));
 
         List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
 
         PageInfo pageInfo = new PageInfo(accountChangeList);
         AccountChangeVO accountChangeVO = new AccountChangeVO();
-        //accountChangeVO.setAccountChangeList(accountChangeList);
+        accountChangeVO.setAccountChangeList(accountChangeList);
         accountChangeVO.setTotalPage(pageInfo.getPages());
         accountChangeVO.setTotalResult(pageInfo.getTotal());
         if (pageNum > pageInfo.getPages()) {
             throw new ClientException(ResultEnums.PAGENUM_ERROR);
         }
         return accountChangeVO;
+    }
+
+    @Override public AccountChangeDetailVO queryChangeDetail(String accountChangeId) {
+        return  accountChangeDAO.queryAccountChangeDetail(accountChangeId);
     }
 
     @Override public List<AccountChange> queryChangeListByTime(int pageNum, String time) {
@@ -65,20 +66,15 @@ import java.util.List;
     @Override public AccountChangeVO queryChangeListByValueCard(int pageNum, String accountId) {
         PageHelper.startPage(pageNum, 10);
 
-        //        AccountChangeExample accountChangeExample = new AccountChangeExample();
-        //        accountChangeExample.createCriteria().andAccountIdEqualTo(accountId);
-        //        List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
-        //
-        //        PageInfo pageInfo = new PageInfo(accountChangeList);
-        //        AccountChangeVO accountChangeVO = new AccountChangeVO();
-        //        accountChangeVO.set(accountChangeList);
-        //        accountChangeVO.setTotalPage(pageInfo.getPages());
-        //        accountChangeVO.setTotalResult(pageInfo.getTotal());
-
-        List<AccountChangeVO> accountChangeList = accountChangeDAO.queryAllChangeBill(accountId);
+        AccountChangeExample accountChangeExample = new AccountChangeExample();
+        accountChangeExample.createCriteria().andAccountIdEqualTo(accountId);
+        List<AccountChange> accountChangeList = accountChangeDAO.selectByExample(accountChangeExample);
+        for (AccountChange o : accountChangeList) {
+            o.setBalance(null);
+        }
         PageInfo pageInfo = new PageInfo(accountChangeList);
         AccountChangeVO accountChangeVO = new AccountChangeVO();
-        accountChangeVO.setTotalResult(pageInfo.getTotal());
+        accountChangeVO.setAccountChangeList(accountChangeList);
         accountChangeVO.setTotalPage(pageInfo.getPages());
         accountChangeVO.setTotalResult(pageInfo.getTotal());
         if (pageNum > pageInfo.getPages()) {
