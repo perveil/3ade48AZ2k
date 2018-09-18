@@ -1,7 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.AccountChange;
-import com.ebuytech.svc.easybuy.vo.ChangeVO;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -10,13 +10,15 @@ import java.util.List;
  */
 public interface IChangeService {
 
+
+
     /**
      * zty
      * 查询交易记录
      * @param pageNum
      * @return
      */
-    ChangeVO queryChangeListByPage(int pageNum);
+    PageInfo<AccountChange> queryChangeListByPage(int pageNum);
 
     /**
      * lei
@@ -25,7 +27,7 @@ public interface IChangeService {
      * @param type
      * @return
      */
-    ChangeVO queryChangeListByType(int pageNum, int type);
+    PageInfo<AccountChange> queryChangeListByType(int pageNum, int type);
 
     /**
      * zty
@@ -34,7 +36,7 @@ public interface IChangeService {
      * @param time
      * @return
      */
-    ChangeVO queryChangeListByTime(int pageNum, String time);
+    PageInfo<AccountChange> queryChangeListByTime(int pageNum, String time);
 
     /**
      * zty
@@ -44,7 +46,7 @@ public interface IChangeService {
      * @param time2
      * @return
      */
-    List<AccountChange> queryChangeListByTimeScale(int pageNum, String time1, String time2);
+    PageInfo<AccountChange> queryChangeListByTimeScale(int pageNum, String time1, String time2);
 
     /**
      * 查询
@@ -52,7 +54,7 @@ public interface IChangeService {
      * @param phone
      * @return
      */
-    List<AccountChange> queryChangeListByPhone(int pageNum, String phone);
+    PageInfo<AccountChange> queryChangeListByPhone(int pageNum, String phone);
 
-    List<AccountChange> queryChangeListByValueCard(int pageNum, String cardId);
+    PageInfo<AccountChange> queryChangeListByValueCard(int pageNum, String cardId);
 }

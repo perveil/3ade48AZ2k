@@ -40,7 +40,7 @@ import javax.annotation.Resource;
     }
 
     @PostMapping("user/queryBillByType") public Res queryBill(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum, Integer type, String openId) {
-        return ResUtil.success(changeService.queryChangeListByType(pageNum, type, openId));
+        return ResUtil.success(changeService.queryChangeListByType(pageNum, type));
     }
 
 }

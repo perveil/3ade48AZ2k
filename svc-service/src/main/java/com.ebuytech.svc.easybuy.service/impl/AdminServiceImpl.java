@@ -57,7 +57,7 @@ import java.util.Random;
         return token1.equals(token);
     }
 
-    @Override public boolean modifyPwd(String userId, String oldPwd, String newPwd) {
+    @Override public AdminToken modifyPwd(String userId, String oldPwd, String newPwd) {
         oldPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(oldPwd)));
         AdminUserExample adminUserExample = new AdminUserExample();
         adminUserExample.createCriteria().andUserPwdEqualTo(oldPwd).andUserIdEqualTo(userId);
@@ -74,10 +74,23 @@ import java.util.Random;
         AdminUser adminUser = adminUserList.get(0);
         adminUser.setUserPwd(newPwd);
         adminUserDAO.updateByPrimaryKey(adminUser);
-        return true;
+        Random random = new Random();
+        String salt = random.nextInt(36) + System.currentTimeMillis() + "";
+        String newToken = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(adminUser.getUserName() + salt)));
+        long newExpireTime = System.currentTimeMillis() + 7 * 24 * 60 * 30 * 1000;
+        redisUtil.set(adminUser.getUserName(), newToken);
+        redisUtil.setExpireTime(adminUser.getUserName(), newExpireTime);
+        AdminToken newAdminToken = new AdminToken();
+        newAdminToken.setToken(newToken);
+        newAdminToken.setUserId(adminUser.getUserId());
+        return newAdminToken;
     }
 
     @Override public String addUser(String userName, String userPwd, int roleId) {
+        return null;
+    }
+
+    @Override public String queryDaliyCounts() {
         return null;
     }
 }

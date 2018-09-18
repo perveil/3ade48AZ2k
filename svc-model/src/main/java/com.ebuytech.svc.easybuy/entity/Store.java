@@ -47,12 +47,12 @@ public class Store implements Serializable {
     /**
      * 状态 0：可用 1：不可用
      */
-    private Integer status;
+    private Integer status = 0;
 
     /**
      * 操作 0：可用 1：不可用
      */
-    private Integer oper;
+    private Integer oper = 1;
 
     /**
      * 创建时间

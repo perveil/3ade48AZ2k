@@ -28,6 +28,8 @@ public enum ResultEnums {
     NEWPASSWORD_EQUAL_OLDPASSWORD(208,"新密码与原密码相同"),
 
     QUERY_KEYWORD_ERROR(209,"填写的查询信息不正确或用户不存在"),
+
+    QUERY_PHONE_ERROR(210, "输入的手机号有误"),
     ;
 
     private Integer code;

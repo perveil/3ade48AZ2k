@@ -24,7 +24,7 @@ public class AccountController {
 
     @RequestMapping("/queryAccountListByPage")
     @ResponseBody
-    Res<AccountVO> queryAccountListByPage(int page){
+    Res queryAccountListByPage(int page){
         return ResUtil.success(accountService.queryAccountListByPage(page));
     }
 

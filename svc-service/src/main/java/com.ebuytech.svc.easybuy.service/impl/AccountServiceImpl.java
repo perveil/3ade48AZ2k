@@ -70,6 +70,13 @@ public class AccountServiceImpl implements IAccountService {
         filter.andAccountIdIsNotNull();
         PageHelper.startPage(page,10);
         List<Account> accountList= accountDAO.selectByExample(accountExample);
+        for (Account account: accountList) {
+            account.setPaypwd(null);
+            account.setPaypwdStatus(null);
+            account.setAccountId(null);
+            account.setOpenId(null);
+            account.setUpdateTime(null);
+        }
         PageInfo pageInfo = new PageInfo(accountList);
         accountVO.setAccountList(accountList);
         accountVO.setTotalPage(pageInfo.getPages());

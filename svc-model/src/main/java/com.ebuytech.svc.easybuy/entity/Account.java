@@ -1,5 +1,7 @@
 package com.ebuytech.svc.easybuy.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,11 +14,13 @@ public class Account implements Serializable {
     /**
      * 账户ID
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String accountId;
 
     /**
      * 微信openid
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String openId;
 
     /**
@@ -37,11 +41,13 @@ public class Account implements Serializable {
     /**
      * 是否要支付密码 1：是 0：否
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer paypwdStatus;
 
     /**
      * 账户支付密码
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String paypwd;
 
     /**
@@ -72,6 +78,7 @@ public class Account implements Serializable {
     /**
      * 更新时间
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;

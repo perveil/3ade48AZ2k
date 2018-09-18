@@ -3,7 +3,6 @@ package com.ebuytech.svc.easybuy.web.controller.admin;
 import com.ebuytech.svc.easybuy.service.IChangeService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
-import com.ebuytech.svc.easybuy.vo.ChangeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +18,37 @@ import org.springframework.web.bind.annotation.RestController;
 
     @RequestMapping("/queryChangeListByPage")
     @ResponseBody
-    Res<ChangeVO> queryChangeListByPage(int pageNum) {
+    Res queryChangeListByPage(int pageNum) {
         return ResUtil.success(changeService.queryChangeListByPage(pageNum));
+    }
+
+    @RequestMapping("/queryChangeListByType")
+    @ResponseBody
+    Res queryChangeListByType(int pageNum, int type){
+        return ResUtil.success(changeService.queryChangeListByType(pageNum, type));
+    }
+
+    @RequestMapping("/queryChangeListByTime")
+    @ResponseBody
+    Res queryChangeListByTime(int pageNum, String time){
+        return ResUtil.success(changeService.queryChangeListByTime(pageNum, time));
+    }
+
+    @RequestMapping("/queryChangeListByTimeScale")
+    @ResponseBody
+    Res queryChangeListByTimeScale(int pageNum, String time1, String time2){
+        return ResUtil.success(changeService.queryChangeListByTimeScale(pageNum, time1, time2));
+    }
+
+    @RequestMapping("/queryChangeListByPhone")
+    @ResponseBody
+    Res queryChangeListByPhone(int pageNum, String phone){
+        return  ResUtil.success(changeService.queryChangeListByPhone(pageNum, phone));
+    }
+
+    @RequestMapping("/queryChangeListByValueCard")
+    @ResponseBody
+    Res queryChangeListByValueCard(int pageNum, String cardId){
+        return ResUtil.success(changeService.queryChangeListByValueCard(pageNum, cardId));
     }
 }
