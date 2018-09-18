@@ -29,7 +29,6 @@ import java.util.List;
 
 @Service @Transactional @Slf4j public class AccountServiceImpl implements IAccountService {
     @Resource private WxMaService wxService;
-
     @Resource private RedisUtil redisUtil;
 
     @Resource private AccountDAO accountDAO;

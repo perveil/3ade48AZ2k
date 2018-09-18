@@ -15,6 +15,15 @@
         <result column="value_card_id" jdbcType="VARCHAR" property="valueCardId"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
     </resultMap>
+    <resultMap id="ChangeDetailMap" type="com.ebuytech.svc.easybuy.vo.AccountChangeDetailVO">
+        <id column="account_change_id" jdbcType="VARCHAR" property="accountChangeId"/>
+        <result column="change_memo" jdbcType="VARCHAR" property="changeMemo"/>
+        <result column="change_value" jdbcType="INTEGER" property="changeValue"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="change_type" jdbcType="VARCHAR" property="changeType"/>
+        <result column="change_extra" jdbcType="INTEGER" property="changeExtra"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -99,22 +108,18 @@
             </if>
         </if>
     </select>
-    <select id="queryAccountChangeDetail" parameterType="java.lang.String" resultType="com.ebuytech.svc.easybuy.vo.AccountChangeDetailVO">
+    <select id="queryAccountChangeDetail" parameterType="java.lang.String" resultMap="ChangeDetailMap">
         SELECT
-            change.change_memo,
-            change.change_value,
-            change.status,
-            change.account_change_id,
-            change.create_time,
-            charge.charge_type,
-            charge.change_extra
-        FROM
-            account_change change
-            left join
-            account_charge  charge
-        ON
-            change.account_change_id = charge.account_change_id
-        WHERE change.account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+            account_change.account_change_id,
+            account_change.change_memo,
+            account_change.change_value,
+            account_change.create_time,
+            account_change.status,
+            account_change.change_type,
+            account_charge.change_extra
+        FROM account_change
+            JOIN account_charge ON account_change.account_change_id = account_charge.account_change_id
+        WHERE account_change.account_change_id = #{accountChangeId}
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
