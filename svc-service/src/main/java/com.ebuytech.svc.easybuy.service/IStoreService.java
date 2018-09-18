@@ -15,7 +15,24 @@ public interface IStoreService {
 
     /**
      * zty
+     * 通过excel文件导入门店记录
+     * @return
+     */
+    String addStoreByExcel();
+
+    /**
+     * zty
+     * 查询门店列表
      * @return
      */
     List<Store> queryStoreList();
+
+    /**
+     * zty
+     * 根据关键词查找门店
+     * @param storeName
+     * @param storeAddr
+     * @return
+     */
+    List<Store> queryStoreListByKeyword(String storeName, String storeAddr);
 }

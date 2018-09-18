@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * account_sale
- *
- * @author
+ * @author 
  */
 public class AccountSale implements Serializable {
     /**
@@ -53,6 +52,11 @@ public class AccountSale implements Serializable {
      * 更新时间
      */
     private Date updateTime;
+
+    /**
+     * 交易终端号
+     */
+    private String saleTerId;
 
     private static final long serialVersionUID = 1L;
 
@@ -128,7 +132,16 @@ public class AccountSale implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override public boolean equals(Object that) {
+    public String getSaleTerId() {
+        return saleTerId;
+    }
+
+    public void setSaleTerId(String saleTerId) {
+        this.saleTerId = saleTerId;
+    }
+
+    @Override
+    public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -139,18 +152,20 @@ public class AccountSale implements Serializable {
             return false;
         }
         AccountSale other = (AccountSale) that;
-        return (this.getAccountSaleId() == null ? other.getAccountSaleId() == null : this.getAccountSaleId().equals(other.getAccountSaleId())) && (this.getAccountChangeId() == null ?
-                other.getAccountChangeId() == null :
-                this.getAccountChangeId().equals(other.getAccountChangeId())) && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
-               && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo())) && (this.getMemberId() == null ?
-                other.getMemberId() == null :
-                this.getMemberId().equals(other.getMemberId())) && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId())) && (
-                       this.getSaleOrderId() == null ? other.getSaleOrderId() == null : this.getSaleOrderId().equals(other.getSaleOrderId())) && (this.getCreateTime() == null ?
-                other.getCreateTime() == null :
-                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccountSaleId() == null ? other.getAccountSaleId() == null : this.getAccountSaleId().equals(other.getAccountSaleId()))
+            && (this.getAccountChangeId() == null ? other.getAccountChangeId() == null : this.getAccountChangeId().equals(other.getAccountChangeId()))
+            && (this.getChangeValue() == null ? other.getChangeValue() == null : this.getChangeValue().equals(other.getChangeValue()))
+            && (this.getChangeMemo() == null ? other.getChangeMemo() == null : this.getChangeMemo().equals(other.getChangeMemo()))
+            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
+            && (this.getAccountId() == null ? other.getAccountId() == null : this.getAccountId().equals(other.getAccountId()))
+            && (this.getSaleOrderId() == null ? other.getSaleOrderId() == null : this.getSaleOrderId().equals(other.getSaleOrderId()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getSaleTerId() == null ? other.getSaleTerId() == null : this.getSaleTerId().equals(other.getSaleTerId()));
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccountSaleId() == null) ? 0 : getAccountSaleId().hashCode());
@@ -162,10 +177,12 @@ public class AccountSale implements Serializable {
         result = prime * result + ((getSaleOrderId() == null) ? 0 : getSaleOrderId().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getSaleTerId() == null) ? 0 : getSaleTerId().hashCode());
         return result;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
@@ -179,6 +196,7 @@ public class AccountSale implements Serializable {
         sb.append(", saleOrderId=").append(saleOrderId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", saleTerId=").append(saleTerId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

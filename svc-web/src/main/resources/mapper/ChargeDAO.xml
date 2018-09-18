@@ -1,261 +1,279 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ebuytech.svc.easybuy.dao.ChargeDAO">
-    <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.Charge">
-        <id column="charge_id" jdbcType="INTEGER" property="chargeId"/>
-        <result column="act_id" jdbcType="INTEGER" property="actId"/>
-        <result column="charge_money" jdbcType="INTEGER" property="chargeMoney"/>
-        <result column="valid_type" jdbcType="INTEGER" property="validType"/>
-        <result column="valid_time" jdbcType="VARCHAR" property="validTime"/>
-        <result column="is_valid" jdbcType="INTEGER" property="isValid"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
-    <sql id="Example_Where_Clause">
-        <where>
-            <foreach collection="oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
+  <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.Charge">
+    <id column="charge_id" jdbcType="INTEGER" property="chargeId" />
+    <result column="act_id" jdbcType="INTEGER" property="actId" />
+    <result column="charge_money" jdbcType="INTEGER" property="chargeMoney" />
+    <result column="charge_type" jdbcType="INTEGER" property="chargeType" />
+    <result column="valid_type" jdbcType="INTEGER" property="validType" />
+    <result column="valid_time" jdbcType="VARCHAR" property="validTime" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
             </foreach>
-        </where>
-    </sql>
-    <sql id="Update_By_Example_Where_Clause">
-        <where>
-            <foreach collection="example.oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
-            </foreach>
-        </where>
-    </sql>
-    <sql id="Base_Column_List">
-    charge_id, act_id, charge_money, valid_type, valid_time, is_valid, create_time, update_time
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
-    <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultMap="BaseResultMap">
-        select
-        <if test="distinct">
-            distinct
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
         </if>
-        <include refid="Base_Column_List"/>
-        from charge
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-        <if test="limit != null">
-            <if test="offset != null">
-                limit ${offset}, ${limit}
-            </if>
-            <if test="offset == null">
-                limit ${limit}
-            </if>
-        </if>
-    </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from charge
-        where charge_id = #{chargeId,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    charge_id, act_id, charge_money, charge_type, valid_type, valid_time, is_valid, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from charge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from charge
+    where charge_id = #{chargeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from charge
     where charge_id = #{chargeId,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample">
-        delete from charge
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </delete>
-    <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
+  <delete id="deleteByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample">
+    delete from charge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
     insert into charge (charge_id, act_id, charge_money, 
-      valid_type, valid_time, is_valid, 
-      create_time, update_time)
+      charge_type, valid_type, valid_time, 
+      is_valid, create_time, update_time
+      )
     values (#{chargeId,jdbcType=INTEGER}, #{actId,jdbcType=INTEGER}, #{chargeMoney,jdbcType=INTEGER}, 
-      #{validType,jdbcType=INTEGER}, #{validTime,jdbcType=VARCHAR}, #{isValid,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      #{chargeType,jdbcType=INTEGER}, #{validType,jdbcType=INTEGER}, #{validTime,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-    <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-        insert into charge
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="chargeId != null">
-                charge_id,
-            </if>
-            <if test="actId != null">
-                act_id,
-            </if>
-            <if test="chargeMoney != null">
-                charge_money,
-            </if>
-            <if test="validType != null">
-                valid_type,
-            </if>
-            <if test="validTime != null">
-                valid_time,
-            </if>
-            <if test="isValid != null">
-                is_valid,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="chargeId != null">
-                #{chargeId,jdbcType=INTEGER},
-            </if>
-            <if test="actId != null">
-                #{actId,jdbcType=INTEGER},
-            </if>
-            <if test="chargeMoney != null">
-                #{chargeMoney,jdbcType=INTEGER},
-            </if>
-            <if test="validType != null">
-                #{validType,jdbcType=INTEGER},
-            </if>
-            <if test="validTime != null">
-                #{validTime,jdbcType=VARCHAR},
-            </if>
-            <if test="isValid != null">
-                #{isValid,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultType="java.lang.Long">
-        select count(*) from charge
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </select>
-    <update id="updateByExampleSelective" parameterType="map">
-        update charge
-        <set>
-            <if test="record.chargeId != null">
-                charge_id = #{record.chargeId,jdbcType=INTEGER},
-            </if>
-            <if test="record.actId != null">
-                act_id = #{record.actId,jdbcType=INTEGER},
-            </if>
-            <if test="record.chargeMoney != null">
-                charge_money = #{record.chargeMoney,jdbcType=INTEGER},
-            </if>
-            <if test="record.validType != null">
-                valid_type = #{record.validType,jdbcType=INTEGER},
-            </if>
-            <if test="record.validTime != null">
-                valid_time = #{record.validTime,jdbcType=VARCHAR},
-            </if>
-            <if test="record.isValid != null">
-                is_valid = #{record.isValid,jdbcType=INTEGER},
-            </if>
-            <if test="record.createTime != null">
-                create_time = #{record.createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.updateTime != null">
-                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update charge
-        set charge_id = #{record.chargeId,jdbcType=INTEGER},
+  <insert id="insertSelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
+    insert into charge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chargeId != null">
+        charge_id,
+      </if>
+      <if test="actId != null">
+        act_id,
+      </if>
+      <if test="chargeMoney != null">
+        charge_money,
+      </if>
+      <if test="chargeType != null">
+        charge_type,
+      </if>
+      <if test="validType != null">
+        valid_type,
+      </if>
+      <if test="validTime != null">
+        valid_time,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chargeId != null">
+        #{chargeId,jdbcType=INTEGER},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMoney != null">
+        #{chargeMoney,jdbcType=INTEGER},
+      </if>
+      <if test="chargeType != null">
+        #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="validType != null">
+        #{validType,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        #{validTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ebuytech.svc.easybuy.entity.ChargeExample" resultType="java.lang.Long">
+    select count(*) from charge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update charge
+    <set>
+      <if test="record.chargeId != null">
+        charge_id = #{record.chargeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.actId != null">
         act_id = #{record.actId,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeMoney != null">
         charge_money = #{record.chargeMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeType != null">
+        charge_type = #{record.chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.validType != null">
         valid_type = #{record.validType,jdbcType=INTEGER},
+      </if>
+      <if test="record.validTime != null">
         valid_time = #{record.validTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isValid != null">
         is_valid = #{record.isValid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
-        update charge
-        <set>
-            <if test="actId != null">
-                act_id = #{actId,jdbcType=INTEGER},
-            </if>
-            <if test="chargeMoney != null">
-                charge_money = #{chargeMoney,jdbcType=INTEGER},
-            </if>
-            <if test="validType != null">
-                valid_type = #{validType,jdbcType=INTEGER},
-            </if>
-            <if test="validTime != null">
-                valid_time = #{validTime,jdbcType=VARCHAR},
-            </if>
-            <if test="isValid != null">
-                is_valid = #{isValid,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where charge_id = #{chargeId,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update charge
+    set charge_id = #{record.chargeId,jdbcType=INTEGER},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      charge_money = #{record.chargeMoney,jdbcType=INTEGER},
+      charge_type = #{record.chargeType,jdbcType=INTEGER},
+      valid_type = #{record.validType,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=VARCHAR},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
+    update charge
+    <set>
+      <if test="actId != null">
+        act_id = #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMoney != null">
+        charge_money = #{chargeMoney,jdbcType=INTEGER},
+      </if>
+      <if test="chargeType != null">
+        charge_type = #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="validType != null">
+        valid_type = #{validType,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        valid_time = #{validTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where charge_id = #{chargeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ebuytech.svc.easybuy.entity.Charge">
     update charge
     set act_id = #{actId,jdbcType=INTEGER},
       charge_money = #{chargeMoney,jdbcType=INTEGER},
+      charge_type = #{chargeType,jdbcType=INTEGER},
       valid_type = #{validType,jdbcType=INTEGER},
       valid_time = #{validTime,jdbcType=VARCHAR},
       is_valid = #{isValid,jdbcType=INTEGER},

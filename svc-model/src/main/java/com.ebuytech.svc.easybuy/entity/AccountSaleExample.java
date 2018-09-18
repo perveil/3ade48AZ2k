@@ -724,6 +724,76 @@ public class AccountSaleExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andSaleTerIdIsNull() {
+            addCriterion("sale_ter_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdIsNotNull() {
+            addCriterion("sale_ter_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdEqualTo(String value) {
+            addCriterion("sale_ter_id =", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdNotEqualTo(String value) {
+            addCriterion("sale_ter_id <>", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdGreaterThan(String value) {
+            addCriterion("sale_ter_id >", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdGreaterThanOrEqualTo(String value) {
+            addCriterion("sale_ter_id >=", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdLessThan(String value) {
+            addCriterion("sale_ter_id <", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdLessThanOrEqualTo(String value) {
+            addCriterion("sale_ter_id <=", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdLike(String value) {
+            addCriterion("sale_ter_id like", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdNotLike(String value) {
+            addCriterion("sale_ter_id not like", value, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdIn(List<String> values) {
+            addCriterion("sale_ter_id in", values, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdNotIn(List<String> values) {
+            addCriterion("sale_ter_id not in", values, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdBetween(String value1, String value2) {
+            addCriterion("sale_ter_id between", value1, value2, "saleTerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleTerIdNotBetween(String value1, String value2) {
+            addCriterion("sale_ter_id not between", value1, value2, "saleTerId");
+            return (Criteria) this;
+        }
     }
 
     /**
