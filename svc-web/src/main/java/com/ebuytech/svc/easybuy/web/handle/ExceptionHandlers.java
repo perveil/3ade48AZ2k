@@ -37,8 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
     }
 
     @ExceptionHandler(value = Exception.class) @ResponseBody public Res socketHandle(Exception e) {
-        ClientException socketException = (ClientException) e;
         log.error("【系统异常】：{}", e);
-        return ResUtil.error(-1, socketException.getMessage());
+        return ResUtil.error(-1, e.getMessage());
     }
 }

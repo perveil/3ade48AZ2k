@@ -1,5 +1,9 @@
 package com.ebuytech.svc.easybuy.service;
 
+import com.ebuytech.svc.easybuy.entity.GiftCard;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+
 public interface ICardService {
 
     /**
@@ -10,4 +14,10 @@ public interface ICardService {
      */
     boolean addValueCard(String openId);
 
+    /**
+     * 查询礼品卡
+     * @param page
+     * @return
+     */
+    PageInfo<GiftCard> queryGiftCardListByPage(int page);
 }

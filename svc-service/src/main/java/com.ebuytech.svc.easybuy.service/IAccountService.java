@@ -1,6 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Account;
+import com.ebuytech.svc.easybuy.vo.AccountInfoVO;
 import com.ebuytech.svc.easybuy.vo.AccountToken;
 import com.ebuytech.svc.easybuy.vo.AccountVO;
 
@@ -20,11 +21,13 @@ public interface IAccountService {
      * lei
      * 检查第三方session
      *
-     * @param openId
+     *
      * @param sessionCode
      * @return
      */
-    boolean checkSessionCode(String openId, String sessionCode);
+    boolean checkSessionCode( String sessionCode);
+
+    AccountInfoVO checkUser(String openId);
 
     /**
      * zty

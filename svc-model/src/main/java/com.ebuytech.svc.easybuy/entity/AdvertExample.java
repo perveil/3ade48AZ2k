@@ -704,6 +704,66 @@ public class AdvertExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andPosIdIsNull() {
+            addCriterion("pos_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdIsNotNull() {
+            addCriterion("pos_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdEqualTo(Integer value) {
+            addCriterion("pos_id =", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotEqualTo(Integer value) {
+            addCriterion("pos_id <>", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdGreaterThan(Integer value) {
+            addCriterion("pos_id >", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pos_id >=", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdLessThan(Integer value) {
+            addCriterion("pos_id <", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdLessThanOrEqualTo(Integer value) {
+            addCriterion("pos_id <=", value, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdIn(List<Integer> values) {
+            addCriterion("pos_id in", values, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotIn(List<Integer> values) {
+            addCriterion("pos_id not in", values, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdBetween(Integer value1, Integer value2) {
+            addCriterion("pos_id between", value1, value2, "posId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("pos_id not between", value1, value2, "posId");
+            return (Criteria) this;
+        }
     }
 
     /**

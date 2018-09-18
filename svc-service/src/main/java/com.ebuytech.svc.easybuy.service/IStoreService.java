@@ -1,7 +1,6 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Store;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -12,15 +11,28 @@ public interface IStoreService {
      * @param store
      * @return
      */
-    Store addStore(Store store);
+    String addStore(Store store);
 
     /**
      * zty
+     * 通过excel文件导入门店记录
      * @return
      */
-    PageInfo<Store> queryStoreList();
+    String addStoreByExcel();
 
-    Store queryStoreByStoreNameAndStoreAddress(String storeName, String storeAddress);
+    /**
+     * zty
+     * 查询门店列表
+     * @return
+     */
+    List<Store> queryStoreList();
 
-    Store updateStore();
+    /**
+     * zty
+     * 根据关键词查找门店
+     * @param storeName
+     * @param storeAddr
+     * @return
+     */
+    List<Store> queryStoreListByKeyword(String storeName, String storeAddr);
 }
