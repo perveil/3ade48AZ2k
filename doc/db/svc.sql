@@ -178,6 +178,7 @@ COMMENT = '角色权限关系表'
 create table `admin_user_role` (
   `user_id` varchar(64) not null PRIMARY KEY COMMENT '用户id',
   `role_id` int not null COMMENT '角色id',
+  `notice`  varchar(255) DEFAULT '' COMMENT '备注',
   `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
 	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 )

@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * admin_role
- *
- * @author
+ * @author 
  */
 public class AdminRole implements Serializable {
     /**
@@ -38,6 +37,11 @@ public class AdminRole implements Serializable {
      * 更新时间
      */
     private Date updateTime;
+
+    /**
+     * 备注
+     */
+    private String notice;
 
     private static final long serialVersionUID = 1L;
 
@@ -89,7 +93,16 @@ public class AdminRole implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override public boolean equals(Object that) {
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
+    @Override
+    public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -100,15 +113,17 @@ public class AdminRole implements Serializable {
             return false;
         }
         AdminRole other = (AdminRole) that;
-        return (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId())) && (this.getRoleName() == null ?
-                other.getRoleName() == null :
-                this.getRoleName().equals(other.getRoleName())) && (this.getRoleCount() == null ? other.getRoleCount() == null : this.getRoleCount().equals(other.getRoleCount())) && (
-                       this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus())) && (this.getCreateTime() == null ?
-                other.getCreateTime() == null :
-                this.getCreateTime().equals(other.getCreateTime())) && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
+            && (this.getRoleName() == null ? other.getRoleName() == null : this.getRoleName().equals(other.getRoleName()))
+            && (this.getRoleCount() == null ? other.getRoleCount() == null : this.getRoleCount().equals(other.getRoleCount()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getNotice() == null ? other.getNotice() == null : this.getNotice().equals(other.getNotice()));
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
@@ -117,10 +132,12 @@ public class AdminRole implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getNotice() == null) ? 0 : getNotice().hashCode());
         return result;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
@@ -131,6 +148,7 @@ public class AdminRole implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", notice=").append(notice);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
