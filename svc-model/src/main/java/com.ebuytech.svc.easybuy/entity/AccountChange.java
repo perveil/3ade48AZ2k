@@ -1,5 +1,9 @@
 package com.ebuytech.svc.easybuy.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -47,17 +51,27 @@ public class AccountChange implements Serializable {
     /**
      * 变动后余额
      */
-    private Integer balance;
+    @JsonInclude(JsonInclude.Include.NON_NULL) private Integer balance;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") private Date createTime;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    @JsonIgnore private Date updateTime;
+
+    /**
+     * 储值卡id
+     */
+    private String valueCardId;
+
+    /**
+     * 交易状态 0：成功 1：失败 2：待付款 3：已退款
+     */
+    private Integer status;
 
     private static final long serialVersionUID = 1L;
 
@@ -141,6 +155,22 @@ public class AccountChange implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getValueCardId() {
+        return valueCardId;
+    }
+
+    public void setValueCardId(String valueCardId) {
+        this.valueCardId = valueCardId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -161,7 +191,9 @@ public class AccountChange implements Serializable {
                        this.getStoreId() == null ? other.getStoreId() == null : this.getStoreId().equals(other.getStoreId())) && (this.getBalance() == null ?
                 other.getBalance() == null :
                 this.getBalance().equals(other.getBalance())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
-                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime())) && (this.getValueCardId() == null ?
+                other.getValueCardId() == null :
+                this.getValueCardId().equals(other.getValueCardId())) && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override public int hashCode() {
@@ -177,6 +209,8 @@ public class AccountChange implements Serializable {
         result = prime * result + ((getBalance() == null) ? 0 : getBalance().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getValueCardId() == null) ? 0 : getValueCardId().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 
@@ -195,6 +229,8 @@ public class AccountChange implements Serializable {
         sb.append(", balance=").append(balance);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", valueCardId=").append(valueCardId);
+        sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

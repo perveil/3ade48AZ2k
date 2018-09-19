@@ -785,6 +785,66 @@ public class GiftCardExample {
             return (Criteria) this;
         }
 
+        public Criteria andCoverIdIsNull() {
+            addCriterion("cover_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdIsNotNull() {
+            addCriterion("cover_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdEqualTo(Integer value) {
+            addCriterion("cover_id =", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdNotEqualTo(Integer value) {
+            addCriterion("cover_id <>", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdGreaterThan(Integer value) {
+            addCriterion("cover_id >", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cover_id >=", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdLessThan(Integer value) {
+            addCriterion("cover_id <", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdLessThanOrEqualTo(Integer value) {
+            addCriterion("cover_id <=", value, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdIn(List<Integer> values) {
+            addCriterion("cover_id in", values, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdNotIn(List<Integer> values) {
+            addCriterion("cover_id not in", values, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdBetween(Integer value1, Integer value2) {
+            addCriterion("cover_id between", value1, value2, "coverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoverIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("cover_id not between", value1, value2, "coverId");
+            return (Criteria) this;
+        }
+
         public Criteria andUpdateTimeIsNull() {
             addCriterion("update_time is null");
             return (Criteria) this;

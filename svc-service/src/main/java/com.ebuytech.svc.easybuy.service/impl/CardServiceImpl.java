@@ -3,15 +3,13 @@ package com.ebuytech.svc.easybuy.service.impl;
 import com.ebuytech.svc.easybuy.dao.AccountDAO;
 import com.ebuytech.svc.easybuy.dao.MemberDAO;
 import com.ebuytech.svc.easybuy.dao.ValueCardDAO;
-import com.ebuytech.svc.easybuy.entity.Account;
-import com.ebuytech.svc.easybuy.entity.Member;
-import com.ebuytech.svc.easybuy.entity.MemberExample;
-import com.ebuytech.svc.easybuy.entity.ValueCard;
+import com.ebuytech.svc.easybuy.entity.*;
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
 import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.ICardService;
 import com.ebuytech.svc.easybuy.util.MD5Utils;
 import com.ebuytech.svc.easybuy.util.UUIDUtils;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +33,8 @@ import java.util.List;
         memberExample.createCriteria().andMemberIdEqualTo(memberId);
         List<Member> memberList = memberDAO.selectByExample(memberExample);
         if (memberList == null || memberList.size() <= 0) {
-            throw new ClientException(ResultEnums.MEMBER_NULL);
+            throw new ClientException(ResultEnums.TEST_FAIL);
         } else {
-            System.out.println("1111111");
             Member member = memberList.get(0);
             String telephone = member.getTelephone();
             ValueCard valueCard = new ValueCard();
@@ -55,5 +52,9 @@ import java.util.List;
             return valueCardDAO.insertSelective(valueCard) > 0 && accountDAO.insertSelective(account) > 0;
         }
 
+    }
+
+    @Override public PageInfo<GiftCard> queryGiftCardListByPage(int page) {
+        return null;
     }
 }

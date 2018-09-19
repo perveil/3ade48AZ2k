@@ -784,6 +784,136 @@ public class AccountChangeExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andValueCardIdIsNull() {
+            addCriterion("value_card_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdIsNotNull() {
+            addCriterion("value_card_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdEqualTo(String value) {
+            addCriterion("value_card_id =", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotEqualTo(String value) {
+            addCriterion("value_card_id <>", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdGreaterThan(String value) {
+            addCriterion("value_card_id >", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdGreaterThanOrEqualTo(String value) {
+            addCriterion("value_card_id >=", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLessThan(String value) {
+            addCriterion("value_card_id <", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLessThanOrEqualTo(String value) {
+            addCriterion("value_card_id <=", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdLike(String value) {
+            addCriterion("value_card_id like", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotLike(String value) {
+            addCriterion("value_card_id not like", value, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdIn(List<String> values) {
+            addCriterion("value_card_id in", values, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotIn(List<String> values) {
+            addCriterion("value_card_id not in", values, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdBetween(String value1, String value2) {
+            addCriterion("value_card_id between", value1, value2, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueCardIdNotBetween(String value1, String value2) {
+            addCriterion("value_card_id not between", value1, value2, "valueCardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("`status` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("`status` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("`status` =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("`status` <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("`status` >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`status` >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("`status` <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("`status` <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("`status` in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("`status` not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("`status` between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("`status` not between", value1, value2, "status");
+            return (Criteria) this;
+        }
     }
 
     /**

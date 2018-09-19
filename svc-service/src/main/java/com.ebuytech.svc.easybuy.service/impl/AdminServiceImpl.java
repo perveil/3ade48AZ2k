@@ -21,9 +21,7 @@ import java.util.Random;
 /**
  * Created by Eric3 on 2018/9/13.
  */
-@Transactional
-@Service @Slf4j
-public class AdminServiceImpl implements IAdminService {
+@Transactional @Service @Slf4j public class AdminServiceImpl implements IAdminService {
 
     @Autowired private AdminUserDAO adminUserDAO;
 
@@ -72,8 +70,11 @@ public class AdminServiceImpl implements IAdminService {
         return true;
     }
 
-    @Override
-    public String addUser(String userName, String userPwd, int roleId) {
+    @Override public String addUser(String userName, String userPwd, int roleId) {
+        return null;
+    }
+
+    @Override public String queryDaliyCounts() {
         return null;
     }
 }

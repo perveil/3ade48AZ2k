@@ -13,6 +13,7 @@ import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IAccountService;
 import com.ebuytech.svc.easybuy.service.IAdminService;
 import com.ebuytech.svc.easybuy.util.*;
+import com.ebuytech.svc.easybuy.vo.AccountInfoVO;
 import com.ebuytech.svc.easybuy.vo.AccountToken;
 import com.ebuytech.svc.easybuy.vo.AccountVO;
 import com.github.pagehelper.PageHelper;
@@ -26,9 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service @Transactional
-@Slf4j
-public class AccountServiceImpl implements IAccountService {
+@Service @Transactional @Slf4j public class AccountServiceImpl implements IAccountService {
     @Resource private WxMaService wxService;
 
     @Resource private RedisUtil redisUtil;
@@ -45,11 +44,20 @@ public class AccountServiceImpl implements IAccountService {
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
-            // AccountExample accountExample = new AccountExample();
             String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
             String userInfo = openId + "," + sessionKey;
             redisUtil.set(token, userInfo, TOKEN_EXPIRE_TIME);
+            AccountExample accountExample = new AccountExample();
+            accountExample.createCriteria().andOpenIdEqualTo(openId).andMemberIdIsNotNull();
+            List<Account> accountList = accountDAO.selectByExample(accountExample);
             AccountToken accountToken = new AccountToken();
+            if (accountList == null || accountList.size() <= 0) {
+                accountToken.setIsMember("0");
+                accountToken.setStatus(0);
+            } else {
+                accountToken.setIsMember("1");
+                accountToken.setStatus(accountList.get(0).getStatus());
+            }
             accountToken.setOpenId(openId);
             accountToken.setSessionCode(token);
             return accountToken;
@@ -59,8 +67,29 @@ public class AccountServiceImpl implements IAccountService {
         return null;
     }
 
-    @Override public boolean checkSessionCode(String openId, String sessionCode) {
-        return false;
+    @Override public boolean checkSessionCode( String sessionCode) {
+        if (redisUtil.get(sessionCode) == null) {
+            throw new ClientException(ResultEnums.SESSIONCODE_EXPIRED);
+        }
+        return true;
+    }
+
+    @Override public AccountInfoVO checkUser(String openId) {
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andOpenIdEqualTo(openId);
+        List<Account> accountList = accountDAO.selectByExample(accountExample);
+        AccountInfoVO accountInfoVO = new AccountInfoVO();
+        if (accountList == null | accountList.size() <= 0) {
+            accountInfoVO.setValueCardId(null);
+            accountInfoVO.setMemberId(null);
+            accountInfoVO.setAccountId(null);
+            return accountInfoVO;
+        }
+        Account account = accountList.get(0);
+        accountInfoVO.setAccountId(account.getAccountId());
+        accountInfoVO.setMemberId(account.getMemberId());
+        accountInfoVO.setValueCardId(account.getValueCardId());
+        return accountInfoVO;
     }
 
     @Override public AccountVO queryAccountListByPage(int page) {
@@ -68,8 +97,8 @@ public class AccountServiceImpl implements IAccountService {
         AccountExample accountExample = new AccountExample();
         AccountExample.Criteria filter = accountExample.createCriteria();
         filter.andAccountIdIsNotNull();
-        PageHelper.startPage(page,10);
-        List<Account> accountList= accountDAO.selectByExample(accountExample);
+        PageHelper.startPage(page, 10);
+        List<Account> accountList = accountDAO.selectByExample(accountExample);
         PageInfo pageInfo = new PageInfo(accountList);
         accountVO.setAccountList(accountList);
         accountVO.setTotalPage(pageInfo.getPages());
@@ -79,9 +108,9 @@ public class AccountServiceImpl implements IAccountService {
             throw new AdminException(ResultEnums.QUERY_PAGE_NOT_RIGHT);
         }
         return accountVO;
-//
-//        accountExample.setLimit(15);
-//        accountExample.setOffset((long) (page * 15));
+        //
+        //        accountExample.setLimit(15);
+        //        accountExample.setOffset((long) (page * 15));
 
         //return accountDAO.selectByExample(accountExample);
     }
@@ -89,8 +118,8 @@ public class AccountServiceImpl implements IAccountService {
     @Override public Account queryAccountInfo(String openId) {
         AccountExample accountExample = new AccountExample();
         accountExample.createCriteria().andOpenIdEqualTo(openId);
-        List<Account> accountList =  accountDAO.selectByExample(accountExample);
-        if (accountList.isEmpty()){
+        List<Account> accountList = accountDAO.selectByExample(accountExample);
+        if (accountList.isEmpty()) {
             log.error("【查询用户】 失败，不存在该用户");
             throw new AdminException(ResultEnums.QUERY_USER_NULL);
         }
@@ -101,11 +130,11 @@ public class AccountServiceImpl implements IAccountService {
     @Override public boolean freezeAccount(String accountId) {
         //判断
         Account account = accountDAO.selectByPrimaryKey(accountId);
-        if (account == null){
+        if (account == null) {
             log.error("【冻结账户】 不存在该用户");
             throw new AdminException(ResultEnums.QUERY_USER_NULL);
         }
-        if (account.getStatus() == 1){
+        if (account.getStatus() == 1) {
             log.error("【冻结账户】 该账户已经冻结");
             throw new AdminException(ResultEnums.ACCOUNT_FREEZEN);
         }
@@ -126,7 +155,7 @@ public class AccountServiceImpl implements IAccountService {
             throw new AdminException(ResultEnums.BALANCE_NEGATIVE);
         }*/
         int before = account.getBalance();
-        account.setBalance(before+balance);
+        account.setBalance(before + balance);
         accountDAO.updateByPrimaryKey(account);
         return true;
     }
