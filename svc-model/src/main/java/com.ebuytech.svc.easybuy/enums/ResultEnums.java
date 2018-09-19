@@ -32,6 +32,12 @@ public enum ResultEnums {
     BALANCE_NEGATIVE(206, "添加的金额不能为负"),
 
     ID_OR_PASSWORD_NOT_RIGHT(207,"用户ID或者密码错误"),
+
+    NEWPASSWORD_EQUAL_OLDPASSWORD(208,"新密码与原密码相同"),
+
+    QUERY_KEYWORD_ERROR(209,"填写的查询信息不正确或用户不存在"),
+
+    QUERY_PHONE_ERROR(210, "输入的手机号有误"),
     ;
 
     private Integer code;

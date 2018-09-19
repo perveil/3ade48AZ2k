@@ -3,6 +3,7 @@ package com.ebuytech.svc.easybuy.web.controller.admin;
 import com.ebuytech.svc.easybuy.service.IChangeService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
+import com.ebuytech.svc.easybuy.vo.ChangeForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,15 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 
     @RequestMapping("/queryChangeListByPage")
     @ResponseBody
-    Res queryChangeListByPage(int pageNum) {
-        return ResUtil.success(changeService.queryChangeListByPage(pageNum));
+    Res queryChangeListByPage(int pageNum , String timeType , String time, String type, String phone,
+                              String valueCardId, String accountChangeId) {
+        return ResUtil.success(changeService.queryChangeListByPage(pageNum, timeType, time, type, phone, valueCardId, accountChangeId));
     }
 
-    @RequestMapping("/queryChangeListByType")
+    /*@RequestMapping("/queryChangeListByType")
     @ResponseBody
     Res queryChangeListByType(int pageNum, int type){
         return ResUtil.success(changeService.queryChangeListByType(pageNum, type));
-    }
+    }*/
 
     @RequestMapping("/queryChangeListByTime")
     @ResponseBody

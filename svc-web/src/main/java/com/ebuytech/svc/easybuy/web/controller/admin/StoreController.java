@@ -5,9 +5,12 @@ import com.ebuytech.svc.easybuy.service.IStoreService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.File;
 
 /**
  * Created by Eric3 on 2018/9/17.
@@ -27,7 +30,13 @@ public class StoreController {
 
     @RequestMapping("/queryStoreList")
     @ResponseBody
-    Res<Store> queryStoreList(){
-        return ResUtil.success(storeService.queryStoreList());
+    Res<Store> queryStoreList(String storeName, String storeAddr){
+        return ResUtil.success(storeService.queryStoreList(storeName, storeAddr));
+    }
+
+    @RequestMapping("/changeStatus")
+    @ResponseBody
+    Res changeStatus(String storeId, Integer status){
+        return ResUtil.success(storeService.changeStatus(storeId, status));
     }
 }

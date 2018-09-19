@@ -46,7 +46,7 @@ public class AccountController {
 
     @RequestMapping("/queryAccountByKeyword")
     @ResponseBody
-    Res<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
-        return ResUtil.success(accountService.queryAccountByKeyword(phone, valueCardId, memberId));
+    Res<Account> queryAccountByKeyword(int page,String phone, String valueCardId, String memberId) {
+        return ResUtil.success(accountService.queryAccountByKeyword(page, phone, valueCardId, memberId));
     }
 }

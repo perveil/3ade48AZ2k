@@ -26,6 +26,7 @@ public class AccountChange implements Serializable {
     /**
      * 变动类型：0不变，1增加，2减少
      */
+    @JsonIgnore
     private String changeType;
 
     /**
@@ -36,16 +37,19 @@ public class AccountChange implements Serializable {
     /**
      * 会员ID
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String memberId;
 
     /**
      * 账户ID交易用户
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String accountId;
 
     /**
      * 门店id
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String storeId;
 
     /**
