@@ -97,7 +97,7 @@ import java.util.List;
     }
 
     @Override public AccountChangeDetailVO queryChangeDetail(String accountChangeId) {
-        return  accountChangeDAO.queryAccountChangeDetail(accountChangeId);
+        return accountChangeDAO.queryAccountChangeDetail(accountChangeId);
     }
 
     @Override public List<AccountChange> queryChangeListByTime(int pageNum, String time) {
