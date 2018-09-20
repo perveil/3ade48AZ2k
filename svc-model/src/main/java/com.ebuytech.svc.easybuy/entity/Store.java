@@ -1,5 +1,7 @@
 package com.ebuytech.svc.easybuy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -47,21 +49,24 @@ public class Store implements Serializable {
     /**
      * 状态 0：可用 1：不可用
      */
-    private Integer status;
+    private Integer status = 0;
 
     /**
      * 操作 0：可用 1：不可用
      */
-    private Integer oper;
+    @JsonIgnore
+    private Integer oper = 0;
 
     /**
      * 创建时间
      */
+    @JsonIgnore
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @JsonIgnore
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;

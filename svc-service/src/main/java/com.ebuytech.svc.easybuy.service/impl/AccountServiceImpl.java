@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import com.ebuytech.svc.easybuy.dao.AccountChangeDAO;
 import com.ebuytech.svc.easybuy.dao.AccountDAO;
 import com.ebuytech.svc.easybuy.dao.AdminUserDAO;
 import com.ebuytech.svc.easybuy.entity.Account;
@@ -13,14 +14,13 @@ import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IAccountService;
 import com.ebuytech.svc.easybuy.service.IAdminService;
 import com.ebuytech.svc.easybuy.util.*;
-import com.ebuytech.svc.easybuy.vo.AccountInfoVO;
-import com.ebuytech.svc.easybuy.vo.AccountToken;
-import com.ebuytech.svc.easybuy.vo.AccountVO;
+import com.ebuytech.svc.easybuy.vo.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +33,8 @@ import java.util.List;
     @Resource private RedisUtil redisUtil;
 
     @Resource private AccountDAO accountDAO;
+
+    @Autowired private AccountChangeDAO changeDAO;
     public static final long TOKEN_EXPIRE_TIME = 3600 * 24 * 30;
 
     @Override public AccountToken login(String code) {
@@ -160,7 +162,27 @@ import java.util.List;
         return true;
     }
 
-    @Override public List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId) {
-        return null;
+    @Override public AccountVO queryAccountByKeyword(int page, String phone, String valueCardId, String memberId) {
+        AccountVO accountVO = new AccountVO();
+        AccountExample accountExample = new AccountExample();
+        AccountExample.Criteria filter = accountExample.createCriteria();
+        if (phone != ""){
+            filter.andAccountNoEqualTo(phone);
+        }
+        if (memberId != ""){
+            filter.andMemberIdEqualTo(memberId);
+        }
+        if (valueCardId != ""){
+            filter.andValueCardIdEqualTo(valueCardId);
+        }
+        PageHelper.startPage(page, 10);
+        List<Account> accountList = accountDAO.selectByExample(accountExample);
+        PageInfo pageInfo = new PageInfo(accountList);
+        accountVO.setAccountList(accountList);
+        accountVO.setTotalPage(pageInfo.getPages());
+        accountVO.setTotalResult(pageInfo.getTotal());
+        return accountVO;
     }
+
+
 }

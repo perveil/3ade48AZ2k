@@ -33,7 +33,7 @@ public interface IAdminService {
      * @param newPwd
      * @return
      */
-    boolean modifyPwd(String userId, String oldPwd, String newPwd);
+    AdminToken modifyPwd(String userId, String oldPwd, String newPwd);
 
     String addUser(String userName, String userPwd, int roleId);
 

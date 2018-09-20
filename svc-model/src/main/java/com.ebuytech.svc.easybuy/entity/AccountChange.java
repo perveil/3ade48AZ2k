@@ -14,18 +14,19 @@ import java.util.Date;
  */
 public class AccountChange implements Serializable {
     /**
-     * 主键
+     * 主键订单号
      */
     private String accountChangeId;
 
     /**
-     * 变动原因（如实体店消费、在线充值等）
+     * 交易类型（如实体店消费、在线充值等）
      */
     private String changeMemo;
 
     /**
      * 变动类型：0不变，1增加，2减少
      */
+    @JsonIgnore
     private String changeType;
 
     /**
@@ -36,16 +37,19 @@ public class AccountChange implements Serializable {
     /**
      * 会员ID
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String memberId;
 
     /**
-     * 账户ID
+     * 账户ID交易用户
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String accountId;
 
     /**
      * 门店id
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String storeId;
 
     /**

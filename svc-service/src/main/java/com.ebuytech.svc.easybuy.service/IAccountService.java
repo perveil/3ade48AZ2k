@@ -1,9 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Account;
-import com.ebuytech.svc.easybuy.vo.AccountInfoVO;
-import com.ebuytech.svc.easybuy.vo.AccountToken;
-import com.ebuytech.svc.easybuy.vo.AccountVO;
+import com.ebuytech.svc.easybuy.vo.*;
 
 import java.util.List;
 
@@ -74,6 +72,7 @@ public interface IAccountService {
      * @param memberId
      * @return
      */
-    List<Account> queryAccountByKeyword(String phone, String valueCardId, String memberId);
+    AccountVO queryAccountByKeyword(int page, String phone, String valueCardId, String memberId);
+
 
 }

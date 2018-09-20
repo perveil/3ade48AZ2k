@@ -24,7 +24,7 @@ public class AccountController {
 
     @RequestMapping("/queryAccountListByPage")
     @ResponseBody
-    Res<AccountVO> queryAccountListByPage(int page){
+    Res queryAccountListByPage(int page){
         return ResUtil.success(accountService.queryAccountListByPage(page));
     }
 
@@ -42,5 +42,11 @@ public class AccountController {
     @ResponseBody
     Res<Account> addBalance(String accountId, int balance){
         return ResUtil.success(accountService.addBalance(accountId, balance));
+    }
+
+    @RequestMapping("/queryAccountByKeyword")
+    @ResponseBody
+    Res<Account> queryAccountByKeyword(int page,String phone, String valueCardId, String memberId) {
+        return ResUtil.success(accountService.queryAccountByKeyword(page, phone, valueCardId, memberId));
     }
 }

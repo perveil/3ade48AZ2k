@@ -15,6 +15,64 @@
         <result column="value_card_id" jdbcType="VARCHAR" property="valueCardId"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
     </resultMap>
+    <resultMap id="Change_account" type="com.ebuytech.svc.easybuy.vo.ChangeTransDTO">
+        <id column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <id column="account_change_id" jdbcType="INTEGER" property="accountChangeId"/>
+        <id column="value_card_id" jdbcType="VARCHAR" property="valueCardId"/>
+        <id column="account_no" jdbcType="VARCHAR" property="accountNo"/>
+        <id column="change_memo" jdbcType="VARCHAR" property="changeMemo"/>
+        <id column="change_value" jdbcType="INTEGER" property="changeValue"/>
+        <id column="charge_way" jdbcType="VARCHAR" property="chargeWay"/>
+        <id column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+    <select id="queryChangeListByPage" parameterType="com.ebuytech.svc.easybuy.vo.ChangeForm" resultMap="Change_account">
+        SELECT
+        ac.create_time,
+        ac.account_change_id,
+        ac.value_card_id,
+        a.account_no,
+        ac.change_memo,
+        ac.change_value,
+        ac2.charge_way,
+        ac.status
+        FROM
+        (
+          (select * from
+          account_change
+          <where>
+              <if test="startTime != null">
+                  create_time &gt; #{startTime,jdbcType=TIMESTAMP}
+              </if>
+              <if test="endTime != null">
+                  AND create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+              </if>
+              <if test="type != ''">
+                  AND change_type = #{type,jdbcType=VARCHAR}
+              </if>
+              <if test="valueCardId != ''">
+                  AND value_card_id = #{valueCardId,jdbcType=VARCHAR}
+              </if>
+              <if test="accountChangeId != ''">
+                  AND account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+              </if>
+          </where>
+          )as ac
+          INNER JOIN
+          (select * from account
+            <where>
+              <if test="phone != ''">
+                  account_no = #{phone,jdbcType=VARCHAR}
+              </if>
+            </where>
+          ) as a
+        ON
+          a.member_id = ac.member_id
+        )
+        LEFT JOIN
+          account_charge as ac2
+        ON
+          ac.member_id = ac2.member_id
+    </select>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -345,4 +403,5 @@
         `status` = #{status,jdbcType=INTEGER}
         WHERE account_change_id = #{accountChangeId,jdbcType=VARCHAR}
     </update>
+
 </mapper>

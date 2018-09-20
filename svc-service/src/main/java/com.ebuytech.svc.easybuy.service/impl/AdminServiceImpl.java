@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -44,6 +45,7 @@ import java.util.Random;
         redisUtil.setExpireTime(userName, newExpireTime);
         AdminToken newAdminToken = new AdminToken();
         newAdminToken.setToken(newToken);
+        newAdminToken.setUserId(adminUser.getUserId());
         return newAdminToken;
     }
 
@@ -55,19 +57,33 @@ import java.util.Random;
         return token1.equals(token);
     }
 
-    @Override public boolean modifyPwd(String userId, String oldPwd, String newPwd) {
+    @Override public AdminToken modifyPwd(String userId, String oldPwd, String newPwd) {
         oldPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(oldPwd)));
         AdminUserExample adminUserExample = new AdminUserExample();
         adminUserExample.createCriteria().andUserPwdEqualTo(oldPwd).andUserIdEqualTo(userId);
-        AdminUser adminUser = adminUserDAO.selectByExample(adminUserExample).get(0);
-        if (adminUser == null) {
+        List<AdminUser> adminUserList = adminUserDAO.selectByExample(adminUserExample);
+        if (adminUserList == null || adminUserList.size() <= 0 ) {
             log.error("【修改密码】 用户名或密码错误");
             throw new AdminException(ResultEnums.ID_OR_PASSWORD_NOT_RIGHT);
         }
         newPwd = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(newPwd)));
+        if (newPwd.equals(oldPwd)) {
+            log.error("【修改密码】 新密码不能与原密码相同");
+            throw new AdminException(ResultEnums.NEWPASSWORD_EQUAL_OLDPASSWORD);
+        }
+        AdminUser adminUser = adminUserList.get(0);
         adminUser.setUserPwd(newPwd);
         adminUserDAO.updateByPrimaryKey(adminUser);
-        return true;
+        Random random = new Random();
+        String salt = random.nextInt(36) + System.currentTimeMillis() + "";
+        String newToken = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(adminUser.getUserName() + salt)));
+        long newExpireTime = System.currentTimeMillis() + 7 * 24 * 60 * 30 * 1000;
+        redisUtil.set(adminUser.getUserName(), newToken);
+        redisUtil.setExpireTime(adminUser.getUserName(), newExpireTime);
+        AdminToken newAdminToken = new AdminToken();
+        newAdminToken.setToken(newToken);
+        newAdminToken.setUserId(adminUser.getUserId());
+        return newAdminToken;
     }
 
     @Override public String addUser(String userName, String userPwd, int roleId) {
