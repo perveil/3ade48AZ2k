@@ -311,4 +311,9 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where act_id = #{actId,jdbcType=INTEGER}
   </update>
+    <update id="updateStatus" parameterType="java.lang.Integer">
+        UPDATE activity
+        SET `status` = #{status,jdbcType=INTEGER}
+        WHERE act_id = #{actId,jdbcType=INTEGER}
+    </update>
 </mapper>

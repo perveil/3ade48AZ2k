@@ -287,7 +287,20 @@ create table `value_card` (
 ENGINE=InnoDB
 DEFAULT CHARSET utf8
 COMMENT = '储值卡'
+;
+create table `gift_card_cover` (
+  `cover_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '礼品卡卡面id',
+  `start_time` varchar(64) NOT NULL DEFAULT '' COMMENT '开始时间',
+  `end_time` varchar(64) NOT NULL DEFAULT '' COMMENT '结束时间',
+  `status` int NOT NULL DEFAULT 0 COMMENT '状态 0：正常 1：关闭',
+  `img_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片url',
+  `create_time` TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
+	`update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新时间'
 
+)
+ENGINE=InnoDB
+DEFAULT CHARSET utf8
+COMMENT = '礼品卡卡面'
 ;
 create table `gift_card_cover` (
   `cover_id` int not null PRIMARY KEY AUTO_INCREMENT COMMENT '礼品卡卡面id',

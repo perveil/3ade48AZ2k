@@ -1,6 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Activity;
+import com.ebuytech.svc.easybuy.vo.PageVO;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface IActivityService {
      * @param pageNum
      * @return
      */
-    List<Activity> queryActivityListByPage(int pageNum);
+    PageVO<Activity> queryActivityListByPage(int pageNum,int size);
 
     /**
      * zty
@@ -27,6 +28,23 @@ public interface IActivityService {
      * @param actCount 活动折扣
      * @return
      */
-    int addActivity(int status, int actType, int cntType, String cntInfo, int actMoney, int actCount);
+    boolean addActivity(int status, int actType, int cntType, String cntInfo, int actMoney, int actCount,String startTime,String endTime);
+
+    /**
+     * 查询单个活动
+     * @param actId
+     * @return
+     */
+    Activity queryActivityByPrimaryKey(int actId);
+
+    /**
+     * 修改状态
+     * @param actId
+     * @return
+     */
+    boolean updateActivityStatus(int actId,int status);
+
+    boolean updateActivityById(int actId,int actType,String startTime,String endTime,int actMoney,int cntType,int status,int actCount,String cntInfo);
+
 
 }
