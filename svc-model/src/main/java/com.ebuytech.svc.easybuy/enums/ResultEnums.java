@@ -21,6 +21,10 @@ public enum ResultEnums {
 
     SESSIONCODE_EXPIRED(107,"sessionCode已过期"),
 
+    PAY_FAIL(108,"支付失败,请稍后重试"),
+
+    WXPAY_CALLBACK_ANOMALY(109,"微信回调结果异常"),
+
     QUERY_PAGE_NOT_RIGHT(202, "查询页码不正确"),
 
     QUERY_USER_NULL(203,"查询用户不存在"),

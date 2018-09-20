@@ -15,22 +15,15 @@ import java.util.List;
 /**
  * Created by Eric3 on 2018/9/14.
  */
-@RestController
-@RequestMapping("/account")
-public class AccountController {
+@RestController @RequestMapping("/account") public class AccountController {
 
-    @Autowired
-    private IAccountService accountService;
+    @Autowired private IAccountService accountService;
 
-    @RequestMapping("/queryAccountListByPage")
-    @ResponseBody
-    Res<AccountVO> queryAccountListByPage(int page){
+    @RequestMapping("/queryAccountListByPage") @ResponseBody Res<AccountVO> queryAccountListByPage(int page) {
         return ResUtil.success(accountService.queryAccountListByPage(page));
     }
 
-    @RequestMapping("/queryAccountInfo")
-    @ResponseBody
-    Res<Account> queryAccountInfo(String openId){
+    @RequestMapping("/queryAccountInfo") @ResponseBody Res<Account> queryAccountInfo(String openId) {
         return ResUtil.success(accountService.queryAccountInfo(openId));
     }
 
@@ -38,9 +31,7 @@ public class AccountController {
         return ResUtil.success(accountService.freezeAccount(accountId));
     }
 
-    @RequestMapping("/addBalance")
-    @ResponseBody
-    Res<Account> addBalance(String accountId, int balance){
+    @RequestMapping("/addBalance") @ResponseBody Res<Account> addBalance(String accountId, int balance) {
         return ResUtil.success(accountService.addBalance(accountId, balance));
     }
 }

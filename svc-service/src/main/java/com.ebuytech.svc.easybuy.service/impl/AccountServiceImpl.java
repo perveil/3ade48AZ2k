@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service @Transactional @Slf4j public class AccountServiceImpl implements IAccountService {
-    @Resource private WxMaService wxService;
+    @Resource private WxMaService wxMaService;
     @Resource private RedisUtil redisUtil;
 
     @Resource private AccountDAO accountDAO;
@@ -40,7 +40,7 @@ import java.util.List;
         }
 
         try {
-            WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
+            WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(code);
             String openId = session.getOpenid();
             String sessionKey = session.getSessionKey();
             String token = MD5Utils.getMD5(MD5Utils.getMD5(MD5Utils.getMD5(sessionKey)));
