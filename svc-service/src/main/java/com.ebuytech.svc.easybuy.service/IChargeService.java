@@ -27,6 +27,28 @@ public interface IChargeService {
      */
     boolean addCharge(int chargeMoney, int actId, int validType, String validTime);
 
+    /**
+     * 查询单个charge
+     * @param chargeId
+     * @return
+     */
+    Charge queryChargeById(int chargeId);
+
+    /**
+     * 修改状态
+     * @param chargeId
+     * @param isValid
+     * @return
+     */
+    boolean updateChargeisValidById(int chargeId,int isValid);
+
+    /**
+     * 修改charge
+     * @param charge
+     * @return
+     */
+    boolean updateCharge(Charge charge);
+
     boolean createOrder(String body, Integer totalFee, String openId);
 
     WxPayUnifiedOrderResult unifiedOrder(String body, Integer totalFee,String accountId);
