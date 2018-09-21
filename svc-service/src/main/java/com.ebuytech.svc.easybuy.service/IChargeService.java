@@ -1,8 +1,9 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Charge;
-import com.github.pagehelper.PageInfo;
+import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface IChargeService {
@@ -13,7 +14,7 @@ public interface IChargeService {
      * @param pageNum
      * @return
      */
-    PageInfo<Charge> queryChargeListByPage(int pageNum, int size);
+    List<Charge> queryChargeListByPage(int pageNum);
 
     /**
      * 添加充值
@@ -24,28 +25,17 @@ public interface IChargeService {
      * @param validTime
      * @return
      */
-    boolean addCharge(int chargeMoney, int actId, int validType, String validTime,int chargeType,int isValid);
+    boolean addCharge(int chargeMoney, int actId, int validType, String validTime);
 
-    /**
-     * 查询单个charge
-     * @param chargeId
-     * @return
-     */
-    Charge queryChargeById(int chargeId);
+    boolean createOrder(String body, Integer totalFee, String openId);
 
-    /**
-     * 修改状态
-     * @param chargeId
-     * @param isValid
-     * @return
-     */
-    boolean updateChargeisValidById(int chargeId,int isValid);
+    WxPayUnifiedOrderResult unifiedOrder(String body, Integer totalFee,String accountId);
 
-    /**
-     * 修改charge
-     * @param charge
-     * @return
-     */
-    boolean updateCharge(Charge charge);
+    boolean payNotify(HttpServletRequest request);
 
+    boolean closeOrder(String outTradeNo);
+
+    boolean refundOrder(String accountId, String accountChangeId);
+
+    String payConfirm(HttpServletRequest request);
 }
