@@ -41,6 +41,6 @@ public class GiftController {
         if (!giftService.uploadIcon(file,path)){
             return ResUtil.error(1,"上传失败");
         }
-        return ResUtil.success().setData(path);
+        return ResUtil.success(path);
     }
 }

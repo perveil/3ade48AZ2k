@@ -5,8 +5,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.Ordered;
@@ -15,9 +17,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.CorsFilter;
 
-@SpringBootApplication @ServletComponentScan @ComponentScan(basePackages = { "com.ebuytech" }) @MapperScan("com.ebuytech.svc.easybuy.dao") public class AppConfig {
+@SpringBootApplication @ServletComponentScan @ComponentScan(basePackages = { "com.ebuytech" }) @MapperScan("com.ebuytech.svc.easybuy.dao") public class AppConfig extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(AppConfig.class, args);
+    }
+
+    @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(AppConfig.class);
     }
 
     @Bean public FilterRegistrationBean corsFilter() {

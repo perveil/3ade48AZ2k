@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * admin_access
- *
- * @author
+ * @author 
  */
 public class AdminAccess implements Serializable {
     /**
@@ -18,6 +17,16 @@ public class AdminAccess implements Serializable {
      * 权限名
      */
     private String accessName;
+
+    /**
+     * 父路径
+     */
+    private String parentRoot;
+
+    /**
+     * 子路径
+     */
+    private String childRoot;
 
     /**
      * 创建时间
@@ -47,6 +56,22 @@ public class AdminAccess implements Serializable {
         this.accessName = accessName;
     }
 
+    public String getParentRoot() {
+        return parentRoot;
+    }
+
+    public void setParentRoot(String parentRoot) {
+        this.parentRoot = parentRoot;
+    }
+
+    public String getChildRoot() {
+        return childRoot;
+    }
+
+    public void setChildRoot(String childRoot) {
+        this.childRoot = childRoot;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -63,7 +88,8 @@ public class AdminAccess implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override public boolean equals(Object that) {
+    @Override
+    public boolean equals(Object that) {
         if (this == that) {
             return true;
         }
@@ -74,29 +100,37 @@ public class AdminAccess implements Serializable {
             return false;
         }
         AdminAccess other = (AdminAccess) that;
-        return (this.getAccessId() == null ? other.getAccessId() == null : this.getAccessId().equals(other.getAccessId())) && (this.getAccessName() == null ?
-                other.getAccessName() == null :
-                this.getAccessName().equals(other.getAccessName())) && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime())) && (
-                       this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+        return (this.getAccessId() == null ? other.getAccessId() == null : this.getAccessId().equals(other.getAccessId()))
+            && (this.getAccessName() == null ? other.getAccessName() == null : this.getAccessName().equals(other.getAccessName()))
+            && (this.getParentRoot() == null ? other.getParentRoot() == null : this.getParentRoot().equals(other.getParentRoot()))
+            && (this.getChildRoot() == null ? other.getChildRoot() == null : this.getChildRoot().equals(other.getChildRoot()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getAccessId() == null) ? 0 : getAccessId().hashCode());
         result = prime * result + ((getAccessName() == null) ? 0 : getAccessName().hashCode());
+        result = prime * result + ((getParentRoot() == null) ? 0 : getParentRoot().hashCode());
+        result = prime * result + ((getChildRoot() == null) ? 0 : getChildRoot().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", accessId=").append(accessId);
         sb.append(", accessName=").append(accessName);
+        sb.append(", parentRoot=").append(parentRoot);
+        sb.append(", childRoot=").append(childRoot);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

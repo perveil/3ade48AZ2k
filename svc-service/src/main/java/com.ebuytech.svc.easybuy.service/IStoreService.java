@@ -8,14 +8,14 @@ import java.util.List;
 public interface IStoreService {
 
     /**
-     * zty
+     * lzy
      * @param store
      * @return
      */
-    Store addStore(Store store);
+    void addStore(Store store);
 
     /**
-     * zty
+     * lzy
      * 通过excel文件导入门店记录
      * @return
      */

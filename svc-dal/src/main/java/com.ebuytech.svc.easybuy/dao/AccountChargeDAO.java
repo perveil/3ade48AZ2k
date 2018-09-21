@@ -12,10 +12,5 @@ import java.util.List;
  */
 @Repository
 public interface AccountChargeDAO extends MyBatisBaseDao<AccountCharge, String, AccountChargeExample> {
-    List<Daily>  getDaily();
-    List<Monthly> getMonthly();
-    List<Weekly> getWeekly();
-    List<DailyT>  getDailyT();
-    List<MonthlyT> getMonthlyT();
-    List<WeeklyT> getWeeklyT();
+
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ebuytech.svc.easybuy.dao.AccountChangeDAO">
+<mapper namespace="com.ebuytech.svc.easybuy.dao.AccountChangeCDAO">
     <resultMap id="BaseResultMap" type="com.ebuytech.svc.easybuy.entity.AccountChange">
         <id column="account_change_id" jdbcType="VARCHAR" property="accountChangeId"/>
         <result column="change_memo" jdbcType="VARCHAR" property="changeMemo"/>
@@ -25,6 +25,54 @@
         <id column="charge_way" jdbcType="VARCHAR" property="chargeWay"/>
         <id column="status" jdbcType="INTEGER" property="status"/>
     </resultMap>
+    <select id="queryChangeListByPage" parameterType="com.ebuytech.svc.easybuy.vo.ChangeForm" resultMap="Change_account">
+        SELECT
+        ac.create_time,
+        ac.account_change_id,
+        ac.value_card_id,
+        a.account_no,
+        ac.change_memo,
+        ac.change_value,
+        ac2.charge_way,
+        ac.status
+        FROM
+        (
+        (select * from
+        account_change
+        <where>
+            <if test="startTime != null">
+                create_time &gt; #{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime != null">
+                AND create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="type != ''">
+                AND change_type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="valueCardId != ''">
+                AND value_card_id = #{valueCardId,jdbcType=VARCHAR}
+            </if>
+            <if test="accountChangeId != ''">
+                AND account_change_id = #{accountChangeId,jdbcType=VARCHAR}
+            </if>
+        </where>
+        )as ac
+        INNER JOIN
+        (select * from account
+        <where>
+            <if test="phone != ''">
+                account_no = #{phone,jdbcType=VARCHAR}
+            </if>
+        </where>
+        ) as a
+        ON
+        a.member_id = ac.member_id
+        )
+        LEFT JOIN
+        account_charge as ac2
+        ON
+        ac.member_id = ac2.member_id
+    </select>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -108,6 +156,23 @@
                 limit ${limit}
             </if>
         </if>
+    </select>
+    <select id="queryAccountChangeDetail" parameterType="java.lang.String" resultType="com.ebuytech.svc.easybuy.vo.AccountChangeDetailVO">
+        SELECT
+            change.change_memo,
+            change.change_value,
+            change.status,
+            change.account_change_id,
+            change.create_time,
+            charge.charge_type,
+            charge.change_extra
+        FROM
+            account_change change
+            left join
+            account_charge  charge
+        ON
+            change.account_change_id = charge.account_change_id
+        WHERE change.account_change_id = #{accountChangeId,jdbcType=VARCHAR}
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select

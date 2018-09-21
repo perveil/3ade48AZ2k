@@ -4,7 +4,6 @@ import com.ebuytech.svc.easybuy.entity.Activity;
 import com.ebuytech.svc.easybuy.service.IActivityService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
-import com.ebuytech.svc.easybuy.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +20,12 @@ public class ActivityController {
     @Autowired IActivityService activityService;
 
     @PostMapping("/getActivityList")
-    public Res<PageVO<Activity>> getActivityList(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+    public Res getActivityList(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                                                  @RequestParam(value = "size",defaultValue = "10")int size){
 
         if (size < 1)
             return ResUtil.error(1,"页面数据设置错误");
-        pageNum -= 1;
-        PageVO<Activity> pageVO = activityService.queryActivityListByPage(pageNum,size);
-
-        return ResUtil.success().setData(pageVO);
+        return ResUtil.success((activityService.queryActivityListByPage(pageNum,size)));
     }
 
     @PostMapping("/selectActivityById")
@@ -39,7 +35,7 @@ public class ActivityController {
         if (activity == null)
             return ResUtil.error(1,"查询的id不存在");
 
-        return ResUtil.success().setData(activity);
+        return ResUtil.success(activity);
     }
 
     @PostMapping("/updateActivityStatus")
@@ -52,7 +48,9 @@ public class ActivityController {
     }
 
     @PostMapping("/updateActivityAll")
-    public Res updateActivityAll(int actId, int actType, String startTime, String endTime, int actMoney, int cntType, int status, int actCount, String cntInfo)
+    public Res updateActivityAll(int actId, int actType, String startTime,
+                                 String endTime, int actMoney, int cntType,
+                                 int status, int actCount, String cntInfo)
     {
         if (activityService.updateActivityById(actId,actType,startTime,endTime,actMoney,cntType,status,actCount,cntInfo))
             return ResUtil.error(1,"更新失败");

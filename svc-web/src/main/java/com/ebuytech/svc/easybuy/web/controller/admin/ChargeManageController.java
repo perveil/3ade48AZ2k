@@ -4,7 +4,6 @@ import com.ebuytech.svc.easybuy.entity.Charge;
 import com.ebuytech.svc.easybuy.service.IChargeService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
-import com.ebuytech.svc.easybuy.vo.PageVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,15 +37,7 @@ public class ChargeManageController {
     @PostMapping("/queryChargeForm")
     public Res queryChargeForm(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                                @RequestParam(value = "size",defaultValue = "10")int size){
-
-        pageNum = pageNum - 1;
-        PageVO pageVO = chargeService.queryChargeListByPage(pageNum,size);
-        if (pageVO == null){
-            log.error("[查询charge]pageVO={},pageNum={}",pageVO,pageNum);
-            return ResUtil.error(1,"查询错误");
-        }
-
-        return ResUtil.success().setData(pageVO);
+        return ResUtil.success(chargeService.queryChargeListByPage(pageNum,size));
 
     }
 
@@ -56,7 +47,7 @@ public class ChargeManageController {
         Charge charge = chargeService.queryChargeById(chargeId);
         if (charge == null)
             ResUtil.error(1,"查询id不存在");
-        return ResUtil.success().setData(charge);
+        return ResUtil.success(charge);
     }
 
     @PostMapping("/updateChargeStatus")
@@ -69,12 +60,12 @@ public class ChargeManageController {
     }
 
     @PostMapping("/updateCharge")
-    public Res updateCharge(int chargeId,int chargeMoney,int actId,int chargeType,int validType,String validTime,int ){
-        if (charge == null)
-            return ResUtil.error(1,"charge对象为空");
-        if (!chargeService.updateCharge(charge))
-            return ResUtil.error(1,"修改失败");
-
+    public Res updateCharge(int chargeId,int chargeMoney,int actId,
+                            int chargeType,int validType,String validTime,
+                            int isValid){
+        Charge charge = new Charge(chargeId, chargeMoney, actId,
+                chargeType, validType, validTime, isValid);
+        chargeService.updateCharge(charge);
         return ResUtil.success();
     }
 

@@ -1,7 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Activity;
-import com.ebuytech.svc.easybuy.vo.PageVO;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface IActivityService {
      * @param pageNum
      * @return
      */
-    PageVO<Activity> queryActivityListByPage(int pageNum,int size);
+    PageInfo<Activity> queryActivityListByPage(int pageNum, int size);
 
     /**
      * zty

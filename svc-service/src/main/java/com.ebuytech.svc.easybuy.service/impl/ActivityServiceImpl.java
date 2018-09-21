@@ -1,11 +1,9 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.ebuytech.svc.easybuy.dao.ActivityDAO;
 import com.ebuytech.svc.easybuy.entity.Activity;
 import com.ebuytech.svc.easybuy.entity.ActivityExample;
 import com.ebuytech.svc.easybuy.service.IActivityService;
-import com.ebuytech.svc.easybuy.vo.PageVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +19,15 @@ public class ActivityServiceImpl implements IActivityService {
 
     @Autowired ActivityDAO activityDAO;
 
-    @Override public PageVO<Activity> queryActivityListByPage(int pageNum,int size) {
+    @Override public PageInfo<Activity> queryActivityListByPage(int pageNum,int size) {
 
-        PageVO<Activity> activityPageVO = new PageVO();
+        PageInfo<Activity> activityPageVO = new PageInfo<>();
         ActivityExample activityExample = new ActivityExample();
         ActivityExample.Criteria filter = activityExample.createCriteria();
         filter.andActIdIsNotNull();
         PageHelper.startPage(pageNum,size);
         List<Activity> activities = activityDAO.selectByExample(activityExample);
-        PageInfo pageInfo = new PageInfo(activities);
-        activityPageVO.setList(activities);
-        activityPageVO.setTotalPage(pageInfo.getPages());
-        activityPageVO.setTotalResult(pageInfo.getTotal());
-
-
-        return activityPageVO;
+        return new PageInfo<>(activities);
     }
 
     @Override public boolean addActivity(int status, int actType, int cntType, String cntInfo,

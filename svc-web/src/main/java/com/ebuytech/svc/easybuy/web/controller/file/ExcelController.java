@@ -19,6 +19,6 @@ public class ExcelController {
 
     @PostMapping("/dayChargeExcel")
     public String dayChargeExcel(String day){
-        return   excelService.createDayChargeExcel();
+        return   excelService.createDayChargeExcel(day);
     }
 }

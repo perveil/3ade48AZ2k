@@ -255,6 +255,146 @@ public class AdminAccessExample {
             return (Criteria) this;
         }
 
+        public Criteria andParentRootIsNull() {
+            addCriterion("parent_root is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootIsNotNull() {
+            addCriterion("parent_root is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootEqualTo(String value) {
+            addCriterion("parent_root =", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootNotEqualTo(String value) {
+            addCriterion("parent_root <>", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootGreaterThan(String value) {
+            addCriterion("parent_root >", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootGreaterThanOrEqualTo(String value) {
+            addCriterion("parent_root >=", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootLessThan(String value) {
+            addCriterion("parent_root <", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootLessThanOrEqualTo(String value) {
+            addCriterion("parent_root <=", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootLike(String value) {
+            addCriterion("parent_root like", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootNotLike(String value) {
+            addCriterion("parent_root not like", value, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootIn(List<String> values) {
+            addCriterion("parent_root in", values, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootNotIn(List<String> values) {
+            addCriterion("parent_root not in", values, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootBetween(String value1, String value2) {
+            addCriterion("parent_root between", value1, value2, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andParentRootNotBetween(String value1, String value2) {
+            addCriterion("parent_root not between", value1, value2, "parentRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootIsNull() {
+            addCriterion("child_root is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootIsNotNull() {
+            addCriterion("child_root is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootEqualTo(String value) {
+            addCriterion("child_root =", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootNotEqualTo(String value) {
+            addCriterion("child_root <>", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootGreaterThan(String value) {
+            addCriterion("child_root >", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootGreaterThanOrEqualTo(String value) {
+            addCriterion("child_root >=", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootLessThan(String value) {
+            addCriterion("child_root <", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootLessThanOrEqualTo(String value) {
+            addCriterion("child_root <=", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootLike(String value) {
+            addCriterion("child_root like", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootNotLike(String value) {
+            addCriterion("child_root not like", value, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootIn(List<String> values) {
+            addCriterion("child_root in", values, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootNotIn(List<String> values) {
+            addCriterion("child_root not in", values, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootBetween(String value1, String value2) {
+            addCriterion("child_root between", value1, value2, "childRoot");
+            return (Criteria) this;
+        }
+
+        public Criteria andChildRootNotBetween(String value1, String value2) {
+            addCriterion("child_root not between", value1, value2, "childRoot");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

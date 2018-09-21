@@ -4,17 +4,11 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * Created by HYS on 2018/9/15.
- */
 @Data
-public class PageVO<T> {
+public class PageVo<E> {
+    private List<E> elements;
 
-    List<T> list;
+    private int totalPage;
 
-    //总页数
-    private Integer totalPage;
-
-    //总条数
-    private Long totalResult;
+    private int totalResult;
 }

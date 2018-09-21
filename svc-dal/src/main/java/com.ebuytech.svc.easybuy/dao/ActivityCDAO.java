@@ -5,9 +5,6 @@ import com.ebuytech.svc.easybuy.entity.ActivityExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- * ActivityDAO继承基类
- */
-@Repository public interface ActivityDAO extends MyBatisBaseDao<Activity, Integer, ActivityExample> {
-
+@Repository public interface ActivityCDAO extends MyBatisBaseDao<Activity, Integer, ActivityExample> {
+    int updateStatus(@Param("actId") int actId, @Param("status") int status);
 }

@@ -1,16 +1,12 @@
 package com.ebuytech.svc.easybuy.web.controller.admin;
 
-import com.ebuytech.svc.easybuy.entity.Account;
 import com.ebuytech.svc.easybuy.service.IAccountService;
 import com.ebuytech.svc.easybuy.util.Res;
 import com.ebuytech.svc.easybuy.util.ResUtil;
-import com.ebuytech.svc.easybuy.vo.AccountVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created by Eric3 on 2018/9/14.
@@ -29,24 +25,21 @@ public class AccountController {
     }
 
     @RequestMapping("/queryAccountInfo")
-    @ResponseBody
-    Res<Account> queryAccountInfo(String openId){
+    @ResponseBody Res queryAccountInfo(String openId){
         return ResUtil.success(accountService.queryAccountInfo(openId));
     }
 
-    @RequestMapping("/freezeAccount") @ResponseBody Res<Account> freezeAccount(String accountId) {
+    @RequestMapping("/freezeAccount") @ResponseBody Res freezeAccount(String accountId) {
         return ResUtil.success(accountService.freezeAccount(accountId));
     }
 
     @RequestMapping("/addBalance")
-    @ResponseBody
-    Res<Account> addBalance(String accountId, int balance){
+    @ResponseBody Res addBalance(String accountId, int balance){
         return ResUtil.success(accountService.addBalance(accountId, balance));
     }
 
     @RequestMapping("/queryAccountByKeyword")
-    @ResponseBody
-    Res<Account> queryAccountByKeyword(int page,String phone, String valueCardId, String memberId) {
+    @ResponseBody Res queryAccountByKeyword(int page,String phone, String valueCardId, String memberId) {
         return ResUtil.success(accountService.queryAccountByKeyword(page, phone, valueCardId, memberId));
     }
 }

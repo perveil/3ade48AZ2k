@@ -55,6 +55,9 @@ public class Charge implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Charge() {
+    }
+
     public Integer getChargeId() {
         return chargeId;
     }
@@ -125,6 +128,16 @@ public class Charge implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Charge(Integer chargeId, Integer actId, Integer chargeMoney, Integer chargeType, Integer validType, String validTime, Integer isValid) {
+        this.chargeId = chargeId;
+        this.actId = actId;
+        this.chargeMoney = chargeMoney;
+        this.chargeType = chargeType;
+        this.validType = validType;
+        this.validTime = validTime;
+        this.isValid = isValid;
     }
 
     @Override

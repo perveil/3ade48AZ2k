@@ -1,7 +1,7 @@
 package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Charge;
-import com.ebuytech.svc.easybuy.vo.PageVO;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface IChargeService {
      * @param pageNum
      * @return
      */
-    PageVO queryChargeListByPage(int pageNum,int size);
+    PageInfo<Charge> queryChargeListByPage(int pageNum, int size);
 
     /**
      * 添加充值
