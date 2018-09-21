@@ -1,5 +1,6 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
+import com.ebuytech.svc.easybuy.dao.AccountChangeCDAO;
 import com.ebuytech.svc.easybuy.dao.AccountChangeDAO;
 import com.ebuytech.svc.easybuy.dao.AccountDAO;
 import com.ebuytech.svc.easybuy.entity.AccountChange;
@@ -25,6 +26,8 @@ import java.util.List;
     @Resource private AccountDAO accountDAO;
 
     @Resource private AccountChangeDAO accountChangeDAO;
+
+    @Resource private AccountChangeCDAO accountChangeCDAO;
 
     @Override public ChangeTransVO queryChangeListByPage(int pageNum , String timeType , String time, String type, String phone,
                                                          String valueCardId, String accountChangeId) {
@@ -69,7 +72,7 @@ import java.util.List;
         ChangeTransVO changeTransVO = new ChangeTransVO();
 
         PageHelper.startPage(pageNum, 10);
-        List<ChangeTransDTO> changeTransDTOList = accountChangeDAO.queryChangeListByPage(changeForm);
+        List<ChangeTransDTO> changeTransDTOList = accountChangeCDAO.queryChangeListByPage(changeForm);
         PageInfo pageInfo = new PageInfo(changeTransDTOList);
         changeTransVO.setChangeTransList(changeTransDTOList);
         changeTransVO.setTotalPage(pageInfo.getPages());
@@ -97,7 +100,7 @@ import java.util.List;
     }
 
     @Override public AccountChangeDetailVO queryChangeDetail(String accountChangeId) {
-        return accountChangeDAO.queryAccountChangeDetail(accountChangeId);
+        return accountChangeCDAO.queryAccountChangeDetail(accountChangeId);
     }
 
     @Override public List<AccountChange> queryChangeListByTime(int pageNum, String time) {

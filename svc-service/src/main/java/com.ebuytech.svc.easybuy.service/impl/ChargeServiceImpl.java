@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.service.impl;
 
 import com.alibaba.druid.sql.visitor.functions.Char;
 import com.ebuytech.svc.easybuy.dao.ActivityDAO;
+import com.ebuytech.svc.easybuy.dao.ChargeCDAO;
 import com.ebuytech.svc.easybuy.dao.ChargeDAO;
 import com.ebuytech.svc.easybuy.entity.Activity;
 import com.ebuytech.svc.easybuy.entity.Charge;
@@ -26,6 +27,8 @@ import java.util.List;
 
     @Autowired private ChargeDAO chargeDAO;
 
+    @Autowired private ChargeCDAO chargeCDAO;
+
     @Autowired private ActivityDAO activityDAO;
 
     @Override public boolean addCharge(int chargeMoney, int actId, int validType, String validTime,int chargeType,int isValid) {
@@ -48,7 +51,7 @@ import java.util.List;
 
     @Override public boolean updateChargeisValidById(int chargeId, int isValid) {
 
-        return chargeDAO.updateChargeIsValidById(chargeId,isValid) > 0;
+        return chargeCDAO.updateChargeIsValidById(chargeId,isValid) > 0;
     }
 
     @Override public boolean updateCharge(Charge charge) {

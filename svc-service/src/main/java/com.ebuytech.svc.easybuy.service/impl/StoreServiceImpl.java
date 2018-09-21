@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
-@Service
-@Transactional
-public class StoreServiceImpl implements IStoreService {
+@Service @Transactional public class StoreServiceImpl implements IStoreService {
 
     //公众号service
     @Resource private WxMpService wxMpService;
@@ -25,10 +24,12 @@ public class StoreServiceImpl implements IStoreService {
         //生成自主sid
         String sid = UUIDUtils.getUUID();
         //添加门店后wx实时返回poi_id
-        WxMpStoreBaseInfo wxMpStoreBaseInfo = new WxMpStoreBaseInfo(sid,store.getStoreName())
+        WxMpStoreBaseInfo wxMpStoreBaseInfo = WxMpStoreBaseInfo.builder().sid(sid).businessName(store.getStoreName()).branchName(store.getStoreBranchName()).province(store.getStoreProvince())
+                .city(store.getStoreCity()).district(store.getStoreDistrict()).address(store.getStoreAddr()).telephone(store.getStorePhone()).categories(store.getCategories().split(","))
+                .offsetType(store.getOffsetType()).longitude(BigDecimal.valueOf(Long.valueOf(store.getLongitude()))).latitude(BigDecimal.valueOf(Long.valueOf(store.getLatitude()))).build();
         //插入数据库
         //
-        wxMpService.
+//        wxMpService.
     }
 
     @Override public String addStoreByExcel() {

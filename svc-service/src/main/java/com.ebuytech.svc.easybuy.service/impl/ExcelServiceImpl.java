@@ -1,5 +1,6 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
+import com.ebuytech.svc.easybuy.dao.AccountChargeCDAO;
 import com.ebuytech.svc.easybuy.dao.AccountChargeDAO;
 import com.ebuytech.svc.easybuy.dto.*;
 import com.ebuytech.svc.easybuy.service.ExcelService;
@@ -28,6 +29,9 @@ public class ExcelServiceImpl implements ExcelService {
     @Autowired
      private AccountChargeDAO accountChargeDAO;
 
+    @Autowired
+    private AccountChargeCDAO accountChargeCDAO;
+
     @Override
     public String  createDayChargeExcel(String day) {
         String  def="";
@@ -39,8 +43,8 @@ public class ExcelServiceImpl implements ExcelService {
               def=day;
         }
         HSSFWorkbook workbook = new HSSFWorkbook();
-        List<Daily>  dailies=accountChargeDAO.getDaily();
-        List<DailyT>  dailiTes=accountChargeDAO.getDailyT();
+        List<Daily>  dailies=accountChargeCDAO.getDaily();
+        List<DailyT>  dailiTes=accountChargeCDAO.getDailyT();
         PoiUtils.CreateExcel(workbook,dailies,ChargeSheetOne,"按面值统计");
         PoiUtils.CreateExcel(workbook,dailiTes,ChargeSheetTwo,"按面值统计");
         try {
@@ -66,8 +70,8 @@ public class ExcelServiceImpl implements ExcelService {
         String time = format.format(Calendar.getInstance().getTime())+"第"+ Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)+"周"; //获得本日所在的周数
         String def=path+"\\周报"+time+".xlsx";
         HSSFWorkbook workbook = new HSSFWorkbook();
-        List<Weekly>  dailies=accountChargeDAO.getWeekly();
-        List<WeeklyT>  dailiTes=accountChargeDAO.getWeeklyT();
+        List<Weekly>  dailies=accountChargeCDAO.getWeekly();
+        List<WeeklyT>  dailiTes=accountChargeCDAO.getWeeklyT();
         PoiUtils.CreateExcel(workbook,dailies,ChargeSheetOne,"按面值统计");
         PoiUtils.CreateExcel(workbook,dailiTes,ChargeSheetTwo,"按面值统计");
         try {
@@ -93,8 +97,8 @@ public class ExcelServiceImpl implements ExcelService {
         String time = format.format(Calendar.getInstance().getTime())+"-"+ Calendar.getInstance().get(Calendar.MONTH)+"月"; //获得当前月
         String def=path+"\\月报"+time+".xlsx";
         HSSFWorkbook workbook = new HSSFWorkbook();
-        List<Monthly>  dailies=accountChargeDAO.getMonthly();
-        List<MonthlyT>  dailiTes=accountChargeDAO.getMonthlyT();
+        List<Monthly>  dailies=accountChargeCDAO.getMonthly();
+        List<MonthlyT>  dailiTes=accountChargeCDAO.getMonthlyT();
         PoiUtils.CreateExcel(workbook,dailies,ChargeSheetOne,"按面值统计");
         PoiUtils.CreateExcel(workbook,dailiTes,ChargeSheetTwo,"按面值统计");
         try {

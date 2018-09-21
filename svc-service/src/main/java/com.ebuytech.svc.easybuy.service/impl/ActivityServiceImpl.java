@@ -1,5 +1,6 @@
 package com.ebuytech.svc.easybuy.service.impl;
 
+import com.ebuytech.svc.easybuy.dao.ActivityCDAO;
 import com.ebuytech.svc.easybuy.dao.ActivityDAO;
 import com.ebuytech.svc.easybuy.entity.Activity;
 import com.ebuytech.svc.easybuy.entity.ActivityExample;
@@ -18,6 +19,8 @@ import java.util.List;
 public class ActivityServiceImpl implements IActivityService {
 
     @Autowired ActivityDAO activityDAO;
+
+    @Autowired ActivityCDAO activityCDAO;
 
     @Override public PageInfo<Activity> queryActivityListByPage(int pageNum,int size) {
 
@@ -48,14 +51,12 @@ public class ActivityServiceImpl implements IActivityService {
 
     @Override public Activity queryActivityByPrimaryKey(int actId) {
 
-        Activity activity = activityDAO.selectByPrimaryKey(actId);
-
-        return activity;
+        return activityDAO.selectByPrimaryKey(actId);
     }
 
     @Override public boolean updateActivityStatus(int actId,int status) {
 
-        return activityDAO.updateStatus(actId,status) > 0;
+        return activityCDAO.updateStatus(actId,status) > 0;
     }
 
     @Override public boolean updateActivityById(int actId, int actType, String startTime, String endTime, int actMoney, int cntType, int status, int actCount, String cntInfo) {
