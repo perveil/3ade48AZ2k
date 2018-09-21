@@ -3,9 +3,12 @@ package com.ebuytech.svc.easybuy.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.ebuytech.svc.easybuy.dao.AccountChangeDAO;
 import com.ebuytech.svc.easybuy.dao.AccountChargeDAO;
+import com.ebuytech.svc.easybuy.dao.ChargeCDAO;
+import com.ebuytech.svc.easybuy.dao.ChargeDAO;
 import com.ebuytech.svc.easybuy.entity.AccountChange;
 import com.ebuytech.svc.easybuy.entity.AccountCharge;
 import com.ebuytech.svc.easybuy.entity.Charge;
+import com.ebuytech.svc.easybuy.entity.ChargeExample;
 import com.ebuytech.svc.easybuy.enums.ResultEnums;
 import com.ebuytech.svc.easybuy.exception.ClientException;
 import com.ebuytech.svc.easybuy.service.IChargeService;
@@ -19,6 +22,8 @@ import com.github.binarywang.wxpay.bean.result.WxPayRefundResult;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +38,53 @@ import java.util.List;
 import java.util.Map;
 
 @Service @Slf4j @Transactional public class ChargeServiceImpl implements IChargeService {
-    @Resource WxPayService wxPayService;
+    @Resource private WxPayService wxPayService;
 
-    @Resource AccountChangeDAO accountChangeDAO;
+    @Resource private AccountChangeDAO accountChangeDAO;
 
-    @Resource AccountChargeDAO accountChargeDAO;
+    @Resource private ChargeDAO chargeDAO;
 
-    @Override public List<Charge> queryChargeListByPage(int pageNum) {
-        return null;
+    @Resource private ChargeCDAO chargeCDAO;
+
+    @Resource private AccountChargeDAO accountChargeDAO;
+
+
+    @Override public boolean addCharge(int chargeMoney, int actId, int validType, String validTime,int chargeType,int isValid) {
+
+        Charge charge = new Charge();
+        charge.setActId(actId);
+        charge.setChargeMoney(chargeMoney);
+        charge.setValidType(validType);
+        charge.setValidTime(validTime);
+        charge.setChargeType(chargeType);
+        charge.setIsValid(isValid);
+        return chargeDAO.insert(charge) > 0;
     }
 
-    @Override public boolean addCharge(int chargeMoney, int actId, int validType, String validTime) {
-        return false;
+    @Override public Charge queryChargeById(int chargeId) {
+
+        return chargeDAO.selectByPrimaryKey(chargeId);
+    }
+
+
+    @Override public boolean updateChargeisValidById(int chargeId, int isValid) {
+
+        return chargeCDAO.updateChargeIsValidById(chargeId,isValid) > 0;
+    }
+
+    @Override public boolean updateCharge(Charge charge) {
+
+        return chargeDAO.updateByPrimaryKeySelective(charge) > 0;
+    }
+
+    @Override public PageInfo<Charge> queryChargeListByPage(int pageNum, int size) {
+        ChargeExample chargeExample = new ChargeExample();
+        ChargeExample.Criteria criteria = chargeExample.createCriteria();
+        criteria.andChargeIdIsNotNull();
+        PageHelper.startPage(pageNum, size);
+
+        List<Charge> chargeList = chargeDAO.selectByExample(chargeExample);
+        return new PageInfo<>(chargeList);
     }
 
     @Override public boolean createOrder(String body, Integer totalFee, String openId) {

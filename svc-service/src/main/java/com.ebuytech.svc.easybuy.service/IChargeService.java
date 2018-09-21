@@ -2,6 +2,7 @@ package com.ebuytech.svc.easybuy.service;
 
 import com.ebuytech.svc.easybuy.entity.Charge;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
+import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface IChargeService {
      * @param pageNum
      * @return
      */
-    List<Charge> queryChargeListByPage(int pageNum);
+    PageInfo<Charge> queryChargeListByPage(int pageNum, int size);
 
     /**
      * 添加充值
@@ -25,7 +26,7 @@ public interface IChargeService {
      * @param validTime
      * @return
      */
-    boolean addCharge(int chargeMoney, int actId, int validType, String validTime);
+    boolean addCharge(int chargeMoney, int actId, int validType, String validTime, int chargeType,int isValid);
 
     /**
      * 查询单个charge
