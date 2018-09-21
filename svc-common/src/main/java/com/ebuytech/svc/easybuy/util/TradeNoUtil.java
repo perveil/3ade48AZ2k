@@ -14,4 +14,14 @@ public class TradeNoUtil {
         }
         return randomId;
     }
+
+    public static String getRandomNo(int num) {
+        String randomId = "";
+        Random random = new Random();
+        for (int i = 0; i < num; i++) {
+            Integer randomNum = random.nextInt(10);
+            randomId += randomNum.toString();
+        }
+        return randomId;
+    }
 }
